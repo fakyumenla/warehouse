@@ -18,5 +18,18 @@ Route::get('/', function () {
 });
 
 Route::get('/items', function () {
-    return view('pages.admin.tableItems');
+    return view('pages.admin.Item.tableItems');
 });
+
+Route::get('/employees', function () {
+    return view('pages.admin.Employee.tableEmployee');
+});
+
+Route::get('/transactions', function () {
+    return view('pages.admin.Transaction.tableTransaction');
+});
+
+Route::get('/offices', function () {
+    return view('pages.admin.Office.tableOffice');
+});
+

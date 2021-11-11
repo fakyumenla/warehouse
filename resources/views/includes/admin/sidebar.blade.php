@@ -98,29 +98,29 @@
 
     <!-- Nav Item - Transaction -->
     <li class="nav-item">
-        <a class="nav-link" href="charts.html">
-            <i class="fas fa-fw fa-chart-area"></i>
+        <a class="nav-link" href="/transactions">
+            <i class="fas fa-poll-h"></i>
             <span>Transaction</span></a>
     </li>
 
     <!-- Nav Item - Offices -->
     <li class="nav-item">
-        <a class="nav-link" href="tables.html">
-            <i class="fas fa-fw fa-table"></i>
+        <a class="nav-link" href="/offices">
+            <i class="fas fa-briefcase"></i>
             <span>Offices</span></a>
     </li>
 
     <!-- Nav Item - Items -->
     <li class="nav-item">
         <a class="nav-link" href="/items">
-            <i class="fas fa-fw fa-table"></i>
+            <i class="fas fa-th-large"></i>
             <span>Items</span></a>
     </li>
 
     <!-- Nav Item - Employees -->
     <li class="nav-item">
-        <a class="nav-link" href="tables.html">
-            <i class="fas fa-fw fa-table"></i>
+        <a class="nav-link" href="/employees">
+            <i class="fas fa-users"></i>
             <span>Employees</span></a>
     </li>
 
