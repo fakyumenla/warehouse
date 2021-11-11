@@ -9,23 +9,15 @@
     @include('includes.admin.style')
 </head>
 
-<body id="page-top">
+<body>
     <div id="wrapper">
-        @include('includes.admin.sidebar')
-
-
         <div id="content-wrapper" class="d-flex flex-column">
             <div id="content">
-                @include('includes.admin.navbar')
+
                 @yield('content')
             </div>
-            @include('includes.admin.footer')
         </div>
-
-
-
     </div>
-
     @include('includes.admin.script')
 </body>
 
