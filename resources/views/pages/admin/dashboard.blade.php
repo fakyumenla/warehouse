@@ -10,33 +10,89 @@
         <!-- Page Heading -->
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
-            <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-                    class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
+            {{-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+                    class="fas fa-download fa-sm text-white-50"></i> Generate Report</a> --}}
         </div>
 
         <!-- Content Row -->
-        <div class="row">
+        <div class="row d-flex justify-content-center">
 
             <!-- Earnings (Monthly) Card Example -->
-            <div class="col-xl-3 col-md-6 mb-4">
+            <div class="col-xl-3 col-md-6 mb-4 mx-4">
                 <div class="card border-left-primary shadow h-100 py-2">
                     <div class="card-body">
                         <div class="row no-gutters align-items-center">
-                            <div class="col mr-2">
-                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                            <div class="col d-flex justify-content-center">
+                                <img class="w-75 rounded-circle" src="{{ URL::asset('img/officer1.png') }}">
+                                {{-- <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                     Earnings (Monthly)</div>
-                                <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div> --}}
                             </div>
-                            <div class="col-auto">
-                                <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                            <div class="col ml-4 no-gutters">
+
+                                <div class=" number-employees font-weight-bold text-primary text-uppercase">
+
+                                    15
+                                </div>
+                                <div class="normal h5 mb-0 font-weight-bold text-gray-800">Employees</div>
+                                {{-- <i class="fas fa-calendar fa-2x text-gray-300"></i> --}}
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
 
+            <div class="col-xl-3 col-md-6 mb-4 mx-4">
+                <div class="card border-left-primary shadow h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col d-flex justify-content-center">
+                                <img class="w-75 rounded-circle" src="{{ URL::asset('img/officer1.png') }}">
+                                {{-- <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                    Earnings (Monthly)</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div> --}}
+                            </div>
+                            <div class="col ml-4 no-gutters">
+
+                                <div class=" number-employees font-weight-bold text-primary text-uppercase">
+
+                                    15
+                                </div>
+                                <div class="normal h5 mb-0 font-weight-bold text-gray-800">Employees</div>
+                                {{-- <i class="fas fa-calendar fa-2x text-gray-300"></i> --}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xl-3 col-md-6 mb-4 mx-4">
+                <div class="card border-left-primary shadow h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col d-flex justify-content-center">
+                                <img class="w-75 rounded-circle" src="{{ URL::asset('img/officer1.png') }}">
+                                {{-- <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                    Earnings (Monthly)</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div> --}}
+                            </div>
+                            <div class="col ml-4 no-gutters">
+
+                                <div class=" number-employees font-weight-bold text-primary text-uppercase">
+
+                                    15
+                                </div>
+                                <div class="normal h5 mb-0 font-weight-bold text-gray-800">Employees</div>
+                                {{-- <i class="fas fa-calendar fa-2x text-gray-300"></i> --}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
             <!-- Earnings (Monthly) Card Example -->
-            <div class="col-xl-3 col-md-6 mb-4">
+            {{-- <div class="col-xl-3 col-md-6 mb-4">
                 <div class="card border-left-success shadow h-100 py-2">
                     <div class="card-body">
                         <div class="row no-gutters align-items-center">
@@ -51,10 +107,10 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> --}}
 
             <!-- Earnings (Monthly) Card Example -->
-            <div class="col-xl-3 col-md-6 mb-4">
+            {{-- <div class="col-xl-3 col-md-6 mb-4">
                 <div class="card border-left-info shadow h-100 py-2">
                     <div class="card-body">
                         <div class="row no-gutters align-items-center">
@@ -79,10 +135,10 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> --}}
 
             <!-- Pending Requests Card Example -->
-            <div class="col-xl-3 col-md-6 mb-4">
+            {{-- <div class="col-xl-3 col-md-6 mb-4">
                 <div class="card border-left-warning shadow h-100 py-2">
                     <div class="card-body">
                         <div class="row no-gutters align-items-center">
@@ -97,7 +153,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> --}}
         </div>
 
     </div>
