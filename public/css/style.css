@@ -18,12 +18,16 @@
 
 .btn-primary {
     color: #fff;
-  background-color: #00008B;
-  border-color: #00008B;
+    background-color: #00008B;
+    border-color: #00008B;
 }
 
 .btn-secondary {
     color: #00008B;
-  background-color: #fff;
-  border-color: #00008B;
+    background-color: #fff;
+    border-color: #00008B;
+}
+
+.custom-border {
+    border-radius: 13px !important;
 }

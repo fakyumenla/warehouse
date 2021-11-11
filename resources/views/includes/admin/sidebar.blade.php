@@ -4,7 +4,7 @@
 
     <!-- Sidebar - Brand -->
     <div class=" bg-light">
-        <div class="sidebar-brand d-flex align-items-center justify-content-center my-3" href="">
+        <div class="sidebar-brand d-flex align-items-center justify-content-center my-3" href="/">
             <img class="w-75 rounded-circle" src="{{ URL::asset('img/logo.png') }}">
             {{-- <div class="sidebar-brand-icon rotate-n-15">
             <i class="fas fa-laugh-wink"></i>
@@ -19,7 +19,7 @@
 
     <!-- Nav Item - Dashboard -->
     <li class="nav-item active">
-        <a class="nav-link" href="">
+        <a class="nav-link" href="/">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Dashboard</span></a>
     </li>

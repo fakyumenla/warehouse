@@ -33,3 +33,6 @@ Route::get('/offices', function () {
     return view('pages.admin.Office.tableOffice');
 });
 
+Route::get('/login', function () {
+    return view('auth.login');
+});

@@ -30,7 +30,7 @@
                                 </div>
                             </div>
                             <div class="p-5">
-                                <a href="index.html" class="btn btn-primary btn-block ">
+                                <a href="/" class="btn btn-primary btn-block custom-border">
                                     Login
                                 </a>
                             </div>
