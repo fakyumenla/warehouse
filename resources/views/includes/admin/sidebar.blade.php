@@ -1,25 +1,30 @@
 <!-- Sidebar -->
-<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion  shadow-test " id="accordionSidebar"
+    style="z-index: 1">
 
     <!-- Sidebar - Brand -->
-    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
-        <div class="sidebar-brand-icon rotate-n-15">
+    <div class=" bg-light">
+        <div class="sidebar-brand d-flex align-items-center justify-content-center my-3" href="">
+            <img class="w-75 rounded-circle" src="{{ URL::asset('img/logo.png') }}">
+            {{-- <div class="sidebar-brand-icon rotate-n-15">
             <i class="fas fa-laugh-wink"></i>
         </div>
-        <div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>
-    </a>
+        <div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div> --}}
+        </div>
+    </div>
+
 
     <!-- Divider -->
     <hr class="sidebar-divider my-0">
 
     <!-- Nav Item - Dashboard -->
     <li class="nav-item active">
-        <a class="nav-link" href="index.html">
+        <a class="nav-link" href="">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Dashboard</span></a>
     </li>
 
-    <!-- Divider -->
+    {{-- <!-- Divider -->
     <hr class="sidebar-divider">
 
     <!-- Heading -->
@@ -89,20 +94,34 @@
                 <a class="collapse-item" href="blank.html">Blank Page</a>
             </div>
         </div>
-    </li>
+    </li> --}}
 
-    <!-- Nav Item - Charts -->
+    <!-- Nav Item - Transaction -->
     <li class="nav-item">
         <a class="nav-link" href="charts.html">
             <i class="fas fa-fw fa-chart-area"></i>
-            <span>Charts</span></a>
+            <span>Transaction</span></a>
     </li>
 
-    <!-- Nav Item - Tables -->
+    <!-- Nav Item - Offices -->
     <li class="nav-item">
         <a class="nav-link" href="tables.html">
             <i class="fas fa-fw fa-table"></i>
-            <span>Tables</span></a>
+            <span>Offices</span></a>
+    </li>
+
+    <!-- Nav Item - Items -->
+    <li class="nav-item">
+        <a class="nav-link" href="/items">
+            <i class="fas fa-fw fa-table"></i>
+            <span>Items</span></a>
+    </li>
+
+    <!-- Nav Item - Employees -->
+    <li class="nav-item">
+        <a class="nav-link" href="tables.html">
+            <i class="fas fa-fw fa-table"></i>
+            <span>Employees</span></a>
     </li>
 
     <!-- Divider -->

@@ -16,3 +16,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('pages.admin.dashboard');
 });
+
+Route::get('/items', function () {
+    return view('pages.admin.tableItems');
+});
