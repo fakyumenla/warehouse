@@ -1,5 +1,10 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\EmployeesController;
+use App\Http\Controllers\ItemsController;
+use App\Http\Controllers\OfficesController;
+use App\Http\Controllers\TransactionsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,25 +18,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('pages.admin.dashboard');
-});
+Route::get('/', [DashboardController::class, 'index']);
 
-Route::get('/items', function () {
-    return view('pages.admin.Item.index');
-});
+Route::get('/items', [ItemsController::class, 'index']);
 
-Route::get('/employees', function () {
-    return view('pages.admin.Employee.index');
-});
+Route::get('/employees', [EmployeesController::class, 'index']);
 
-Route::get('/transactions', function () {
-    return view('pages.admin.Transaction.index');
-});
+Route::get('/transactions', [TransactionsController::class, 'index']);
 
-Route::get('/offices', function () {
-    return view('pages.admin.Office.index');
-});
+Route::get('/offices', [OfficesController::class, 'index']);
 
 Route::get('/login', function () {
     return view('auth.login');
