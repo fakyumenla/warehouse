@@ -18,19 +18,19 @@ Route::get('/', function () {
 });
 
 Route::get('/items', function () {
-    return view('pages.admin.Item.tableItems');
+    return view('pages.admin.Item.index');
 });
 
 Route::get('/employees', function () {
-    return view('pages.admin.Employee.tableEmployee');
+    return view('pages.admin.Employee.index');
 });
 
 Route::get('/transactions', function () {
-    return view('pages.admin.Transaction.tableTransaction');
+    return view('pages.admin.Transaction.index');
 });
 
 Route::get('/offices', function () {
-    return view('pages.admin.Office.tableOffice');
+    return view('pages.admin.Office.index');
 });
 
 Route::get('/login', function () {
