@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Employees;
+use App\Models\Employee;
 use Illuminate\Http\Request;
 
 class EmployeesController extends Controller
@@ -44,7 +44,7 @@ class EmployeesController extends Controller
      * @param  \App\Models\Employees  $employees
      * @return \Illuminate\Http\Response
      */
-    public function show(Employees $employees)
+    public function show(Employee $employee)
     {
         //
     }
@@ -55,7 +55,7 @@ class EmployeesController extends Controller
      * @param  \App\Models\Employees  $employees
      * @return \Illuminate\Http\Response
      */
-    public function edit(Employees $employees)
+    public function edit(Employee $employee)
     {
         //
     }
@@ -67,7 +67,7 @@ class EmployeesController extends Controller
      * @param  \App\Models\Employees  $employees
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Employees $employees)
+    public function update(Request $request, Employee $employee)
     {
         //
     }
@@ -78,7 +78,7 @@ class EmployeesController extends Controller
      * @param  \App\Models\Employees  $employees
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Employees $employees)
+    public function destroy(Employee $employee)
     {
         //
     }

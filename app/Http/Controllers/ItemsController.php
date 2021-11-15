@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Items;
+use App\Models\Item;
 use Illuminate\Http\Request;
 
 class ItemsController extends Controller
@@ -41,10 +41,10 @@ class ItemsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Items  $items
+     * @param  \App\Models\Item $items
      * @return \Illuminate\Http\Response
      */
-    public function show(Items $items)
+    public function show(Item $item)
     {
         //
     }
@@ -52,10 +52,10 @@ class ItemsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Items  $items
+     * @param  \App\Models\Item  $items
      * @return \Illuminate\Http\Response
      */
-    public function edit(Items $items)
+    public function edit(Item $item)
     {
         //
     }
@@ -64,10 +64,10 @@ class ItemsController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Items  $items
+     * @param  \App\Models\Item  $items
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Items $items)
+    public function update(Request $request, Item $item)
     {
         //
     }
@@ -75,10 +75,10 @@ class ItemsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Items  $items
+     * @param  \App\Models\Item  $items
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Items $items)
+    public function destroy(Item $item)
     {
         //
     }

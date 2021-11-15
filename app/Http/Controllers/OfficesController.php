@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Offices;
+use App\Models\Office;
 use Illuminate\Http\Request;
 
 class OfficesController extends Controller
@@ -44,7 +44,7 @@ class OfficesController extends Controller
      * @param  \App\Models\Offices  $offices
      * @return \Illuminate\Http\Response
      */
-    public function show(Offices $offices)
+    public function show(Office $office)
     {
         //
     }
@@ -55,7 +55,7 @@ class OfficesController extends Controller
      * @param  \App\Models\Offices  $offices
      * @return \Illuminate\Http\Response
      */
-    public function edit(Offices $offices)
+    public function edit(Office $office)
     {
         //
     }
@@ -67,7 +67,7 @@ class OfficesController extends Controller
      * @param  \App\Models\Offices  $offices
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Offices $offices)
+    public function update(Request $request, Office $office)
     {
         //
     }
@@ -78,7 +78,7 @@ class OfficesController extends Controller
      * @param  \App\Models\Offices  $offices
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Offices $offices)
+    public function destroy(Office $office)
     {
         //
     }
