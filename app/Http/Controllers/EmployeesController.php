@@ -24,7 +24,7 @@ class EmployeesController extends Controller
      */
     public function create()
     {
-        //
+        return view('pages.admin.Employee.add');
     }
 
     /**

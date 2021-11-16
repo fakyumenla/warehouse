@@ -31,3 +31,11 @@
 .custom-border {
     border-radius: 13px !important;
 }
+
+.custom-margin-add {
+    width: 8%;
+}
+
+.vh-80 {
+    height: 80vh !important;
+}
