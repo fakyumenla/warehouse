@@ -25,9 +25,11 @@
                             <div class="row py-3 px-4">
                                 <div class="col-md-12">
                                     <span class="text-header">Employees</span>
-                                    <button type="button" class="btn btn-secondary float-right ">Select</button>
-                                    <button type="button" class="btn btn-primary float-right mr-2"><i
-                                            class="fas fa-plus mr-2"></i>Add Transaction</button>
+                                    <button type="button" class="btn btn-secondary float-right">Select</button>
+                                    <a href="/employees/add" class="btn btn-primary float-right mr-2">
+                                        <i class="fas fa-plus mr-2"></i>
+                                        Add Employee
+                                    </a>
                                 </div>
                             </div>
                             <div class="card-body">
@@ -58,7 +60,6 @@
                                                 <td>ilham</td>
                                                 <td>L</td>
                                                 <td>Jl. S. Wiryopranoto No. 37, Sawah Besar,Jakarta Barat Indonesia</td>
-
                                             </tr>
                                         </tbody>
                                     </table>
