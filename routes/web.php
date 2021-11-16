@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EmployeesController;
+use App\Http\Controllers\HistoryController;
 use App\Http\Controllers\ItemsController;
 use App\Http\Controllers\OfficesController;
 use App\Http\Controllers\TransactionsController;
@@ -24,7 +25,7 @@ Route::get('/items', [ItemsController::class, 'index']);
 
 Route::get('/employees', [EmployeesController::class, 'index']);
 
-Route::get('/transactions', [TransactionsController::class, 'index']);
+Route::get('/transactions', [HistoryController::class, 'index']);
 
 Route::get('/offices', [OfficesController::class, 'index']);
 

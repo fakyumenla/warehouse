@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Transaction_owner;
+use App\Models\Region;
 use Illuminate\Http\Request;
 
-class TransactionsController extends Controller
+class RegionController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,7 @@ class TransactionsController extends Controller
      */
     public function index()
     {
-        return view('pages.admin.Transaction.index');
+        //
     }
 
     /**
@@ -41,10 +41,10 @@ class TransactionsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Transaction_owner  $transaction_owner
+     * @param  \App\Models\Region  $region
      * @return \Illuminate\Http\Response
      */
-    public function show(Transaction_owner $transaction_owner)
+    public function show(Region $region)
     {
         //
     }
@@ -52,10 +52,10 @@ class TransactionsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Transaction_owner  $transaction_owner
+     * @param  \App\Models\Region  $region
      * @return \Illuminate\Http\Response
      */
-    public function edit(Transaction_owner $transaction_owner)
+    public function edit(Region $region)
     {
         //
     }
@@ -64,10 +64,10 @@ class TransactionsController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Transaction_owner  $transaction_owner
+     * @param  \App\Models\Region  $region
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Transaction_owner $transaction_owner)
+    public function update(Request $request, Region $region)
     {
         //
     }
@@ -75,10 +75,10 @@ class TransactionsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Transaction_owner  $transaction_owner
+     * @param  \App\Models\Region  $region
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Transaction_owner $transaction_owner)
+    public function destroy(Region $region)
     {
         //
     }
