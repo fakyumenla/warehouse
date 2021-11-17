@@ -23,7 +23,7 @@ Route::get('/admin', [DashboardController::class, 'index']);
 
 Route::get('/admin/items', [ItemsController::class, 'index']);
 
-Route::get('/admin/employees', [EmployeesController::class, 'index']);
+Route::get('/admin/employees', [EmployeesController::class, 'index'])->name('employees.list');
 Route::get('/admin/employees/create', [EmployeesController::class, 'create']);
 Route::resource('/admin/employees/posts', EmployeesController::class);
 
