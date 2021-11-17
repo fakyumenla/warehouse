@@ -15,8 +15,8 @@ class CreateHistoryOwnershipsTable extends Migration
     {
         Schema::create('history_ownerships', function (Blueprint $table) {
             $table->id()->unique();
-            $table->string('id_item');
-            $table->string('id_user');
+            $table->string('item_id');
+            $table->string('employee_id');
             $table->date('start_date');
             $table->date('end_date')->nullable();
             $table->timestamps();

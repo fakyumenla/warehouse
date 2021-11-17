@@ -15,9 +15,9 @@ class CreateItemsTable extends Migration
     {
         Schema::create('items', function (Blueprint $table) {
             $table->id()->unique();
-            $table->string('id_office');
-            $table->string('id_type');
-            $table->string('id_region');
+            $table->string('office_id');
+            $table->string('type_id');
+            $table->string('region_id');
             $table->string('name');
             $table->text('description');
             $table->text('barcode_image');
