@@ -10,4 +10,9 @@ class Employee extends Model
     use HasFactory;
 
     protected $guarded = ['id'];
+
+    public function history()
+    {
+        return $this->hasMany(History_ownership::class);
+    }
 }
