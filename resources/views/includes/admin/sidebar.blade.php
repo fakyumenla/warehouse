@@ -18,8 +18,8 @@
     <hr class="sidebar-divider my-0">
 
     <!-- Nav Item - Dashboard -->
-    <li class="nav-item active">
-        <a class="nav-link" href="/">
+    <li class="nav-item {{ Request::is('admin') ? 'active' : '' }}">
+        <a class="nav-link {{ Request::is('/admin') ? 'active' : '' }}" href="/admin">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Dashboard</span></a>
     </li>
@@ -97,29 +97,29 @@
     </li> --}}
 
     <!-- Nav Item - Transaction -->
-    <li class="nav-item">
-        <a class="nav-link" href="/transactions">
+    <li class="nav-item {{ Request::is('admin/transactions') ? 'active' : '' }}">
+        <a class="nav-link" href="/admin/transactions">
             <i class="fas fa-poll-h"></i>
             <span>Transaction</span></a>
     </li>
 
     <!-- Nav Item - Offices -->
-    <li class="nav-item">
-        <a class="nav-link" href="/offices">
+    <li class="nav-item  {{ Request::is('admin/offices') ? 'active' : '' }}">
+        <a class="nav-link" href="/admin/offices">
             <i class="fas fa-briefcase"></i>
             <span>Offices</span></a>
     </li>
 
     <!-- Nav Item - Items -->
-    <li class="nav-item">
-        <a class="nav-link" href="/items">
+    <li class="nav-item  {{ Request::is('admin/items') ? 'active' : '' }}">
+        <a class="nav-link" href="/admin/items">
             <i class="fas fa-th-large"></i>
             <span>Items</span></a>
     </li>
 
     <!-- Nav Item - Employees -->
-    <li class="nav-item">
-        <a class="nav-link" href="/employees">
+    <li class="nav-item  {{ Request::is('admin/employees') ? 'active' : '' }}">
+        <a class="nav-link" href="/admin/employees">
             <i class="fas fa-users"></i>
             <span>Employees</span></a>
     </li>

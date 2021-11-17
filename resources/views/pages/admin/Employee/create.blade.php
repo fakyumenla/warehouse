@@ -35,17 +35,18 @@
                             <div class="row py-3 px-4 ml-4 my-4">
                                 <div class="col-md-12">
                                     <span class="text-header">Add Employee</span>
-                                    <form class="mt-4">
+                                    <form class="mt-4" method="post" action="/employee/pots">
                                         <div class="form-group row">
                                             <label for="inputName" class="col-sm-2 col-form-label text-right">Name</label>
                                             <div class="col-sm-3">
-                                                <input type="text" class="form-control" id="inputName" placeholder="Name">
+                                                <input type="text" class="form-control" id="inputName" placeholder="Name"
+                                                    name="name">
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label for="inputNIK" class="col-sm-2 col-form-label text-right">NIK</label>
                                             <div class="col-sm-3">
-                                                <input type="text" class="form-control" id="inputPassword"
+                                                <input type="text" class="form-control" id="inputPassword" name="password"
                                                     placeholder="NIK">
                                             </div>
                                         </div>
@@ -55,8 +56,8 @@
                                             <label for="inputGender"
                                                 class="col-sm-2 col-form-label text-right">Gender</label>
                                             <div class="col-sm-3">
-                                                <select class="custom-select " id="inputGroupSelect01">
-                                                    <option selected>Choose...</option>
+                                                <select class="custom-select" id="inputGender" name="gender">
+                                                    <option selected>....</option>
                                                     <option value="1">Pria</option>
                                                     <option value="2">Perempuan</option>
 
@@ -66,18 +67,16 @@
                                         </div>
 
                                         <div class="form-group row">
-                                            <label for="exampleFormControlTextarea1"
-                                                class="col-sm-2 text-right">Address</label>
+                                            <label for="inputAddress" class="col-sm-2 text-right">Address</label>
                                             <div class="col-sm-3">
-                                                <textarea class="form-control " id="exampleFormControlTextarea1"
-                                                    rows="3"></textarea>
+                                                <textarea class="form-control " id="inputAddress" rows="3"></textarea>
                                             </div>
 
                                         </div>
                                         <div class="form-group row mt-4">
                                             <div class="col-sm-2"></div>
                                             <div class="col-sm-3">
-                                                <a href="/" class="btn btn-primary mr-2">
+                                                <a href="" class="btn btn-primary mr-2">
                                                     <i class="fas fa-plus mr-2"></i>
                                                     Add Item
                                                 </a>

@@ -19,16 +19,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [DashboardController::class, 'index']);
+Route::get('/admin', [DashboardController::class, 'index']);
 
-Route::get('/items', [ItemsController::class, 'index']);
+Route::get('/admin/items', [ItemsController::class, 'index']);
 
-Route::get('/employees', [EmployeesController::class, 'index']);
-Route::get('/employees/add', [EmployeesController::class, 'create']);
+Route::get('/admin/employees', [EmployeesController::class, 'index']);
+Route::get('/admin/employees/create', [EmployeesController::class, 'create']);
 
-Route::get('/transactions', [HistoryController::class, 'index']);
+Route::get('/admin/transactions', [HistoryController::class, 'index']);
 
-Route::get('/offices', [OfficesController::class, 'index']);
+Route::get('/admin/offices', [OfficesController::class, 'index']);
 
 Route::get('/login', function () {
     return view('auth.login');

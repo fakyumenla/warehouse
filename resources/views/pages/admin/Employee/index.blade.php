@@ -26,7 +26,7 @@
                                 <div class="col-md-12">
                                     <span class="text-header">Employees</span>
                                     <button type="button" class="btn btn-secondary float-right">Select</button>
-                                    <a href="/employees/add" class="btn btn-primary float-right mr-2">
+                                    <a href="/employees/create" class="btn btn-primary float-right mr-2">
                                         <i class="fas fa-plus mr-2"></i>
                                         Add Employee
                                     </a>
