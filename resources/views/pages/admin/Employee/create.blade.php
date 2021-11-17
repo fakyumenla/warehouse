@@ -35,7 +35,7 @@
                             <div class="row py-3 px-4 ml-4 my-4">
                                 <div class="col-md-12">
                                     <span class="text-header">Add Employee</span>
-                                    <form class="mt-4">
+                                    <form class="mt-4" method="post" action="/employee/pots">
                                         <div class="form-group row">
                                             <label for="inputName" class="col-sm-2 col-form-label text-right">Name</label>
                                             <div class="col-sm-3">
