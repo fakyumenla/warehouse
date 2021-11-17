@@ -26,4 +26,9 @@ class Item extends Model
     {
         return $this->belongsTo(Region::class);
     }
+
+    public function history()
+    {
+        return $this->hasMany(History_ownership::class);
+    }
 }
