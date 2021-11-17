@@ -36,19 +36,22 @@
                                 <div class="col-md-12">
                                     <span class="text-header">Add Employee</span>
 
-                                    <form class="mt-4" method="post" action="/admin/employee/posts">
+                                    <form class="mt-4" method="post" enctype="multipart/form-data"
+                                        action="/admin/employees/posts">
+                                        @csrf
                                         <div class="form-group row">
                                             <label for="inputName" class="col-sm-2 col-form-label text-right">Name</label>
                                             <div class="col-sm-3">
-                                                <input type="text" class="form-control" id="inputName" placeholder="Name"
-                                                    name="name">
+                                                <input type="text" class="form-control @error('name') is-invalid @enderror"
+                                                    id="inputName" placeholder="Name" name="name"
+                                                    value="{{ old('name') }}">
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label for="inputNIK" class="col-sm-2 col-form-label text-right">NIK</label>
                                             <div class="col-sm-3">
-                                                <input type="text" class="form-control" id="inputPassword" name="password"
-                                                    placeholder="NIK">
+                                                <input type="text" class="form-control  @error('nik') is-invalid @enderror"
+                                                    id="inputNIK" placeholder="NIK" name="nik" value="{{ old('nik') }}">
                                             </div>
                                         </div>
 
@@ -57,10 +60,11 @@
                                             <label for="inputGender"
                                                 class="col-sm-2 col-form-label text-right">Gender</label>
                                             <div class="col-sm-3">
-                                                <select class="custom-select" id="inputGender" name="gender">
-                                                    <option selected>....</option>
-                                                    <option value="1">Pria</option>
-                                                    <option value="2">Perempuan</option>
+                                                <select class="custom-select @error('gender') is-invalid @enderror"
+                                                    id="inputGender" name="gender">
+                                                    <option selected>Select Gender</option>
+                                                    <option value="Laki-laki">Laki-laki</option>
+                                                    <option value="Perempuan">Perempuan</option>
 
                                                 </select>
                                             </div>
@@ -70,17 +74,18 @@
                                         <div class="form-group row">
                                             <label for="inputAddress" class="col-sm-2 text-right">Address</label>
                                             <div class="col-sm-3">
-                                                <textarea class="form-control " id="inputAddress" rows="3"></textarea>
+                                                <textarea class="form-control @error('address') is-invalid @enderror "
+                                                    id="inputAddress" name="address" rows="3"></textarea>
                                             </div>
 
                                         </div>
                                         <div class="form-group row mt-4">
                                             <div class="col-sm-2"></div>
                                             <div class="col-sm-3">
-                                                <a href="" class="btn btn-primary mr-2">
-                                                    <i class="fas fa-plus mr-2"></i>
-                                                    Add Item
-                                                </a>
+
+                                                <button type="submit" class="btn btn-primary"> <i
+                                                        class="fas fa-plus mr-2"></i>Submit</button>
+
                                             </div>
                                         </div>
 

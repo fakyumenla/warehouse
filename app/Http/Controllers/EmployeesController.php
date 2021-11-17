@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Employee;
 use Illuminate\Http\Request;
 
+use function GuzzleHttp\Promise\all;
+
 class EmployeesController extends Controller
 {
     /**
@@ -35,7 +37,19 @@ class EmployeesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            // 'id' => 'required',
+            'name' => 'required',
+            'gender' => 'required',
+            'address' => 'required',
+            'nik' => 'required',
+        ]);
+        // $validatedData[;'']
+        Employee::create($validatedData);
+
+        return redirect('/admin/employees')->with('success', 'success add new employee');
+        // $data = $request -> all();        
+        // return $request;
     }
 
     /**
