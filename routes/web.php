@@ -24,7 +24,7 @@ Route::get('/', [DashboardController::class, 'index']);
 Route::get('/items', [ItemsController::class, 'index']);
 
 Route::get('/employees', [EmployeesController::class, 'index']);
-Route::get('/employees/add', [EmployeesController::class, 'create']);
+Route::get('/employees/create', [EmployeesController::class, 'create']);
 
 Route::get('/transactions', [HistoryController::class, 'index']);
 
