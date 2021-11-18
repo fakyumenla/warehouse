@@ -15,4 +15,9 @@ class Office extends Model
     {
         return $this->hasMany(Item::class);
     }
+
+    public function region()
+    {
+        return $this->belongsTo(Region::class,'region_id','id');
+    }
 }

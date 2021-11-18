@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Office;
 use Illuminate\Http\Request;
+use DataTables;
 
 class OfficesController extends Controller
 {
@@ -14,6 +15,23 @@ class OfficesController extends Controller
      */
     public function index()
     {
+        if (request()->ajax()) {
+            $data = Office::with('region')->select('offices.*')->latest();
+            # Here 'offices' is the name of table for Documents Model
+            # And 'regions' is the name of relation on Document Model.
+            return Datatables::of($data)
+                ->addIndexColumn()
+                ->addColumn('region_str', function($row){
+                      # 'name' is the field in table of Status Model
+                      return $row->region->name;
+                 })
+                ->addColumn('action', function($row){
+                    $actionBtn = '<a href="javascript:void(0)" class="edit btn btn-success btn-sm">Edit</a> <a href="javascript:void(0)" class="delete btn btn-danger btn-sm">Delete</a>';
+                    return $actionBtn;
+                })
+                ->rawColumns(['action'])
+                ->make(true);
+        }
         return view('pages.admin.Office.index');
     }
 

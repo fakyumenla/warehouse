@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\History_ownership;
 use Illuminate\Http\Request;
+use DataTables;
 
 class HistoryController extends Controller
 {
@@ -14,6 +15,27 @@ class HistoryController extends Controller
      */
     public function index()
     {
+        if (request()->ajax()) {
+            $data = History_ownership::with('item','employee')->select('history_ownerships.*')->latest();
+            # Here 'history_ownerships' is the name of table for Documents Model
+            # And 'item' is the name of relation on Document Model.
+            return Datatables::of($data)
+                ->addIndexColumn()
+                ->addColumn('item_str', function($row){
+                    # 'name' is the field in table of Status Model
+                    return $row->item->name;
+               })
+                ->addColumn('employee_str', function($row){
+                    # 'name' is the field in table of Status Model
+                    return $row->employee->name;
+               })
+                ->addColumn('action', function($row){
+                    $actionBtn = '<a href="javascript:void(0)" class="edit btn btn-success btn-sm">Edit</a> <a href="javascript:void(0)" class="delete btn btn-danger btn-sm">Delete</a>';
+                    return $actionBtn;
+                })
+                ->rawColumns(['action'])
+                ->make(true);
+        }
         return view('pages.admin.Transaction.index');
     }
 

@@ -21,15 +21,15 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/admin', [DashboardController::class, 'index']);
 
-Route::get('/admin/items', [ItemsController::class, 'index']);
+Route::get('/admin/items', [ItemsController::class, 'index'])->name('items.list');
 
 Route::get('/admin/employees', [EmployeesController::class, 'index'])->name('employees.list');
 Route::get('/admin/employees/create', [EmployeesController::class, 'create']);
 Route::resource('/admin/employees/posts', EmployeesController::class);
 
-Route::get('/admin/transactions', [HistoryController::class, 'index']);
+Route::get('/admin/transactions', [HistoryController::class, 'index'])->name('histories.list');
 
-Route::get('/admin/offices', [OfficesController::class, 'index']);
+Route::get('/admin/offices', [OfficesController::class, 'index'])->name('offices.list');
 
 Route::get('/login', function () {
     return view('auth.login');
