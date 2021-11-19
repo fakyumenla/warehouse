@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Item;
+use App\Models\Office;
 use Illuminate\Http\Request;
 use DataTables;
 
@@ -34,7 +35,7 @@ class ItemsController extends Controller
                       return $row->region->name;
                  })
                  ->addColumn('detail', function($row){
-                    $detailBtn = '<a href="admin/item-detail/'.$row->id.'" class="btn btn-primary d-flex justify-content-center">Detail</a>';
+                    $detailBtn = '<a href="'.route('items.details',[$row->name,$row->id]).'" class="btn btn-primary d-flex justify-content-center">Detail</a>';
                     return $detailBtn;
                 })
                 ->addColumn('action', function($row){
@@ -74,9 +75,14 @@ class ItemsController extends Controller
      * @param  \App\Models\Item $items
      * @return \Illuminate\Http\Response
      */
-    public function show(Item $item)
-    {
-        //
+    public function show(Item $item,$name,$id)
+    { 
+        $items = Item::findOrFail($id);
+        $office = Office::findOrFail($items->office_id);
+        return view('pages.admin.Item.detail',[
+            'item' => $items,
+            'office' => $office
+        ]);
     }
 
     /**
