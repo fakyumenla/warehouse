@@ -34,7 +34,7 @@ class ItemsController extends Controller
                       return $row->region->name;
                  })
                  ->addColumn('detail', function($row){
-                    $detailBtn = '<a href="/item/{id}" class="btn btn-primary d-flex justify-content-center">Detail</a>';
+                    $detailBtn = '<a href="admin/item-detail/'.$row->id.'" class="btn btn-primary d-flex justify-content-center">Detail</a>';
                     return $detailBtn;
                 })
                 ->addColumn('action', function($row){
