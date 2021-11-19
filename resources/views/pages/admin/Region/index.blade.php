@@ -38,10 +38,7 @@
                                         <thead>
                                             <tr>
                                                 <th>No</th>
-                                                <th>Item Name</th>
-                                                <th>Owner</th>
-                                                <th>Date Taken</th>
-                                                <th>Return Date</th>
+                                                <th>Region Name</th>
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
@@ -49,9 +46,6 @@
                                             <tr>
                                                 <th>No</th>
                                                 <th>Item Name</th>
-                                                <th>Owner</th>
-                                                <th>Date Taken</th>
-                                                <th>Return Date</th>
                                                 <th>Action</th>
                                             </tr>
                                         </tfoot>
@@ -112,26 +106,14 @@
                 processing: true,
                 serverSide: true,
                 ordering: true,
-                ajax: "{{ route('histories.list') }}",
+                ajax: "{{ route('regions.list') }}",
                 columns: [{
                         data: 'id',
                         name: 'id'
                     },
                     {
-                        data: 'item_str',
-                        name: 'item.name'
-                    },
-                    {
-                        data: 'employee_str',
-                        name: 'employee.name'
-                    },
-                    {
-                        data: 'start_date',
-                        name: 'start_date'
-                    },
-                    {
-                        data: 'end_date',
-                        name: 'end_date'
+                        data: 'name',
+                        name: 'name'
                     },
                     {
                         data: 'action',

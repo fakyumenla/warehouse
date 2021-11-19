@@ -30,7 +30,7 @@ Route::get('/admin/employees', [EmployeesController::class, 'index'])->name('emp
 Route::get('/admin/employees/create', [EmployeesController::class, 'create']);
 Route::resource('/admin/employees/posts', EmployeesController::class);
 
-Route::get('/admin/regions', [RegionController::class, 'index']);
+Route::get('/admin/regions', [RegionController::class, 'index'])->name('regions.list');
 
 Route::get('/admin/types', [TypeController::class, 'index']);
 
