@@ -35,6 +35,8 @@ Route::get('/admin/regions/create', [RegionController::class, 'create'])->name('
 Route::resource('/admin/regions/posts', RegionController::class);
 
 Route::get('/admin/types', [TypeController::class, 'index'])->name('types.list');
+Route::get('/admin/types/create', [TypeController::class, 'create'])->name('types.create');
+Route::resource('/admin/types/posts', TypeController::class);
 
 Route::get('/admin/histories', [HistoryController::class, 'index'])->name('histories.list');
 

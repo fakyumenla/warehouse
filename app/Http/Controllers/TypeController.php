@@ -14,6 +14,17 @@ class TypeController extends Controller
      */
     public function index()
     {
+        if (request()->ajax()) {
+            $data = Type::latest()->get();
+            return Datatables::of($data)
+                ->addIndexColumn()
+                ->addColumn('action', function ($row) {
+                    $actionBtn = '<a href="javascript:void(0)" class="edit btn btn-success btn-sm">Edit</a> <a href="javascript:void(0)" class="delete btn btn-danger btn-sm">Delete</a>';
+                    return $actionBtn;
+                })
+                ->rawColumns(['action'])
+                ->make(true);
+        }
         return view('pages.admin.Type.index');
     }
 
@@ -24,7 +35,7 @@ class TypeController extends Controller
      */
     public function create()
     {
-        //
+        return view('pages.admin.Type.create');
     }
 
     /**
@@ -35,7 +46,14 @@ class TypeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            // 'id' => 'required',
+            'name' => 'required',
+        ]);
+        // $validatedData[;'']
+        type::create($validatedData);
+
+        return redirect('/admin/types')->with('success', 'success add new type');
     }
 
     /**

@@ -54,7 +54,7 @@ class RegionController extends Controller
         // $validatedData[;'']
         Region::create($validatedData);
 
-        return redirect('/admin/regions')->with('success', 'success add new employee');
+        return redirect('/admin/regions')->with('success', 'success add new region');
     }
 
     /**
