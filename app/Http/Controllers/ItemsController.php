@@ -34,11 +34,9 @@ class ItemsController extends Controller
                       return $row->region->name;
                  })
                  ->addColumn('detail', function($row){
-                    $detailBtn = '<a href="javascript:void(0)" class="btn btn-primary d-flex justify-content-center">Detail</a>';
+                    $detailBtn = '<a href="admin/item-detail/'.$row->id.'" class="btn btn-primary d-flex justify-content-center">Detail</a>';
                     return $detailBtn;
                 })
-                
-                
                 ->addColumn('action', function($row){
                     $actionBtn = '<a href="javascript:void(0)" class="edit btn btn-success btn-sm">Edit</a> <a href="javascript:void(0)" class="delete btn btn-danger btn-sm">Delete</a>';
                     return $actionBtn;
