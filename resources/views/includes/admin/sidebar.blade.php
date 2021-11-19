@@ -104,10 +104,23 @@
     </li>
 
     <!-- Nav Item - Offices -->
+    <li class="nav-item  {{ Request::is('admin/regions') ? 'active' : '' }}">
+        <a class="nav-link" href="/admin/regions">
+            <i class="fas fa-briefcase"></i>
+            <span>Regions</span></a>
+    </li>
+
+    <!-- Nav Item - Offices -->
     <li class="nav-item  {{ Request::is('admin/offices') ? 'active' : '' }}">
         <a class="nav-link" href="/admin/offices">
             <i class="fas fa-briefcase"></i>
             <span>Offices</span></a>
+    </li>
+
+    <li class="nav-item  {{ Request::is('admin/types') ? 'active' : '' }}">
+        <a class="nav-link" href="/admin/types">
+            <i class="fas fa-briefcase"></i>
+            <span>Types</span></a>
     </li>
 
     <!-- Nav Item - Items -->
