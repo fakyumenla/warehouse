@@ -52,7 +52,7 @@ class DatabaseSeeder extends Seeder
 
         Office::create([
             'region_id' => '1',
-            'name' => 'Laptop',
+            'name' => 'Kantor Sukamaju',
             'address' => 'Jl. H.M. Thohir, Beji, Depok'
         ]);
 
