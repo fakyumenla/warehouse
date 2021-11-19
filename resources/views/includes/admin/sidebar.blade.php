@@ -19,7 +19,7 @@
 
     <!-- Nav Item - Dashboard -->
     <li class="nav-item {{ Request::is('admin') ? 'active' : '' }}">
-        <a class="nav-link {{ Request::is('/admin') ? 'active' : '' }}" href="/admin">
+        <a class="nav-link {{ Request::is('/admin') ? 'active' : '' }}" href="{{ route('dashboard') }}">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Dashboard</span></a>
     </li>
@@ -97,42 +97,42 @@
     </li> --}}
 
     <!-- Nav Item - Transaction -->
-    <li class="nav-item {{ Request::is('admin/transactions') ? 'active' : '' }}">
-        <a class="nav-link" href="/admin/transactions">
+    <li class="nav-item {{ Request::is('admin/histories') ? 'active' : '' }}">
+        <a class="nav-link" href="{{ route('histories.list') }}">
             <i class="fas fa-poll-h"></i>
-            <span>Transaction</span></a>
+            <span>Histories</span></a>
     </li>
 
     <!-- Nav Item - Offices -->
     <li class="nav-item  {{ Request::is('admin/regions') ? 'active' : '' }}">
-        <a class="nav-link" href="/admin/regions">
+        <a class="nav-link" href="{{ route('regions.list') }}">
             <i class="fas fa-briefcase"></i>
             <span>Regions</span></a>
     </li>
 
     <!-- Nav Item - Offices -->
     <li class="nav-item  {{ Request::is('admin/offices') ? 'active' : '' }}">
-        <a class="nav-link" href="/admin/offices">
+        <a class="nav-link" href="{{ route('offices.list') }}">
             <i class="fas fa-briefcase"></i>
             <span>Offices</span></a>
     </li>
 
     <li class="nav-item  {{ Request::is('admin/types') ? 'active' : '' }}">
-        <a class="nav-link" href="/admin/types">
+        <a class="nav-link" href="{{ route('types.list') }}">
             <i class="fas fa-briefcase"></i>
             <span>Types</span></a>
     </li>
 
     <!-- Nav Item - Items -->
     <li class="nav-item  {{ Request::is('admin/items') ? 'active' : '' }}">
-        <a class="nav-link" href="/admin/items">
+        <a class="nav-link" href="{{ route('items.list') }}">
             <i class="fas fa-th-large"></i>
             <span>Items</span></a>
     </li>
 
     <!-- Nav Item - Employees -->
     <li class="nav-item  {{ Request::is('admin/employees') ? 'active' : '' }}">
-        <a class="nav-link" href="/admin/employees">
+        <a class="nav-link" href="{{ route('employees.list') }}">
             <i class="fas fa-users"></i>
             <span>Employees</span></a>
     </li>
