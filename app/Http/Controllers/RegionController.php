@@ -36,7 +36,7 @@ class RegionController extends Controller
      */
     public function create()
     {
-        //
+        return view('pages.admin.Region.create');
     }
 
     /**
@@ -47,7 +47,14 @@ class RegionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            // 'id' => 'required',
+            'name' => 'required',
+        ]);
+        // $validatedData[;'']
+        Region::create($validatedData);
+
+        return redirect('/admin/regions')->with('success', 'success add new employee');
     }
 
     /**

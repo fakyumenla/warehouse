@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('title')
-    Transaction
+    Region
 @endsection
 
 @section('content')
@@ -24,11 +24,11 @@
                         <div class="card shadow mb-4">
                             <div class="row py-3 px-4">
                                 <div class="col-md-12">
-                                    <span class="text-header">Transaction</span>
+                                    <span class="text-header">Region</span>
                                     <button type="button" class="btn btn-secondary float-right ">Select</button>
-                                    <a href="/" class="btn btn-primary float-right mr-2">
+                                    <a href="{{ route('regions.create') }}" class="btn btn-primary float-right mr-2">
                                         <i class="fas fa-plus mr-2"></i>
-                                        Add Transaction
+                                        Add Region
                                     </a>
                                 </div>
                             </div>
