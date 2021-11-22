@@ -32,6 +32,8 @@ Route::resource('/admin/items/posts', ItemsController::class);
 Route::get('/admin/employees', [EmployeesController::class, 'index'])->name('employees.list');
 Route::get('/admin/employees/create', [EmployeesController::class, 'create'])->name('employees.create');
 Route::resource('/admin/employees/posts', EmployeesController::class);
+Route::delete('/admin/employees/delete/{id}',[EmployeesController::class, 'destroy'])->name('employees.destroy');
+
 
 Route::get('/admin/regions', [RegionController::class, 'index'])->name('regions.list');
 Route::get('/admin/regions/create', [RegionController::class, 'create'])->name('regions.create');
