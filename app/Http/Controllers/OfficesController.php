@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Office;
+use App\Models\Region;
 use Illuminate\Http\Request;
 use DataTables;
 
@@ -16,7 +17,7 @@ class OfficesController extends Controller
     public function index()
     {
         if (request()->ajax()) {
-            $data = Office::with('region')->select('offices.*')->latest();
+            $data = Office::with('region')->select('offices.*')->latest()->get();
             # Here 'offices' is the name of table for Documents Model
             # And 'regions' is the name of relation on Document Model.
             return Datatables::of($data)
@@ -42,7 +43,9 @@ class OfficesController extends Controller
      */
     public function create()
     {
-        
+        return view('pages.admin.OFfice.create',[
+            'regions' => Region::all()
+        ]);
     }
 
     /**
@@ -53,7 +56,16 @@ class OfficesController extends Controller
      */
     public function store(Request $request)
     {
-        
+         $validatedData = $request->validate([
+            // 'id' => 'required',
+            'name' => 'required',
+            'region_id' => 'required',
+            'address' => 'required'
+        ]);
+        // $validatedData[;'']
+        Office::create($validatedData);
+
+        return redirect('/admin/offices');
     }
 
     /**

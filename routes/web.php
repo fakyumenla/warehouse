@@ -25,7 +25,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/admin', [DashboardController::class, 'index'])->name('dashboard');
 
 Route::get('/admin/items', [ItemsController::class, 'index'])->name('items.list');
+Route::get('/admin/items/create', [ItemsController::class, 'create'])->name('items.create');
 Route::get('admin/items/{name}/{id}', [ItemsController::class, 'show'])->name('items.details');
+Route::resource('/admin/items/posts', ItemsController::class);
 
 Route::get('/admin/employees', [EmployeesController::class, 'index'])->name('employees.list');
 Route::get('/admin/employees/create', [EmployeesController::class, 'create'])->name('employees.create');
@@ -42,6 +44,8 @@ Route::resource('/admin/types/posts', TypeController::class);
 Route::get('/admin/histories', [HistoryController::class, 'index'])->name('histories.list');
 
 Route::get('/admin/offices', [OfficesController::class, 'index'])->name('offices.list');
+Route::get('/admin/offices/create', [OfficesController::class, 'create'])->name('offices.create');
+Route::resource('/admin/offices/posts', OfficesController::class);
 
 Route::get('/login', function () {
     return view('auth.login');
