@@ -6,6 +6,8 @@ use App\Models\Item;
 use App\Models\Office;
 use App\Models\Region;
 use App\Models\Type;
+use App\Models\Employee;
+use App\Models\History_ownership;
 use Illuminate\Http\Request;
 use DataTables;
 
@@ -97,11 +99,37 @@ class ItemsController extends Controller
         $items = Item::findOrFail($id);
         $office = Office::findOrFail($items->office_id);
         $region = Region::findOrFail($office->region_id);
+        $history = History_ownership::where('item_id', $items->id)->get();
+        if (request()->ajax()) {
+            $data = History_ownership::with('employee', 'item')->select('history_ownerships.*')->where('item_id', $items->id)->latest()->get();
+            # Here 'items' is the name of table for Documents Model
+            # And 'region' is the name of relation on Document Model.
+            return Datatables::of($data)
+                ->addIndexColumn()
+                ->addColumn('item_str', function ($row) {
+                    # 'name' is the field in table of Status Model
+                    return $row->item->name;
+                })
+                ->addColumn('employee_str', function ($row) {
+                    # 'name' is the field in table of Status Model
+                    return $row->employee->name;
+                })
+                ->addColumn('action', function ($row) {
+                    $actionBtn = '<a href="javascript:void(0)" class="edit btn btn-success btn-sm">Edit</a> <a href="javascript:void(0)" class="delete btn btn-danger btn-sm">Delete</a>';
+                    return $actionBtn;
+                })
+                ->rawColumns(['action'])
+                ->make(true);
+        }
+        
         return view('pages.admin.Item.detail',[
             'item' => $items,
             'office' => $office,
-            'region'  => $region
+            'region'  => $region,
+            'history' => $history
         ]);
+
+        // return $history;
     }
 
     /**
