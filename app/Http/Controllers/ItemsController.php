@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Item;
 use App\Models\Office;
 use App\Models\Region;
+use App\Models\Type;
 use Illuminate\Http\Request;
 use DataTables;
 
@@ -18,7 +19,7 @@ class ItemsController extends Controller
     public function index()
     {
         if (request()->ajax()) {
-            $data = Item::with('region','office','type')->select('items.*')->latest();
+            $data = Item::with('region','office','type')->select('items.*')->latest()->get();
             # Here 'items' is the name of table for Documents Model
             # And 'region' is the name of relation on Document Model.
             return Datatables::of($data)
@@ -56,7 +57,11 @@ class ItemsController extends Controller
      */
     public function create()
     {
-        //
+        return view('pages.admin.Item.create', [
+            'regions' => Region::all(),
+            'types' => Type::all(),
+            'offices' => Office::all()
+        ]);
     }
 
     /**
@@ -67,7 +72,18 @@ class ItemsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            // 'id' => 'required',
+            'name' => 'required',
+            'office_id' => 'required',
+            'type_id' => 'required',
+            'region_id' => 'required',
+            'description' => 'required',
+            'barcode_image' => 'required'
+        ]);
+
+        Item::create($validatedData);
+        return redirect('/admin/items');
     }
 
     /**
