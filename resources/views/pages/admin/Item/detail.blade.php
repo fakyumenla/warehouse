@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('title')
-    Detail Item
+    {{ $item->name }}
 @endsection
 
 @section('content')
@@ -9,4 +9,5 @@
     {{ $item->name }}
     {{ $item->description }}
     {{ $office->name }}
+    {{ $region->name }}
 @endsection

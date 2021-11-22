@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Item;
 use App\Models\Office;
+use App\Models\Region;
 use Illuminate\Http\Request;
 use DataTables;
 
@@ -79,9 +80,11 @@ class ItemsController extends Controller
     { 
         $items = Item::findOrFail($id);
         $office = Office::findOrFail($items->office_id);
+        $region = Region::findOrFail($office->region_id);
         return view('pages.admin.Item.detail',[
             'item' => $items,
-            'office' => $office
+            'office' => $office,
+            'region'  => $region
         ]);
     }
 
