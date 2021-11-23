@@ -26,11 +26,11 @@
                             <div class="row py-3 px-4">
                                 <div class="col-md-12">
                                     <span class="text-header">Items</span>
-                                    <button type="button" class="btn btn-secondary float-right ">Select</button>
-                                    <a href="{{ route('items.create') }}" class="btn btn-primary float-right mr-2">
-                                        <i class="fas fa-plus mr-2"></i>
-                                        Add Item
-                                    </a>
+                                    <a href="/getOffice/1" class="btn btn-secondary float-right ">Select</button>
+                                        <a href="{{ route('items.create') }}" class="btn btn-primary float-right mr-2">
+                                            <i class="fas fa-plus mr-2"></i>
+                                            Add Item
+                                        </a>
                                 </div>
                             </div>
                             <div class="card-body">
