@@ -69,6 +69,7 @@
                                             <div class="col-sm-3">
                                                 <select class="custom-select @error('region_id') is-invalid @enderror"
                                                     id="inputRegion" name="region_id">
+                                                    <option hidden>Choose Category</option>
                                                     @foreach ($regions as $region)
                                                         <option value="{{ $region->id }}">{{ $region->name }}</option>
                                                     @endforeach
@@ -83,10 +84,10 @@
                                                 class="col-sm-2 col-form-label text-right">Office</label>
                                             <div class="col-sm-3">
                                                 <select class="custom-select @error('office_id') is-invalid @enderror"
-                                                    id="inputOffice" name="office_id">
-                                                    @foreach ($offices as $office)
+                                                    id="office" name="office_id">
+                                                    {{-- @foreach ($offices as $office)
                                                         <option value="{{ $office->id }}">{{ $office->name }}</option>
-                                                    @endforeach
+                                                    @endforeach --}}
 
                                                 </select>
                                             </div>
@@ -168,4 +169,43 @@
     </div> --}}
 
     </body>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous">
+    </script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script>
+        $(document).ready(function() {
+            $('#inputRegion').on('change', function(e) {
+                var regionID = $(this).val();
+                if (regionID) {
+                    $.ajax({
+                        url: '/getOffice/' + regionID,
+                        type: "GET",
+                        data: {
+                            "_token": "{{ csrf_token() }}"
+                        },
+                        dataType: "json",
+                        success: function(data) {
+                            if (data) {
+                                $('#office').empty();
+                                $('#office').append(
+                                    '<option hidden>Choose Course</option>');
+                                $.each(data, function(key, office) {
+                                    $('select[name="office_id"]').append(
+                                        '<option value="' + office.id + '">' +
+                                        office
+                                        .name + '</option>');
+                                });
+                            } else {
+                                $('#office').empty();
+                            }
+                        }
+                    });
+                } else {
+                    $('#office').empty();
+                }
+            });
+        });
+    </script>
 @endsection

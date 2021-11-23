@@ -52,3 +52,8 @@ Route::resource('/admin/offices/posts', OfficesController::class);
 Route::get('/login', function () {
     return view('auth.login');
 });
+
+Route::get('getOffice/{id}', function ($id) {
+    $office = App\Models\Office::where('region_id', $id)->get();
+    return response()->json($office);
+});
