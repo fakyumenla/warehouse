@@ -12,7 +12,7 @@
         <div id="wrapper" class="">
 
             <!-- Content Wrapper -->
-            <div id="content-wrapper" class="d-flex justify-content-between align-items-center">
+            <div id="content-wrapper" class="d-flex flex-column">
 
                 <!-- Main Content -->
                 <div id="content">
@@ -57,9 +57,9 @@
                                     </form>
 
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-6 d-flex justify-content-center">
                                     <div class="card d-flex justify-content-betwee" style="width: 12rem;">
-                                        <div class="card-header">
+                                        <div class="card-header ">
                                             <h5>Simple QR Code</h5>
                                         </div>
                                         <div class="card-body">
