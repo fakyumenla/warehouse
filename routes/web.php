@@ -33,6 +33,8 @@ Route::resource('/admin/items/posts', ItemsController::class);
 Route::get('/admin/employees', [EmployeesController::class, 'index'])->name('employees.list');
 Route::get('/admin/employees/create', [EmployeesController::class, 'create'])->name('employees.create');
 Route::resource('/admin/employees/posts', EmployeesController::class);
+Route::put('admin/employees/posts/{id}', [EmployeesController::class, 'update'])->name('employees.update');
+Route::get('admin/employees/edit/{id}', [EmployeesController::class, 'edit'])->name('employees.edit');
 Route::delete('/admin/employees/delete/{id}',[EmployeesController::class, 'destroy'])->name('employees.destroy');
 
 
