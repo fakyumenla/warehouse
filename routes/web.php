@@ -8,6 +8,7 @@ use App\Http\Controllers\OfficesController;
 use App\Http\Controllers\RegionController;
 use App\Http\Controllers\TransactionsController;
 use App\Http\Controllers\TypeController;
+use App\Models\History_ownership;
 use App\Models\Region;
 use Illuminate\Support\Facades\Route;
 
@@ -44,6 +45,8 @@ Route::get('/admin/types/create', [TypeController::class, 'create'])->name('type
 Route::resource('/admin/types/posts', TypeController::class);
 
 Route::get('/admin/histories', [HistoryController::class, 'index'])->name('histories.list');
+Route::get('/admin/Transaction/create', [HistoryController::class, 'create'])->name('histories.create');
+Route::resource('/admin/Transaction/posts', HistoryController::class);
 
 Route::get('/admin/offices', [OfficesController::class, 'index'])->name('offices.list');
 Route::get('/admin/offices/create', [OfficesController::class, 'create'])->name('offices.create');
@@ -57,3 +60,6 @@ Route::get('getOffice/{id}', function ($id) {
     $office = App\Models\Office::where('region_id', $id)->get();
     return response()->json($office);
 });
+
+Route::get('ajax-autocomplete-search', [HistoryController::class, 'selectSearch']);
+Route::get('ajax-autocomplete-search-item', [HistoryController::class, 'selectSearch_item']);
