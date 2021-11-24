@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Employee;
 use App\Models\History_ownership;
+use App\Models\Item;
 use Illuminate\Http\Request;
 use DataTables;
+use Doctrine\DBAL\SQL\Parser\Visitor;
 
 class HistoryController extends Controller
 {
@@ -46,8 +49,34 @@ class HistoryController extends Controller
      */
     public function create()
     {
-        //
+        return view('pages.admin.Transaction.create');
     }
+
+    public function selectSearch(Request $request)
+    {
+        $names = [];
+
+        if ($request->has('q')) {
+            $search = $request->q;
+            $names = Employee::select("id", "name")
+            ->where('name', 'LIKE', "%$search%")
+            ->get();
+        }
+        return response()->json($names);
+    }
+    public function selectSearch_item(Request $request)
+    {
+        $items = [];
+
+        if ($request->has('q')) {
+            $search = $request->q;
+            $items = Item::select("id", "name")
+            ->where('name', 'LIKE', "%$search%")
+            ->get();
+        }
+        return response()->json($items);
+    }
+
 
     /**
      * Store a newly created resource in storage.
@@ -57,7 +86,17 @@ class HistoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            // 'id' => 'required',
+          
+            'employee_id' => 'required',
+            'item_id' => 'required',
+            'start_date' => 'required'
+            
+        ]);
+
+        History_ownership::create($validatedData);
+        return redirect('/admin/histories');
     }
 
     /**
@@ -104,4 +143,6 @@ class HistoryController extends Controller
     {
         //
     }
+
+
 }
