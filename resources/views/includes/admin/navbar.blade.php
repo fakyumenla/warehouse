@@ -47,32 +47,55 @@
 
         <div class="topbar-divider d-none d-sm-block"></div>
 
+
         <!-- Nav Item - User Information -->
-        <li class="nav-item dropdown no-arrow">
-            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
-                aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 pr-3 d-none d-lg-inline text-gray-600 small">
-                    <span class="font-weight-bold">
-                        Douglas McGee
+        @guest
+            <li class="nav-item dropdown no-arrow">
+                <a class="nav-link dropdown-toggle" href="{{ route('login') }}" id="userDropdown" role="button"
+                    aria-haspopup="true">
+                    <span class="mr-2 pr-1 d-none d-lg-inline text-gray-600 small">
+                        <span class="font-weight-bold">
+                            Login
+                        </span>
                     </span>
-                    <br>
-                    <span class="d-flex justify-content-end">
-                        admin
-                    </span>
-                </span>
-                <img class="w-50 h-75 rounded-circle  pr-3 " src="{{ URL::asset('img/undraw_profile.svg') }}">
-                <i class="fas fa-chevron-down fa-1x"></i>
+                    <i class="fas fa-sign-in-alt"></i>
 
-            </a>
-            <!-- Dropdown - User Information -->
-            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-
-                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
-                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                    Logout
                 </a>
-            </div>
-        </li>
+            </li>
+        @endguest
+
+        @auth
+            <li class="nav-item dropdown no-arrow">
+                <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+                    <span class="mr-2 pr-3 d-none d-lg-inline text-gray-600 small">
+                        <span class="font-weight-bold">
+                            Douglas McGee
+                        </span>
+                        <br>
+                        <span class="d-flex justify-content-end">
+                            admin
+                        </span>
+                    </span>
+                    <img class="w-50 h-75 rounded-circle  pr-3 " src="{{ URL::asset('img/undraw_profile.svg') }}">
+                    <i class="fas fa-chevron-down fa-1x"></i>
+
+                </a>
+                <!-- Dropdown - User Information -->
+                <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+
+
+                    <form action="/logout" method="POST">
+                        @csrf
+                        <button type="submit" class="dropdown-item">
+                            <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                            logout</button>
+                    </form>
+
+                </div>
+            </li>
+        @endauth
+
 
     </ul>
 

@@ -1,16 +1,18 @@
 <?php
 
+use App\Models\Office;
+use App\Models\Region;
+use App\Models\History_ownership;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\TypeController;
+use App\Http\Controllers\ItemsController;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\RegionController;
+use App\Http\Controllers\HistoryController;
+use App\Http\Controllers\OfficesController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EmployeesController;
-use App\Http\Controllers\HistoryController;
-use App\Http\Controllers\ItemsController;
-use App\Http\Controllers\OfficesController;
-use App\Http\Controllers\RegionController;
 use App\Http\Controllers\TransactionsController;
-use App\Http\Controllers\TypeController;
-use App\Models\History_ownership;
-use App\Models\Region;
-use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,40 +25,40 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/admin', [DashboardController::class, 'index'])->name('dashboard');
+Route::get('/admin', [DashboardController::class, 'index'])->name('dashboard')->middleware('auth');
 
-Route::get('/admin/items', [ItemsController::class, 'index'])->name('items.list');
-Route::get('/admin/items/create', [ItemsController::class, 'create'])->name('items.create');
-Route::get('admin/items/{name}/{id}', [ItemsController::class, 'show'])->name('items.details');
+Route::get('/admin/items', [ItemsController::class, 'index'])->name('items.list')->middleware('auth');
+Route::get('/admin/items/create', [ItemsController::class, 'create'])->name('items.create')->middleware('auth');
+Route::get('admin/items/{name}/{id}', [ItemsController::class, 'show'])->name('items.details')->middleware('auth');
 Route::resource('/admin/items/posts', ItemsController::class);
 
-Route::get('/admin/employees', [EmployeesController::class, 'index'])->name('employees.list');
-Route::get('/admin/employees/create', [EmployeesController::class, 'create'])->name('employees.create');
+Route::get('/admin/employees', [EmployeesController::class, 'index'])->name('employees.list')->middleware('auth');
+Route::get('/admin/employees/create', [EmployeesController::class, 'create'])->name('employees.create')->middleware('auth');
 Route::resource('/admin/employees/posts', EmployeesController::class);
-Route::put('admin/employees/posts/{id}', [EmployeesController::class, 'update'])->name('employees.update');
-Route::get('admin/employees/edit/{id}', [EmployeesController::class, 'edit'])->name('employees.edit');
-Route::delete('/admin/employees/delete/{id}',[EmployeesController::class, 'destroy'])->name('employees.destroy');
+Route::put('admin/employees/posts/{id}', [EmployeesController::class, 'update'])->name('employees.update')->middleware('auth');
+Route::get('admin/employees/edit/{id}', [EmployeesController::class, 'edit'])->name('employees.edit')->middleware('auth');
+Route::delete('/admin/employees/delete/{id}',[EmployeesController::class, 'destroy'])->name('employees.destroy')->middleware('auth');
 
 
-Route::get('/admin/regions', [RegionController::class, 'index'])->name('regions.list');
-Route::get('/admin/regions/create', [RegionController::class, 'create'])->name('regions.create');
-Route::resource('/admin/regions/posts', RegionController::class);
+Route::get('/admin/regions', [RegionController::class, 'index'])->name('regions.list')->middleware('auth');
+Route::get('/admin/regions/create', [RegionController::class, 'create'])->name('regions.create')->middleware('auth');
+Route::resource('/admin/regions/posts', RegionController::class)->middleware('auth');
 
-Route::get('/admin/types', [TypeController::class, 'index'])->name('types.list');
-Route::get('/admin/types/create', [TypeController::class, 'create'])->name('types.create');
+Route::get('/admin/types', [TypeController::class, 'index'])->name('types.list')->middleware('auth');
+Route::get('/admin/types/create', [TypeController::class, 'create'])->name('types.create')->middleware('auth');
 Route::resource('/admin/types/posts', TypeController::class);
 
-Route::get('/admin/histories', [HistoryController::class, 'index'])->name('histories.list');
-Route::get('/admin/Transaction/create', [HistoryController::class, 'create'])->name('histories.create');
+Route::get('/admin/histories', [HistoryController::class, 'index'])->name('histories.list')->middleware('auth');
+Route::get('/admin/Transaction/create', [HistoryController::class, 'create'])->name('histories.create')->middleware('auth');
 Route::resource('/admin/Transaction/posts', HistoryController::class);
 
-Route::get('/admin/offices', [OfficesController::class, 'index'])->name('offices.list');
-Route::get('/admin/offices/create', [OfficesController::class, 'create'])->name('offices.create');
+Route::get('/admin/offices', [OfficesController::class, 'index'])->name('offices.list')->middleware('auth');
+Route::get('/admin/offices/create', [OfficesController::class, 'create'])->name('offices.create')->middleware('auth');
 Route::resource('/admin/offices/posts', OfficesController::class);
 
-Route::get('/login', function () {
-    return view('auth.login');
-});
+Route::get('/login',[LoginController::class, 'index'])->name('login')->middleware('guest');
+Route::post('/login', [LoginController::class, 'authenticate']);
+Route::post('/logout ', [LoginController::class, 'logout'])->name('logout');
 
 Route::get('getOffice/{id}', function ($id) {
     $office = App\Models\Office::where('region_id', $id)->get();
