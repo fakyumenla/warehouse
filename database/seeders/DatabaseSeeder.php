@@ -8,8 +8,9 @@ use App\Models\Region;
 use App\Models\Type;
 use App\Models\Employee;
 use App\Models\History_ownership;
+use App\Models\User;
 use Illuminate\Database\Seeder;
-use Illuminate\Foundation\Auth\User;
+// use Illuminate\Foundation\Auth\User;
 
 class DatabaseSeeder extends Seeder
 {
@@ -76,6 +77,11 @@ class DatabaseSeeder extends Seeder
             'item_id' => '2',
             'employee_id' => '2',
             'start_date' => '2021-01-01'
+        ]);
+
+        User::create([
+            'username' => 'admin',
+            'password' => bcrypt('admin123')
         ]);
     }
 }

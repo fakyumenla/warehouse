@@ -11,16 +11,27 @@
                 <div class="p-5">
                     <div>
                         <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
+                        @if (session()->has('loginError'))
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                {{ session('loginError') }}
+                            </div>
+                        @endif
 
-                        <form class="user">
+                        <form action="/login" method="POST">
+                            @csrf
                             <div class="form-group">
-                                <input type="email" class="form-control form-control-user custom-border"
-                                    id="exampleInputEmail" aria-describedby="emailHelp"
-                                    placeholder="Enter Email Address...">
+                                <input type="text" name="username"
+                                    class="form-control form-control-user custom-border @error('username') is-invalid @enderror"
+                                    id="InputUsername" placeholder="Username" value="{{ old('username') }}" autofocus>
+                                @error('username')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
                             </div>
                             <div class="form-group">
-                                <input type="password" class="form-control form-control-user custom-border"
-                                    id="exampleInputPassword" placeholder="Password">
+                                <input type="password" name="password" class="form-control form-control-user custom-border"
+                                    id="InputPassword" placeholder="Password">
                             </div>
                             <div class="form-group">
                                 <div class="custom-control custom-checkbox small">
@@ -30,10 +41,12 @@
                                 </div>
                             </div>
                             <div class="p-5">
-                                <a href="/" class="btn btn-primary btn-block custom-border">
+                                {{-- <a href="/" class="btn btn-primary btn-block custom-border">
                                     Login
-                                </a>
+                                </a> --}}
+                                <button class="btn btn-primary btn-block custom-border" type="submit">Login</button>
                             </div>
+
                             {{-- <a href="index.html" class="btn btn-primary btn-block ">
                             Login
                         </a> --}}
