@@ -18,6 +18,12 @@
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
 
+                    @if (session()->has('success'))
+                        <div class="alert alert-success" role="alert">
+                            {{ session('success') }}
+                        </div>
+                    @endif
+
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="row py-3 px-4">

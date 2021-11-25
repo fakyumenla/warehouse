@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('title')
-    add Transaction
+    Edit Office
 @endsection
 
 @section('content')
@@ -34,32 +34,46 @@
                         <div class="card shadow mb-4">
                             <div class="row py-3 px-4 ml-4 my-4">
                                 <div class="col-md-12">
-                                    <span class="text-header">Add Transaction</span>
+                                    <span class="text-header">Edit office</span>
 
                                     <form class="mt-4" method="post" enctype="multipart/form-data"
-                                        action="/admin/Transaction/posts">
+                                        action="{{ route('offices.update', $office->id) }}">
+                                        @method('PUT')
                                         @csrf
                                         <div class="form-group row">
-                                            <label for="inputName" class="col-sm-2 col-form-label">
-                                                Employee Name</label>
-                                            <div class="col-md-3 my-auto">
-                                                <select class="livesearch form-control p-3" name="employee_id"
-                                                    id="livesearch"></select>
+                                            <label for="inputName" class="col-sm-2 col-form-label text-right">Name</label>
+                                            <div class="col-sm-3">
+                                                <input type="text" class="form-control @error('name') is-invalid @enderror"
+                                                    id="inputName" placeholder="Name" name="name"
+                                                    value="{{ $office->name }}">
                                             </div>
                                         </div>
 
                                         <div class="form-group row">
-                                            <label for="inputName" class="col-sm-2 col-form-label">Item Name</label>
-                                            <div class="col-md-3 my-auto">
-                                                <select class="  livesearch form-control " name="item_id"
-                                                    id="livesearch-item"></select>
+
+                                            <label for="inputGender"
+                                                class="col-sm-2 col-form-label text-right">Region</label>
+                                            <div class="col-sm-3">
+                                                <select class="custom-select @error('region') is-invalid @enderror"
+                                                    id="inputRegion" name="region_id">
+                                                    {{-- <option value="{{ $office->region_id }}" selected>{{ $office->region->name }}</option> --}}
+                                                    @foreach ($regions as $region)
+                                                        <option value="{{ $region->id }}" {{ (collect($region->id)->contains($office->region_id)) ? 'selected':'' }}>{{ $region->name }}</option>
+                                                    @endforeach
+
+                                                </select>
                                             </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label for="inputName" class="col-sm-2 col-form-label">Start Date</label>
-                                            <input id="datepicker" width="276" name="start_date" />
+
                                         </div>
 
+                                        <div class="form-group row">
+                                            <label for="inputAddress" class="col-sm-2 text-right">Address</label>
+                                            <div class="col-sm-3">
+                                                <textarea class="form-control @error('address') is-invalid @enderror "
+                                                    id="inputAddress" name="address" rows="3">{!! $office->address !!}</textarea>
+                                            </div>
+
+                                        </div>
                                         <div class="form-group row mt-4">
                                             <div class="col-sm-2"></div>
                                             <div class="col-sm-3">
@@ -116,53 +130,4 @@
     </div> --}}
 
     </body>
-@endsection
-
-@section('script')
-    <script type="text/javascript">
-        $('#datepicker').datepicker({
-            uiLibrary: 'bootstrap4',
-            format: '{{ config('app.date_format_js') }}'
-        });
-        $('#livesearch').select2({
-            placeholder: 'Select name',
-            ajax: {
-                url: '/ajax-autocomplete-search',
-                dataType: 'json',
-                delay: 250,
-                processResults: function(data) {
-                    return {
-                        results: $.map(data, function(item) {
-                            return {
-                                text: item.name,
-                                id: item.id
-                            }
-                        })
-                    };
-                },
-                cache: true
-            }
-        });
-        // $('#livesearch').select2()
-        // $('#livesearch').val(1).trigger("change");
-        $('#livesearch-item').select2({
-            placeholder: 'Select item',
-            ajax: {
-                url: '/ajax-autocomplete-search-item',
-                dataType: 'json',
-                delay: 250,
-                processResults: function(data) {
-                    return {
-                        results: $.map(data, function(item) {
-                            return {
-                                text: item.id + ' - ' + item.name,
-                                id: item.id
-                            }
-                        })
-                    };
-                },
-                cache: true
-            }
-        });
-    </script>
 @endsection

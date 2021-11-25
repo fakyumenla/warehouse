@@ -20,7 +20,7 @@ class CreateItemsTable extends Migration
             $table->string('region_id');
             $table->string('name');
             $table->text('description');
-            $table->text('barcode_image');
+            $table->text('barcode_image')->nullable();
             $table->timestamps();
         });
     }

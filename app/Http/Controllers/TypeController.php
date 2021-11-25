@@ -20,7 +20,10 @@ class TypeController extends Controller
             return Datatables::of($data)
                 ->addIndexColumn()
                 ->addColumn('action', function ($row) {
-                    $actionBtn = '<a href="javascript:void(0)" class="edit btn btn-success btn-sm">Edit</a> <a href="javascript:void(0)" class="delete btn btn-danger btn-sm">Delete</a>';
+                    $actionBtn = '<a href="'. route('types.edit', [$row->id]) .'" class="edit btn btn-success btn-sm">Edit</a> 
+                    <form action="'.route('types.destroy',[$row->id]).'" method="POST" class="d-inline">'.method_field('delete') .csrf_field().'
+                    <button class="delete btn btn-danger btn-sm" onclick="return confirm(\'Are You Sure?\')">Delete</button>
+                    </form>';
                     return $actionBtn;
                 })
                 ->rawColumns(['action'])
@@ -74,9 +77,13 @@ class TypeController extends Controller
      * @param  \App\Models\Type  $type
      * @return \Illuminate\Http\Response
      */
-    public function edit(Type $type)
+    public function edit(Type $type,$id)
     {
-        //
+        $type = Type::findOrFail($id);
+
+        return view('pages.admin.Type.edit', [
+            'type' => $type,
+        ]);
     }
 
     /**
@@ -86,9 +93,15 @@ class TypeController extends Controller
      * @param  \App\Models\Type  $type
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Type $type)
+    public function update(Request $request, Type $type, $id)
     {
-        //
+        $data = $request->all();
+
+        $type = Type::findOrFail($id);
+
+        $type->update($data);
+
+        return redirect()->route('types.list')->with('success','Edit Success');
     }
 
     /**
@@ -97,8 +110,11 @@ class TypeController extends Controller
      * @param  \App\Models\Type  $type
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Type $type)
+    public function destroy(Type $type,$id)
     {
-        //
+        $type = Type::findOrFail($id);
+        $type->delete();
+
+        return redirect()->route('types.list')->with('success','Delete Success');
     }
 }

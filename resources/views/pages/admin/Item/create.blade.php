@@ -98,7 +98,7 @@
 
                                     </div>
 
-                                    <div class="form-group row">
+                                    {{-- <div class="form-group row">
 
                                         <label for="inputGender" class="col-sm-2 col-form-label text-right">Barcode</label>
                                         <div class="col-sm-3">
@@ -107,7 +107,7 @@
                                                 id="inputBarcode" placeholder="Barcode" name="barcode_image"
                                                 value="{{ old('barcode_image') }}">
                                         </div>
-                                    </div>
+                                    </div> --}}
                                     <div class="form-group row mt-4">
                                         <div class="col-sm-2"></div>
                                         <div class="col-sm-3">

@@ -29,6 +29,7 @@ Route::get('/admin/items', [ItemsController::class, 'index'])->name('items.list'
 Route::get('/admin/items/create', [ItemsController::class, 'create'])->name('items.create');
 Route::get('admin/items/{name}/{id}', [ItemsController::class, 'show'])->name('items.details');
 Route::resource('/admin/items/posts', ItemsController::class);
+Route::delete('/admin/items/delete/{id}',[ItemsController::class, 'destroy'])->name('items.destroy');
 
 Route::get('/admin/employees', [EmployeesController::class, 'index'])->name('employees.list');
 Route::get('/admin/employees/create', [EmployeesController::class, 'create'])->name('employees.create');
@@ -41,18 +42,29 @@ Route::delete('/admin/employees/delete/{id}',[EmployeesController::class, 'destr
 Route::get('/admin/regions', [RegionController::class, 'index'])->name('regions.list');
 Route::get('/admin/regions/create', [RegionController::class, 'create'])->name('regions.create');
 Route::resource('/admin/regions/posts', RegionController::class);
+Route::put('admin/regions/posts/{id}', [RegionController::class, 'update'])->name('regions.update');
+Route::get('admin/regions/edit/{id}', [RegionController::class, 'edit'])->name('regions.edit');
+Route::delete('/admin/regions/delete/{id}',[RegionController::class, 'destroy'])->name('regions.destroy');
+
 
 Route::get('/admin/types', [TypeController::class, 'index'])->name('types.list');
 Route::get('/admin/types/create', [TypeController::class, 'create'])->name('types.create');
 Route::resource('/admin/types/posts', TypeController::class);
+Route::put('admin/types/posts/{id}', [TypeController::class, 'update'])->name('types.update');
+Route::get('admin/types/edit/{id}', [TypeController::class, 'edit'])->name('types.edit');
+Route::delete('/admin/types/delete/{id}',[TypeController::class, 'destroy'])->name('types.destroy');
 
 Route::get('/admin/histories', [HistoryController::class, 'index'])->name('histories.list');
 Route::get('/admin/Transaction/create', [HistoryController::class, 'create'])->name('histories.create');
 Route::resource('/admin/Transaction/posts', HistoryController::class);
+Route::delete('/admin/Transaction/delete/{id}',[HistoryController::class, 'destroy'])->name('histories.destroy');
 
 Route::get('/admin/offices', [OfficesController::class, 'index'])->name('offices.list');
 Route::get('/admin/offices/create', [OfficesController::class, 'create'])->name('offices.create');
 Route::resource('/admin/offices/posts', OfficesController::class);
+Route::put('admin/offices/posts/{id}', [OfficesController::class, 'update'])->name('offices.update');
+Route::get('admin/offices/edit/{id}', [OfficesController::class, 'edit'])->name('offices.edit');
+Route::delete('/admin/offices/delete/{id}',[OfficesController::class, 'destroy'])->name('offices.destroy');
 
 Route::get('/login', function () {
     return view('auth.login');

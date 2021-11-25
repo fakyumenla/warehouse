@@ -20,7 +20,10 @@ class RegionController extends Controller
             return Datatables::of($data)
                 ->addIndexColumn()
                 ->addColumn('action', function ($row) {
-                    $actionBtn = '<a href="javascript:void(0)" class="edit btn btn-success btn-sm">Edit</a> <a href="javascript:void(0)" class="delete btn btn-danger btn-sm">Delete</a>';
+                    $actionBtn = '<a href="'. route('regions.edit', [$row->id]) .'" class="edit btn btn-success btn-sm">Edit</a> 
+                    <form action="'.route('regions.destroy',[$row->id]).'" method="POST" class="d-inline">'.method_field('delete') .csrf_field().'
+                    <button class="delete btn btn-danger btn-sm" onclick="return confirm(\'Are You Sure?\')">Delete</button>
+                    </form>';
                     return $actionBtn;
                 })
                 ->rawColumns(['action'])
@@ -74,9 +77,13 @@ class RegionController extends Controller
      * @param  \App\Models\Region  $region
      * @return \Illuminate\Http\Response
      */
-    public function edit(Region $region)
+    public function edit(Region $region,$id)
     {
-        //
+        $region = Region::findOrFail($id);
+
+        return view('pages.admin.Region.edit', [
+            'region' => $region,
+        ]);
     }
 
     /**
@@ -86,9 +93,15 @@ class RegionController extends Controller
      * @param  \App\Models\Region  $region
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Region $region)
+    public function update(Request $request, Region $region,$id)
     {
-        //
+        $data = $request->all();
+
+        $region = Region::findOrFail($id);
+
+        $region->update($data);
+
+        return redirect()->route('regions.list')->with('success','Edit Success');
     }
 
     /**
@@ -97,8 +110,11 @@ class RegionController extends Controller
      * @param  \App\Models\Region  $region
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Region $region)
+    public function destroy(Region $region,$id)
     {
-        //
+        $region = Region::findOrFail($id);
+        $region->delete();
+
+        return redirect()->route('regions.list')->with('success','Delete Success');
     }
 }

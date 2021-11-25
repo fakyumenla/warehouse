@@ -15,4 +15,35 @@ class Region extends Model
     {
         return $this->hasMany(Item::class);
     }
+
+    public function office()
+    {
+        return $this->hasMany(Office::class);
+    }
+
+    // public function delete()
+    // {
+    //     // delete all related data 
+    //     $this->item()->delete();
+    //     $this->office()->delete();
+    //     // as suggested by Dirk in comment,
+    //     // it's an uglier alternative, but faster
+    //     // Photo::where("user_id", $this->id)->delete()
+
+    //     // delete the user
+    //     return parent::delete();
+    // }
+
+    public static function boot()
+    {
+        parent::boot(); 
+        static::deleting(function ($region) {
+            //deleting region->item->history
+            $region->item->each(function ($item) {
+                $item->delete();
+            });
+            //delete related data to region from office
+            $region->office()->delete();
+        });
+    }
 }

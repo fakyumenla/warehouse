@@ -31,4 +31,27 @@ class Item extends Model
     {
         return $this->hasMany(History_ownership::class);
     }
+
+    public function delete()
+    {
+        // delete all related data
+        $this->history()->delete();
+        // as suggested by Dirk in comment,
+        // it's an uglier alternative, but faster
+        // Photo::where("user_id", $this->id)->delete()
+
+        // delete the user
+        return parent::delete();
+    }
+
+    public static function boot()
+    {
+        parent::boot(); 
+        static::deleting(function ($item) {
+            //continuation deleting region->item->history
+            $item->history->each(function ($history) {
+                $history->delete();
+            });
+        });
+    }
 }

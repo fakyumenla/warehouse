@@ -15,4 +15,13 @@ class Employee extends Model
     {
         return $this->hasMany(History_ownership::class);
     }
+
+    public function delete()
+    {
+        // delete related data simple version
+        $this->history()->delete();
+
+        // delete the employee
+        return parent::delete();
+    }
 }

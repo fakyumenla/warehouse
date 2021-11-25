@@ -27,7 +27,10 @@ class OfficesController extends Controller
                       return $row->region->name;
                  })
                 ->addColumn('action', function($row){
-                    $actionBtn = '<a href="javascript:void(0)" class="edit btn btn-success btn-sm">Edit</a> <a href="javascript:void(0)" class="delete btn btn-danger btn-sm">Delete</a>';
+                    $actionBtn = '<a href="'. route('offices.edit', [$row->id]) .'" class="edit btn btn-success btn-sm">Edit</a> 
+                    <form action="'.route('offices.destroy',[$row->id]).'" method="POST" class="d-inline">'.method_field('delete') .csrf_field().'
+                    <button class="delete btn btn-danger btn-sm" onclick="return confirm(\'Are You Sure?\')">Delete</button>
+                    </form>';
                     return $actionBtn;
                 })
                 ->rawColumns(['action'])
@@ -43,7 +46,7 @@ class OfficesController extends Controller
      */
     public function create()
     {
-        return view('pages.admin.OFfice.create',[
+        return view('pages.admin.Office.create',[
             'regions' => Region::all()
         ]);
     }
@@ -85,9 +88,14 @@ class OfficesController extends Controller
      * @param  \App\Models\Offices  $offices
      * @return \Illuminate\Http\Response
      */
-    public function edit(Office $office)
+    public function edit(Office $office,$id)
     {
-        //
+        $office = Office::findOrFail($id);
+
+        return view('pages.admin.Office.edit', [
+            'office' => $office,
+            'regions' => Region::all()
+        ]);
     }
 
     /**
@@ -97,9 +105,15 @@ class OfficesController extends Controller
      * @param  \App\Models\Offices  $offices
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Office $office)
+    public function update(Request $request, Office $office,$id)
     {
-        //
+        $data = $request->all();
+
+        $office = Office::findOrFail($id);
+
+        $office->update($data);
+
+        return redirect()->route('offices.list')->with('success','Edit Success');
     }
 
     /**
@@ -108,8 +122,11 @@ class OfficesController extends Controller
      * @param  \App\Models\Offices  $offices
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Office $office)
+    public function destroy(Office $office,$id)
     {
-        //
+        $office = Office::findOrFail($id);
+        $office->delete();
+
+        return redirect()->route('offices.list')->with('success','Delete Success');
     }
 }

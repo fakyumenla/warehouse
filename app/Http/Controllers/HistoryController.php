@@ -33,7 +33,10 @@ class HistoryController extends Controller
                     return $row->employee->name;
                })
                 ->addColumn('action', function($row){
-                    $actionBtn = '<a href="javascript:void(0)" class="edit btn btn-success btn-sm">Edit</a> <a href="javascript:void(0)" class="delete btn btn-danger btn-sm">Delete</a>';
+                    $actionBtn = '<a href="javascript:void(0)" class="edit btn btn-success btn-sm">Edit</a> 
+                    <form action="'.route('histories.destroy',[$row->id]).'" method="POST" class="d-inline">'.method_field('delete') .csrf_field().'
+                    <button class="delete btn btn-danger btn-sm" onclick="return confirm(\'Are You Sure?\')">Delete</button>
+                    </form>';
                     return $actionBtn;
                 })
                 ->rawColumns(['action'])
@@ -139,9 +142,12 @@ class HistoryController extends Controller
      * @param  \App\Models\History_ownership  $history_ownership
      * @return \Illuminate\Http\Response
      */
-    public function destroy(History_ownership $history_ownership)
+    public function destroy(History_ownership $history_ownership,$id)
     {
-        //
+        $history_ownership = History_ownership::findOrFail($id);
+        $history_ownership->delete();
+
+        return redirect()->route('histories.list')->with('success','Delete Success');
     }
 
 

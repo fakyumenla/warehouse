@@ -43,7 +43,10 @@ class ItemsController extends Controller
                     return $detailBtn;
                 })
                 ->addColumn('action', function($row){
-                    $actionBtn = '<a href="javascript:void(0)" class="edit btn btn-success btn-sm">Edit</a> <a href="javascript:void(0)" class="delete btn btn-danger btn-sm">Delete</a>';
+                    $actionBtn = '<a href="javascript:void(0)" class="edit btn btn-success btn-sm">Edit</a> 
+                    <form action="'.route('items.destroy',[$row->id]).'" method="POST" class="d-inline">'.method_field('delete') .csrf_field().'
+                    <button class="delete btn btn-danger btn-sm" onclick="return confirm(\'Are You Sure?\')">Delete</button>
+                    </form>';
                     return $actionBtn;
                 })
                 ->rawColumns(['action','detail'])
@@ -81,7 +84,6 @@ class ItemsController extends Controller
             'type_id' => 'required',
             'region_id' => 'required',
             'description' => 'required',
-            'barcode_image' => 'required'
         ]);
 
         Item::create($validatedData);
@@ -115,7 +117,10 @@ class ItemsController extends Controller
                     return $row->employee->name;
                 })
                 ->addColumn('action', function ($row) {
-                    $actionBtn = '<a href="javascript:void(0)" class="edit btn btn-success btn-sm">Edit</a> <a href="javascript:void(0)" class="delete btn btn-danger btn-sm">Delete</a>';
+                    $actionBtn = '<a href="javascript:void(0)" class="edit btn btn-success btn-sm">Edit</a> 
+                    <form action="'.route('items.destroy',[$row->id]).'" method="POST" class="d-inline">'.method_field('delete') .csrf_field().'
+                    <button class="delete btn btn-danger btn-sm" onclick="return confirm(\'Are You Sure?\')">Delete</button>
+                    </form>';
                     return $actionBtn;
                 })
                 ->rawColumns(['action'])
@@ -161,8 +166,11 @@ class ItemsController extends Controller
      * @param  \App\Models\Item  $items
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Item $item)
+    public function destroy(Item $item,$id)
     {
-        //
+        $item = Item::findOrFail($id);
+        $item->delete();
+
+        return redirect()->route('items.list')->with('success','Delete Success');
     }
 }

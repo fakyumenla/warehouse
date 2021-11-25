@@ -20,4 +20,13 @@ class Office extends Model
     {
         return $this->belongsTo(Region::class,'region_id','id');
     }
+
+    public function delete()
+    {
+        // delete related data simple version
+        $this->item()->delete();
+
+        // delete the office
+        return parent::delete();
+    }
 }
