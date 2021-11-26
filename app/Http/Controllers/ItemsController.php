@@ -43,13 +43,13 @@ class ItemsController extends Controller
                     return $detailBtn;
                 })
                 ->addColumn('action', function($row){
-                    $actionBtn = '<a href="javascript:void(0)" class="edit btn btn-success btn-sm">Edit</a> 
+                    $actionBtn = '<a href="'. route('items.edit', [$row->id]) .'" class="edit btn btn-success btn-sm">Edit</a> 
                     <form action="'.route('items.destroy',[$row->id]).'" method="POST" class="d-inline">'.method_field('delete') .csrf_field().'
                     <button class="delete btn btn-danger btn-sm" onclick="return confirm(\'Are You Sure?\')">Delete</button>
                     </form>';
                     return $actionBtn;
                 })
-                ->rawColumns(['action','detail'])
+                ->rawColumns(['detail','action'])
                 ->make(true);
         }
         return view('pages.admin.Item.index');
@@ -143,9 +143,16 @@ class ItemsController extends Controller
      * @param  \App\Models\Item  $items
      * @return \Illuminate\Http\Response
      */
-    public function edit(Item $item)
+    public function edit(Item $item,$id)
     {
-        //
+        $item = Item::findOrFail($id);
+    
+        return view('pages.admin.Item.edit', [
+            'item' => $item,
+            'regions' => Region::all(),
+            'types' => Type::all(),
+            'offices' => Office::all()
+        ]);
     }
 
     /**
@@ -155,9 +162,15 @@ class ItemsController extends Controller
      * @param  \App\Models\Item  $items
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Item $item)
+    public function update(Request $request, Item $item,$id)
     {
-        //
+        $data = $request->all();
+
+        $item = Item::findOrFail($id);
+
+        $item->update($data);
+
+        return redirect()->route('items.list')->with('success','Edit Success');
     }
 
     /**

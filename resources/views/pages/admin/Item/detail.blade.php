@@ -37,7 +37,7 @@
                                     <span class="text-header">Detail Barang</span>
 
                                     <form class="mt-4" method="post" enctype="multipart/form-data"
-                                        action="/admin/employees/posts">
+                                        action="/admin/items/posts">
                                         @csrf
                                         <div class="form-group row">
                                             <label for="inputName" class="col-sm-2 col-form-label text-right">Item name
