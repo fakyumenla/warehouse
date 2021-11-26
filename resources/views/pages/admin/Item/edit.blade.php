@@ -82,6 +82,9 @@
                                         <div class="col-sm-3">
                                             <select class="custom-select @error('office_id') is-invalid @enderror"
                                                 id="office" name="office_id">
+                                                <option selected="selected">
+                                                    {{ $item->office->name }}
+                                                </option>
                                                 {{-- @foreach ($offices as $office)
                                                         <option value="{{ $office->id }}">{{ $office->name }}</option>
                                                     @endforeach --}}
@@ -94,7 +97,7 @@
                                         <label for="inputAddress" class="col-sm-2 text-right">Description</label>
                                         <div class="col-sm-3">
                                             <textarea class="form-control @error('Description') is-invalid @enderror "
-                                                id="inputDescription" name="description" rows="3">{!! $type->description !!}</textarea>
+                                                id="inputDescription" name="description" rows="3">{!! $item->description !!}</textarea>
                                         </div>
 
                                     </div>
@@ -172,7 +175,7 @@
         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script>
         $(document).ready(function() {
-            $('#inputRegion').on('change', function(e) {
+            $('#inputRegion').on('change', 'id' function(e) {
                 var regionID = $(this).val();
                 if (regionID) {
                     $.ajax({
@@ -189,7 +192,7 @@
                                     '<option hidden>Choose Course</option>');
                                 $.each(data, function(key, office) {
                                     $('select[name="office_id"]').append(
-                                        '<option value="' + office.id + '">' +
+                                        '<option value="' + office.id + '" >' +
                                         office
                                         .name + '</option>');
                                 });
