@@ -124,9 +124,11 @@ class HistoryController extends Controller
         $history =  History_ownership::findOrFail($id);
         // $item = Item::where('id', $history->item_id)->get();
         $item = Item::findOrFail($history->item_id);
+        $employee = Employee::findOrFail($history->employee_id);
         return view('pages.admin.Transaction.edit', [
             'history' => $history,
-            'item' => $item
+            'item' => $item,
+            'employee' => $employee
         ]);
 
         // return $item_history;
@@ -139,9 +141,12 @@ class HistoryController extends Controller
      * @param  \App\Models\History_ownership  $history_ownership
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, History_ownership $history_ownership)
+    public function update(Request $request, History_ownership $history_ownership,$id)
     {
-        //
+        $data = $request->all();
+        $history = History_ownership::findOrFail($id);
+        $history->update($data);
+        return redirect()->route('histories.list')->with('success', 'Edit Success');
     }
 
     /**

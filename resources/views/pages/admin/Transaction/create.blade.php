@@ -52,13 +52,14 @@
                                             <label for="inputName" class="col-sm-2 col-form-label">Item Name</label>
                                             <div class="col-md-3 my-auto">
                                                 <select class="  livesearch form-control " name="item_id"
-                                                    id="livesearch-item"></select>
+                                                    id="livesearch-item" style=" color:grey"></select>
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label for="inputName" class="col-sm-2 col-form-label">Start Date</label>
-                                            <div class="col-md-3 my-auto">
-                                                <input id="datepicker" width="276" name="start_date" />
+                                            <div class="col-md-3 my-auto ">
+                                                <input class="border rounded" type="date" name="start_date"
+                                                    style="border-color: grey!important; color:grey " />
                                             </div>
                                         </div>
 

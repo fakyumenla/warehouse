@@ -37,14 +37,20 @@
                                     <span class="text-header">Edit Transaction</span>
 
                                     <form class="mt-4" method="post" enctype="multipart/form-data"
-                                        action="/admin/Transaction/posts">
+                                        action="{{ route('histories.update', $history->id) }}">
+                                        @method('PUT')
                                         @csrf
                                         <div class="form-group row">
                                             <label for="inputName" class="col-sm-2 col-form-label">
                                                 Employee Name</label>
                                             <div class="col-md-3 my-auto">
                                                 <select class="livesearch form-control p-3" name="employee_id"
-                                                    id="livesearch"></select>
+                                                    id="livesearch">
+                                                    <option selected="selected" value=" {{ $employee->id }}">
+                                                        {{ $employee->name }}
+                                                    </option>
+                                                </select>
+
                                             </div>
                                         </div>
 
@@ -52,14 +58,36 @@
                                             <label for="inputName" class="col-sm-2 col-form-label">Item Name</label>
                                             <div class="col-md-3 my-auto">
                                                 <select class="  livesearch form-control " name="item_id"
-                                                    id="livesearch-item"></select>
+                                                    id="livesearch-item">
+                                                    <option selected="selected" value="{{ $item->id }}">
+                                                        {{ $item->id }} - {{ $item->name }}
+                                                    </option>
+                                                </select>
                                             </div>
                                         </div>
-                                        <div class="form-group row">
+                                        {{-- <div class="form-group row">
                                             <label for="inputName" class="col-sm-2 col-form-label">Start Date
                                             </label>
                                             <div class="col-md-3 my-auto">
-                                                <input id="datepicker" width="276" name="start_date" value="a" />
+                                                <input id="datepicker" width="276" name="start_date"
+                                                    value="{{ $history->start_date }}" />
+                                            </div>
+                                        </div> --}}
+                                        <div class="form-group row">
+                                            <label for="inputName" class="col-sm-2 col-form-label">Start Date</label>
+                                            <div class="col-md-3 my-auto ">
+                                                <input class="border rounded" type="date" name="start_date"
+                                                    style="border-color: grey!important; color:grey "
+                                                    value="{{ $history->start_date }}" />
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <label for="inputName" class="col-sm-2 col-form-label">End Date</label>
+                                            <div class="col-md-3 my-auto ">
+                                                <input class="border rounded" type="date" name="end_date"
+                                                    style="border-color: grey!important; color:grey "
+                                                    value="{{ $history->end_date }}" />
                                             </div>
                                         </div>
 
@@ -128,7 +156,7 @@
             format: '{{ config('app.date_format_js') }}'
         });
         $('#livesearch').select2({
-            placeholder: 'Select name',
+            placeholder: '{{ $employee->name }}',
             ajax: {
                 url: '/ajax-autocomplete-search',
                 dataType: 'json',
