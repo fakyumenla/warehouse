@@ -29,6 +29,13 @@ class DatabaseSeeder extends Seeder
             'nik' => '3212131404'
         ]);
 
+        Employee::create([
+            'name' => 'Harley',
+            'address' => 'Land of Dawn',
+            'gender' => 'Male',
+            'nik' => '3212130409'
+        ]);
+
         Item::create([
             'office_id' => '1',
             'type_id' => '1',
@@ -59,12 +66,6 @@ class DatabaseSeeder extends Seeder
 
         Region::create([
             'name' => 'Depok'
-        ]);
-
-        History_ownership::create([
-            'item_id' => '1',
-            'employee_id' => '1',
-            'start_date' => '2021-01-01'
         ]);
 
         History_ownership::create([
