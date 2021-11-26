@@ -117,7 +117,7 @@ class ItemsController extends Controller
                     return $row->employee->name;
                 })
                 ->addColumn('action', function ($row) {
-                    $actionBtn = '<a href="javascript:void(0)" class="edit btn btn-success btn-sm">Edit</a> 
+                    $actionBtn = '<a href="'. route('items.edit', [$row->id]) .'"edit btn btn-success btn-sm">Edit</a> 
                     <form action="'.route('items.destroy',[$row->id]).'" method="POST" class="d-inline">'.method_field('delete') .csrf_field().'
                     <button class="delete btn btn-danger btn-sm" onclick="return confirm(\'Are You Sure?\')">Delete</button>
                     </form>';
@@ -146,9 +146,11 @@ class ItemsController extends Controller
     public function edit(Item $item,$id)
     {
         $item = Item::findOrFail($id);
+        $office = Office::findOrFail($id);
     
         return view('pages.admin.Item.edit', [
             'item' => $item,
+            'office' => $office,
             'regions' => Region::all(),
             'types' => Type::all(),
             'offices' => Office::all()

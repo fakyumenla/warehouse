@@ -31,8 +31,8 @@ Route::get('/admin/items', [ItemsController::class, 'index'])->name('items.list'
 Route::get('/admin/items/create', [ItemsController::class, 'create'])->name('items.create')->middleware('auth');
 Route::get('admin/items/{name}/{id}', [ItemsController::class, 'show'])->name('items.details')->middleware('auth');
 Route::resource('/admin/items/posts', ItemsController::class);
-Route::put('admin/items/posts/{id}', [ItemsController::class, 'update'])->name('items.update');
-Route::get('admin/items/edit/{id}', [ItemsController::class, 'edit'])->name('items.edit');
+Route::put('admin/items/edits/posts/{id}', [ItemsController::class, 'update'])->name('items.update');
+Route::get('admin/items/edits/edit/{id}', [ItemsController::class, 'edit'])->name('items.edit');
 Route::delete('/admin/items/delete/{id}',[ItemsController::class, 'destroy'])->name('items.destroy');
 
 Route::get('/admin/employees', [EmployeesController::class, 'index'])->name('employees.list')->middleware('auth');
