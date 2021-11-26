@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('title')
-    add Transaction
+    edit Transaction
 @endsection
 
 @section('content')
@@ -34,7 +34,7 @@
                         <div class="card shadow mb-4">
                             <div class="row py-3 px-4 ml-4 my-4">
                                 <div class="col-md-12">
-                                    <span class="text-header">Add Transaction</span>
+                                    <span class="text-header">Edit Transaction</span>
 
                                     <form class="mt-4" method="post" enctype="multipart/form-data"
                                         action="/admin/Transaction/posts">
@@ -56,9 +56,10 @@
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label for="inputName" class="col-sm-2 col-form-label">Start Date</label>
+                                            <label for="inputName" class="col-sm-2 col-form-label">Start Date
+                                            </label>
                                             <div class="col-md-3 my-auto">
-                                                <input id="datepicker" width="276" name="start_date" />
+                                                <input id="datepicker" width="276" name="start_date" value="a" />
                                             </div>
                                         </div>
 
@@ -148,7 +149,7 @@
         // $('#livesearch').select2()
         // $('#livesearch').val(1).trigger("change");
         $('#livesearch-item').select2({
-            placeholder: 'Select item',
+            placeholder: '{{ $item->id }} - {{ $item->name }}',
             ajax: {
                 url: '/ajax-autocomplete-search-item',
                 dataType: 'json',
