@@ -23,6 +23,7 @@ class DatabaseSeeder extends Seeder
     {
         // \App\Models\User::factory(10)->create();
         Employee::create([
+            'id' => '1',
             'name' => 'Guntur',
             'address' => 'Indramayu',
             'gender' => 'Male',
@@ -30,6 +31,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         Employee::create([
+            'id' => '2',
             'name' => 'Harley',
             'address' => 'Land of Dawn',
             'gender' => 'Male',
@@ -70,13 +72,13 @@ class DatabaseSeeder extends Seeder
 
         History_ownership::create([
             'item_id' => '1',
-            'employee_id' => '1',
+            'employee_id' => 'EMP-001',
             'start_date' => '2021-01-01'
         ]);
         
         History_ownership::create([
             'item_id' => '2',
-            'employee_id' => '2',
+            'employee_id' => 'EMP-001',
             'start_date' => '2021-01-01'
         ]);
 
