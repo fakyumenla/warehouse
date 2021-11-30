@@ -19,7 +19,7 @@ class HistoryController extends Controller
     public function index()
     {
         if (request()->ajax()) {
-            $data = History_ownership::with('item','employee')->select('history_ownerships.*')->latest();
+            $data = History_ownership::with('item','employee')->select('history_ownerships.*')->latest()->get();
             # Here 'history_ownerships' is the name of table for Documents Model
             # And 'item' is the name of relation on Document Model.
             return Datatables::of($data)
@@ -31,6 +31,15 @@ class HistoryController extends Controller
                 ->addColumn('employee_str', function($row){
                     # 'name' is the field in table of Status Model
                     return $row->employee->name;
+               })
+               ->addcolumn('end_date', function($row){
+                   if ($row->end_date == null){
+                      $end_date = '-';
+                     
+                   }else{
+                       $end_date = $row->end_date;
+                   }
+                return $end_date;
                })
                 ->addColumn('action', function($row){
                     $actionBtn = '<a href="'.route('histories.edit', [$row->id]).'" class="edit btn btn-success btn-sm">Edit</a> 
@@ -94,7 +103,8 @@ class HistoryController extends Controller
           
             'employee_id' => 'required',
             'item_id' => 'required',
-            'start_date' => 'required'
+            'start_date' => 'required',
+            // 'end_date' => '-'
             
         ]);
 

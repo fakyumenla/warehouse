@@ -19,7 +19,7 @@
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
 
-                    <a href="/" class="btn btn-secondary shadow mb-4 border-0 ">
+                    <a href="{{ route('items.list') }}" class="btn btn-secondary shadow mb-4 border-0 ">
                         <div class="row px-1 d-flex justify-content-center mx-auto my-auto">
                             <i class="fas fa-arrow-left mr-2 my-2"></i>
                             <div class="my-1 ml-1">
@@ -40,7 +40,7 @@
                                     @method('PUT')
                                     @csrf
                                     <div class="form-group row">
-                                        <label for="inputName" class="col-sm-2 col-form-label text-right">Name</label>
+                                        <label for="inputName" class="col-sm-2 col-form-label">Name</label>
                                         <div class="col-sm-3">
                                             <input type="text" class="form-control @error('name') is-invalid @enderror"
                                                 id="inputName" placeholder="Name" name="name" value="{{ $item->name }}">
@@ -48,12 +48,14 @@
                                     </div>
                                     <div class="form-group row">
 
-                                        <label for="inputGender" class="col-sm-2 col-form-label text-right">Type</label>
+                                        <label for="inputGender" class="col-sm-2 col-form-labe">Type</label>
                                         <div class="col-sm-3">
                                             <select class="custom-select @error('type_id') is-invalid @enderror"
                                                 id="inputType" name="type_id">
                                                 @foreach ($types as $type)
-                                                    <option value="{{ $type->id }}" {{ (collect($type->id)->contains($item->type_id)) ? 'selected':'' }}>{{ $type->name }}</option>
+                                                    <option value="{{ $type->id }}"
+                                                        {{ collect($type->id)->contains($item->type_id) ? 'selected' : '' }}>
+                                                        {{ $type->name }}</option>
                                                 @endforeach
 
                                             </select>
@@ -63,13 +65,15 @@
 
                                     <div class="form-group row">
 
-                                        <label for="inputGender" class="col-sm-2 col-form-label text-right">Region</label>
+                                        <label for="inputGender" class="col-sm-2 col-form-label">Region</label>
                                         <div class="col-sm-3">
                                             <select class="custom-select @error('region_id') is-invalid @enderror"
                                                 id="inputRegion" name="region_id">
                                                 <option hidden>Choose Category</option>
                                                 @foreach ($regions as $region)
-                                                    <option value="{{ $region->id }}" {{ (collect($region->id)->contains($item->region_id)) ? 'selected':'' }}>{{ $region->name }}</option>
+                                                    <option value="{{ $region->id }}"
+                                                        {{ collect($region->id)->contains($item->region_id) ? 'selected' : '' }}>
+                                                        {{ $region->name }}</option>
                                                 @endforeach
 
                                             </select>
@@ -78,13 +82,15 @@
                                     </div>
                                     <div class="form-group row">
 
-                                        <label for="inputGender" class="col-sm-2 col-form-label text-right">Office</label>
+                                        <label for="inputGender" class="col-sm-2 col-form-label">Office</label>
                                         <div class="col-sm-3">
                                             <select class="custom-select @error('office_id') is-invalid @enderror"
                                                 id="office" name="office_id">
-                                                <option selected="selected">
-                                                    {{ $item->office->name }}
-                                                </option>
+                                                {{-- <option selected="selected"> {{ $item->office->name }}</option> --}}
+                                                {{-- <option disabled>--</option>
+                                                @foreach ($offices as $item)
+                                                    <option selected="selected"> {{ $item->name }}</option>
+                                                @endforeach --}}
                                                 {{-- @foreach ($offices as $office)
                                                         <option value="{{ $office->id }}">{{ $office->name }}</option>
                                                     @endforeach --}}
@@ -94,10 +100,11 @@
 
                                     </div>
                                     <div class="form-group row">
-                                        <label for="inputAddress" class="col-sm-2 text-right">Description</label>
+                                        <label for="inputAddress" class="col-sm-2">Description</label>
                                         <div class="col-sm-3">
                                             <textarea class="form-control @error('Description') is-invalid @enderror "
-                                                id="inputDescription" name="description" rows="3">{!! $item->description !!}</textarea>
+                                                id="inputDescription" name="description"
+                                                rows="3">{!! $item->description !!}</textarea>
                                         </div>
 
                                     </div>
@@ -175,8 +182,11 @@
         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script>
         $(document).ready(function() {
-            $('#inputRegion').on('change', 'id' function(e) {
-                var regionID = $(this).val();
+            // var regionID = 1;
+
+            function call_ajax(regionID) {
+                // alert(id);
+                // var regionID = $(this).val();
                 if (regionID) {
                     $.ajax({
                         url: '/getOffice/' + regionID,
@@ -186,25 +196,29 @@
                         },
                         dataType: "json",
                         success: function(data) {
-                            if (data) {
-                                $('#office').empty();
-                                $('#office').append(
-                                    '<option hidden>Choose Course</option>');
-                                $.each(data, function(key, office) {
-                                    $('select[name="office_id"]').append(
-                                        '<option value="' + office.id + '" >' +
-                                        office
-                                        .name + '</option>');
-                                });
-                            } else {
-                                $('#office').empty();
-                            }
+
+                            $('#office').empty();
+                            $('#office').append(
+                                '<option hidden>Choose Course</option>');
+                            $.each(data, function(key, office) {
+                                $('select[name="office_id"]').append(
+                                    '<option value="' + office.id + '">' +
+                                    office
+                                    .name + '</option>');
+                            });
+
                         }
                     });
                 } else {
-                    $('#office').empty();
+                    $('select[name="office_id"]').append('<option value="">No Office Found</option>');
                 }
+            }
+            $('select[name="region_id"]').on('change', function() {
+                var regionID = $(this).val();
+                // alert(regionID);
+                call_ajax(regionID);
             });
+            call_ajax("<?php echo $item->region->id; ?>");
         });
     </script>
 @endsection

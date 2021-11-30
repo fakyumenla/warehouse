@@ -5,7 +5,7 @@
         <i class="fa fa-bars"></i>
     </button>
 
-    <!-- Topbar Search -->
+    {{-- <!-- Topbar Search -->
     <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
         <div class="input-group">
             <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
@@ -16,7 +16,7 @@
                 </button>
             </div>
         </div>
-    </form>
+    </form> --}}
 
     <!-- Topbar Navbar -->
     <ul class="navbar-nav ml-auto">
@@ -28,8 +28,7 @@
                 <i class="fas fa-search fa-fw"></i>
             </a>
             <!-- Dropdown - Messages -->
-            <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
-                aria-labelledby="searchDropdown">
+            <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in" aria-labelledby="searchDropdown">
                 <form class="form-inline mr-auto w-100 navbar-search">
                     <div class="input-group">
                         <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
@@ -69,10 +68,10 @@
                 <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
                     aria-haspopup="true" aria-expanded="false">
                     <span class="mr-2 pr-3 d-none d-lg-inline text-gray-600 small">
-                        <span class="font-weight-bold">
+                        {{-- <span class="font-weight-bold">
                             Douglas McGee
                         </span>
-                        <br>
+                        <br> --}}
                         <span class="d-flex justify-content-end">
                             admin
                         </span>

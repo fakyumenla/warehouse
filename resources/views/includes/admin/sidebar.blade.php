@@ -1,5 +1,5 @@
 <!-- Sidebar -->
-<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion  shadow-test " id="accordionSidebar"
+<ul class="navbar-nav sidebar sidebar-dark accordion  shadow-test color-custom " id="accordionSidebar"
     style="z-index: 1">
 
     <!-- Sidebar - Brand -->

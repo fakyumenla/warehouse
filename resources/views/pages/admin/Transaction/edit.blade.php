@@ -9,10 +9,10 @@
     <body id="page-top">
 
         <!-- Page Wrapper -->
-        <div id="wrapper" class="vh-80">
+        <div id="wrapper">
 
             <!-- Content Wrapper -->
-            <div id="content-wrapper" class="d-flex align-items-center">
+            <div id="content-wrapper" class="d-flex  flex-column">
 
                 <!-- Main Content -->
                 <div id="content">
@@ -20,7 +20,7 @@
                     <!-- Begin Page Content -->
                     <div class="container-fluid">
 
-                        <a href="/" class="btn btn-secondary shadow mb-4 border-0 ">
+                        <a href="{{ url()->previous() }}" class="btn btn-secondary shadow mb-4 border-0 ">
                             <div class="row px-1 d-flex justify-content-center mx-auto my-auto">
                                 <i class="fas fa-arrow-left mr-2 my-2"></i>
                                 <div class="my-1 ml-1">

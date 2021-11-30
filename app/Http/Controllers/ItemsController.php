@@ -116,9 +116,17 @@ class ItemsController extends Controller
                     # 'name' is the field in table of Status Model
                     return $row->employee->name;
                 })
+                ->addcolumn('end_date', function ($row) {
+                    if ($row->end_date == null) {
+                        $end_date = '-';
+                    } else {
+                        $end_date = $row->end_date;
+                    }
+                    return $end_date;
+                })
                 ->addColumn('action', function ($row) {
-                    $actionBtn = '<a href="'. route('items.edit', [$row->id]) .'"edit btn btn-success btn-sm">Edit</a> 
-                    <form action="'.route('items.destroy',[$row->id]).'" method="POST" class="d-inline">'.method_field('delete') .csrf_field().'
+                    $actionBtn = '<a href="'. route('histories.edit', [$row->id]) .'" class =" edit btn btn-success btn-sm">Edit</a> 
+                    <form action="'.route('histories.destroy',[$row->id]).'" method="POST" class="d-inline">'.method_field('delete') .csrf_field().'
                     <button class="delete btn btn-danger btn-sm" onclick="return confirm(\'Are You Sure?\')">Delete</button>
                     </form>';
                     return $actionBtn;
@@ -151,6 +159,7 @@ class ItemsController extends Controller
         return view('pages.admin.Item.edit', [
             'item' => $item,
             'office' => $office,
+            'offices' => Office::all(),
             'regions' => Region::all(),
             'types' => Type::all(),
             'offices' => Office::all()

@@ -19,7 +19,7 @@
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
 
-                    <a href="/" class="btn btn-secondary shadow mb-4 border-0 ">
+                    <a href="{{ route('items.list') }}" class="btn btn-secondary shadow mb-4 border-0 ">
                         <div class="row px-1 d-flex justify-content-center mx-auto my-auto">
                             <i class="fas fa-arrow-left mr-2 my-2"></i>
                             <div class="my-1 ml-1">
@@ -39,7 +39,7 @@
                                     action="/admin/items/posts">
                                     @csrf
                                     <div class="form-group row">
-                                        <label for="inputName" class="col-sm-2 col-form-label text-right">Name</label>
+                                        <label for="inputName" class="col-sm-2 col-form-label">Name</label>
                                         <div class="col-sm-3">
                                             <input type="text" class="form-control @error('name') is-invalid @enderror"
                                                 id="inputName" placeholder="Name" name="name" value="{{ old('name') }}">
@@ -47,7 +47,7 @@
                                     </div>
                                     <div class="form-group row">
 
-                                        <label for="inputGender" class="col-sm-2 col-form-label text-right">Type</label>
+                                        <label for="inputGender" class="col-sm-2 col-form-label">Type</label>
                                         <div class="col-sm-3">
                                             <select class="custom-select @error('type_id') is-invalid @enderror"
                                                 id="inputType" name="type_id">
@@ -62,7 +62,7 @@
 
                                     <div class="form-group row">
 
-                                        <label for="inputGender" class="col-sm-2 col-form-label text-right">Region</label>
+                                        <label for="inputGender" class="col-sm-2 col-form-label">Region</label>
                                         <div class="col-sm-3">
                                             <select class="custom-select @error('region_id') is-invalid @enderror"
                                                 id="inputRegion" name="region_id">
@@ -77,7 +77,7 @@
                                     </div>
                                     <div class="form-group row">
 
-                                        <label for="inputGender" class="col-sm-2 col-form-label text-right">Office</label>
+                                        <label for="inputGender" class="col-sm-2 col-form-label">Office</label>
                                         <div class="col-sm-3">
                                             <select class="custom-select @error('office_id') is-invalid @enderror"
                                                 id="office" name="office_id">

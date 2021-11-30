@@ -9,10 +9,10 @@
     <body id="page-top">
 
         <!-- Page Wrapper -->
-        <div id="wrapper" class="vh-80">
+        <div id="wrapper">
 
             <!-- Content Wrapper -->
-            <div id="content-wrapper" class="d-flex align-items-center">
+            <div id="content-wrapper" class="d-flex flex-column">
 
                 <!-- Main Content -->
                 <div id="content">
@@ -20,7 +20,7 @@
                     <!-- Begin Page Content -->
                     <div class="container-fluid">
 
-                        <a href="/" class="btn btn-secondary shadow mb-4 border-0 ">
+                        <a href="{{ route('offices.list') }}" class="btn btn-secondary shadow mb-4 border-0 ">
                             <div class="row px-1 d-flex justify-content-center mx-auto my-auto">
                                 <i class="fas fa-arrow-left mr-2 my-2"></i>
                                 <div class="my-1 ml-1">
@@ -40,7 +40,7 @@
                                         action="/admin/offices/posts">
                                         @csrf
                                         <div class="form-group row">
-                                            <label for="inputName" class="col-sm-2 col-form-label text-right">Name</label>
+                                            <label for="inputName" class="col-sm-2 col-form-label">Name</label>
                                             <div class="col-sm-3">
                                                 <input type="text" class="form-control @error('name') is-invalid @enderror"
                                                     id="inputName" placeholder="Name" name="name"
@@ -50,8 +50,7 @@
 
                                         <div class="form-group row">
 
-                                            <label for="inputGender"
-                                                class="col-sm-2 col-form-label text-right">Region</label>
+                                            <label for="inputGender" class="col-sm-2 col-form-label">Region</label>
                                             <div class="col-sm-3">
                                                 <select class="custom-select @error('region') is-invalid @enderror"
                                                     id="inputRegion" name="region_id">
@@ -65,7 +64,7 @@
                                         </div>
 
                                         <div class="form-group row">
-                                            <label for="inputAddress" class="col-sm-2 text-right">Address</label>
+                                            <label for="inputAddress" class="col-sm-2 ">Address</label>
                                             <div class="col-sm-3">
                                                 <textarea class="form-control @error('address') is-invalid @enderror "
                                                     id="inputAddress" name="address" rows="3"></textarea>

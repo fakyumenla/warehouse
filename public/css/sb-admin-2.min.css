@@ -12102,7 +12102,7 @@ a:focus {
 }
 
 .bg-login-image {
-    background: url(https://source.unsplash.com/K4mSJ7kc0As/600x800);
+    background-color: #1c294e;
     background-position: center;
     background-size: cover
 }
@@ -12608,4 +12608,3 @@ footer.sticky-footer .copyright {
 body.sidebar-toggled footer.sticky-footer {
     width: 100%
 }
-

@@ -32,7 +32,7 @@
 
                                 <div class=" number-employees font-weight-bold text-primary text-uppercase">
 
-                                    15
+                                    {{ $total_employees }}
                                 </div>
                                 <div class="normal h5 mb-0 font-weight-bold text-gray-800">Employees</div>
                                 {{-- <i class="fas fa-calendar fa-2x text-gray-300"></i> --}}
@@ -47,7 +47,7 @@
                     <div class="card-body">
                         <div class="row no-gutters align-items-center">
                             <div class="col d-flex justify-content-center">
-                                <img class="w-75 rounded-circle" src="{{ URL::asset('img/officer1.png') }}">
+                                <img class="w-75 rounded-circle" src="{{ URL::asset('img/officer2.png') }}">
                                 {{-- <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                     Earnings (Monthly)</div>
                                 <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div> --}}
@@ -56,9 +56,9 @@
 
                                 <div class=" number-employees font-weight-bold text-primary text-uppercase">
 
-                                    15
+                                    {{ $total_items }}
                                 </div>
-                                <div class="normal h5 mb-0 font-weight-bold text-gray-800">Employees</div>
+                                <div class="normal h5 mb-0 font-weight-bold text-gray-800">Items</div>
                                 {{-- <i class="fas fa-calendar fa-2x text-gray-300"></i> --}}
                             </div>
                         </div>
@@ -71,7 +71,7 @@
                     <div class="card-body">
                         <div class="row no-gutters align-items-center">
                             <div class="col d-flex justify-content-center">
-                                <img class="w-75 rounded-circle" src="{{ URL::asset('img/officer1.png') }}">
+                                <img class="w-75 rounded-circle" src="{{ URL::asset('img/officer3.png') }}">
                                 {{-- <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                     Earnings (Monthly)</div>
                                 <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div> --}}
@@ -80,9 +80,9 @@
 
                                 <div class=" number-employees font-weight-bold text-primary text-uppercase">
 
-                                    15
+                                    {{ $total_offices }}
                                 </div>
-                                <div class="normal h5 mb-0 font-weight-bold text-gray-800">Employees</div>
+                                <div class="normal h5 mb-0 font-weight-bold text-gray-800">offices</div>
                                 {{-- <i class="fas fa-calendar fa-2x text-gray-300"></i> --}}
                             </div>
                         </div>

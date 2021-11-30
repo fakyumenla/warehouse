@@ -20,7 +20,7 @@
                     <!-- Begin Page Content -->
                     <div class="container-fluid">
 
-                        <a href="/" class="btn btn-secondary shadow mb-4 border-0 ">
+                        <a href="{{ route('items.list') }}" class="btn btn-secondary shadow mb-4 border-0 ">
                             <div class="row px-1 d-flex justify-content-center mx-auto my-auto">
                                 <i class="fas fa-arrow-left mr-2 my-2"></i>
                                 <div class="my-1 ml-1">
@@ -40,14 +40,14 @@
                                         action="/admin/items/posts">
                                         @csrf
                                         <div class="form-group row">
-                                            <label for="inputName" class="col-sm-2 col-form-label text-right">Item name
+                                            <label for="inputName" class="col-sm-2 col-form-label">Item name
                                                 :</label>
                                             <div class="col-sm-4 col-form-label">
                                                 {{ $item->name }}
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label for="inputNIK" class="col-sm-2 col-form-label text-right">Detail
+                                            <label for="inputNIK" class="col-sm-2 col-form-label">Detail
                                                 :</label>
                                             <div class="col-sm-4 col-form-label">
                                                 {{ $item->description }}

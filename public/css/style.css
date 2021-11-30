@@ -39,3 +39,7 @@
 .vh-80 {
     height: 80vh !important;
 }
+
+.color-custom {
+    background-color: #1c294e !important;
+}
