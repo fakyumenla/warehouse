@@ -79,7 +79,7 @@ class RegionController extends Controller
      */
     public function edit(Region $region,$id)
     {
-        $region = Region::findOrFail($id);
+        $region = Region::where('id',$id)->firstOrFail();
 
         return view('pages.admin.Region.edit', [
             'region' => $region,
@@ -97,7 +97,7 @@ class RegionController extends Controller
     {
         $data = $request->all();
 
-        $region = Region::findOrFail($id);
+        $region = Region::where('id',$id)->firstOrFail();
 
         $region->update($data);
 
@@ -112,7 +112,7 @@ class RegionController extends Controller
      */
     public function destroy(Region $region,$id)
     {
-        $region = Region::findOrFail($id);
+        $region = Region::where('id',$id);
         $region->delete();
 
         return redirect()->route('regions.list')->with('success','Delete Success');

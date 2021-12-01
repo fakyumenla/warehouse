@@ -4,12 +4,17 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Haruncpi\LaravelIdGenerator\IdGenerator;
 
 class Region extends Model
 {
     use HasFactory;
 
     protected $guarded = ['id'];
+
+    protected $primaryKey = 'id';
+
+    public $incrementing = false;
 
     public function item()
     {
@@ -37,6 +42,11 @@ class Region extends Model
     public static function boot()
     {
         parent::boot(); 
+
+        self::creating(function ($model) {
+            $model->id = IdGenerator::generate(['table' => 'regions', 'length' => 12, 'prefix' => 'REG'.date('my').'-', 'reset_on_prefix_change'=>true]);
+        });
+
         static::deleting(function ($region) {
             //deleting region->item->history
             $region->item->each(function ($item) {

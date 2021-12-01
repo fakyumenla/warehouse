@@ -109,9 +109,10 @@
                 serverSide: true,
                 ordering: true,
                 ajax: "{{ route('types.list') }}",
-                columns: [{
-                        data: 'id',
-                        name: 'id'
+                columns: [
+                    { 
+                        data: 'DT_RowIndex', 
+                        name: 'DT_RowIndex' 
                     },
                     {
                         data: 'name',

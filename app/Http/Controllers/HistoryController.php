@@ -131,10 +131,10 @@ class HistoryController extends Controller
      */
     public function edit(History_ownership $history_ownership, $id)
     {
-        $history =  History_ownership::findOrFail($id);
+        $history =  History_ownership::where('id',$id)->firstOrFail();
         // $item = Item::where('id', $history->item_id)->get();
-        $item = Item::findOrFail($history->item_id);
-        $employee = Employee::findOrFail($history->employee_id);
+        $item = Item::where('id',$history->item_id)->firstOrFail(); 
+        $employee = Employee::where('id',$history->employee_id)->firstOrFail(); 
         return view('pages.admin.Transaction.edit', [
             'history' => $history,
             'item' => $item,
@@ -154,7 +154,7 @@ class HistoryController extends Controller
     public function update(Request $request, History_ownership $history_ownership,$id)
     {
         $data = $request->all();
-        $history = History_ownership::findOrFail($id);
+        $history = History_ownership::where('id',$id)->firstOrFail();
         $history->update($data);
         return redirect()->route('histories.list')->with('success', 'Edit Success');
     }
@@ -167,7 +167,7 @@ class HistoryController extends Controller
      */
     public function destroy(History_ownership $history_ownership,$id)
     {
-        $history_ownership = History_ownership::findOrFail($id);
+        $history_ownership = History_ownership::where('id',$id);
         $history_ownership->delete();
 
         return redirect()->route('histories.list')->with('success','Delete Success');

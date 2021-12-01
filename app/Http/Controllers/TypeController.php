@@ -79,7 +79,7 @@ class TypeController extends Controller
      */
     public function edit(Type $type,$id)
     {
-        $type = Type::findOrFail($id);
+        $type = Type::where('id',$id)->firstOrFail();
 
         return view('pages.admin.Type.edit', [
             'type' => $type,
@@ -97,7 +97,7 @@ class TypeController extends Controller
     {
         $data = $request->all();
 
-        $type = Type::findOrFail($id);
+        $type = Type::where('id',$id)->firstOrFail();
 
         $type->update($data);
 
@@ -112,7 +112,7 @@ class TypeController extends Controller
      */
     public function destroy(Type $type,$id)
     {
-        $type = Type::findOrFail($id);
+        $type = Type::where('id',$id);
         $type->delete();
 
         return redirect()->route('types.list')->with('success','Delete Success');

@@ -12,7 +12,7 @@ class Office extends Model
 
     protected $guarded = ['id'];
 
-    protected $primaryKey = ['id'];
+    protected $primaryKey = 'id';
 
     public $incrementing = false;
 

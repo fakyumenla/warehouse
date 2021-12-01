@@ -12,7 +12,7 @@ class Item extends Model
 
     protected $guarded = ['id'];
 
-    protected $primaryKey = ['id'];
+    protected $primaryKey = 'id';
 
     public $incrementing = false;
 
@@ -53,7 +53,7 @@ class Item extends Model
         parent::boot(); 
 
         self::creating(function ($model) {
-            $model->id = IdGenerator::generate(['table' => 'employees', 'length' => 12, 'prefix' => 'ITM'.date('my').'-', 'reset_on_prefix_change'=>true]);
+            $model->id = IdGenerator::generate(['table' => 'items', 'length' => 12, 'prefix' => 'ITM'.date('my').'-', 'reset_on_prefix_change'=>true]);
         });
 
         static::deleting(function ($item) {
