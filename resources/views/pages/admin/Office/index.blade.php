@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('title')
-    Office
+    Offices
 @endsection
 
 @section('content')

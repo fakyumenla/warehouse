@@ -46,6 +46,11 @@
                                                 <input type="text" class="form-control @error('name') is-invalid @enderror"
                                                     id="inputName" placeholder="Name" name="name"
                                                     value="{{ $employee->name }}">
+                                                @error('name')
+                                                    <div class="invalid-feedback">
+                                                        {{ $message }}
+                                                    </div>
+                                                @enderror
                                             </div>
                                         </div>
                                         <div class="form-group row">
@@ -54,6 +59,12 @@
                                                 <input type="text" class="form-control  @error('nik') is-invalid @enderror"
                                                     id="inputNIK" placeholder="NIK" name="nik"
                                                     value="{{ $employee->nik }}">
+                                                @error('nik')
+                                                    <div class="invalid-feedback">
+
+                                                        {{ $message }}
+                                                    </div>
+                                                @enderror
                                             </div>
                                         </div>
 
@@ -63,10 +74,16 @@
                                             <div class="col-sm-3">
                                                 <select class="custom-select @error('gender') is-invalid @enderror"
                                                     id="inputGender" name="gender">
+                                                    <option selected disabled>Select Gender</option>
                                                     <option value="Laki-laki" @if ($employee->gender == 'Laki-laki') {{ 'selected' }} @endif>Laki-laki</option>
                                                     <option value="Perempuan" @if ($employee->gender == 'Perempuan') {{ 'selected' }} @endif>Perempuan</option>
 
                                                 </select>
+                                                @error('gender')
+                                                    <div class="invalid-feedback">
+                                                        {{ $message }}
+                                                    </div>
+                                                @enderror
                                             </div>
 
                                         </div>
@@ -77,6 +94,11 @@
                                                 <textarea class="form-control @error('address') is-invalid @enderror "
                                                     id="inputAddress" name="address"
                                                     rows="3">{!! $employee->address !!}</textarea>
+                                                @error('address')
+                                                    <div class="invalid-feedback">
+                                                        {{ $message }}
+                                                    </div>
+                                                @enderror
                                             </div>
 
                                         </div>

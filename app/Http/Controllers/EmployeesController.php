@@ -60,7 +60,7 @@ class EmployeesController extends Controller
             'name' => 'required',
             'gender' => 'required',
             'address' => 'required',
-            'nik' => 'required',
+            'nik' => 'required|unique:employees',
         ]);
         // $validatedData[;'']
         Employee::create($validatedData);
@@ -89,11 +89,12 @@ class EmployeesController extends Controller
      */
     public function edit(Employee $employee, $id)
     {
-        $employee = Employee::findOrFail($id);
+        $employee = Employee::where('id', $id)->firstOrFail();
 
         return view('pages.admin.Employee.edit', [
             'employee' => $employee,
         ]);
+        
     }
 
     /**
@@ -107,7 +108,7 @@ class EmployeesController extends Controller
     {
         $data = $request->all();
 
-        $employee = Employee::findOrFail($id);
+        $employee = Employee::where('id', $id)->firstOrFail();
 
         $employee->update($data);
 
@@ -122,7 +123,8 @@ class EmployeesController extends Controller
      */
     public function destroy(Employee $employee,$id)
     {
-        $employee = Employee::findOrFail($id);
+        $employee =
+        Employee::where('id', $id);
         $employee->delete();
 
         return redirect()->route('employees.list')->with('success','Delete Success');
