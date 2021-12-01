@@ -98,9 +98,9 @@ class ItemsController extends Controller
      */
     public function show(Item $item,$name,$id)
     { 
-        $items = Item::findOrFail($id);
-        $office = Office::findOrFail($items->office_id);
-        $region = Region::findOrFail($office->region_id);
+        $items = Item::where('id',$id)->firstOrFail();
+        $office = Office::where('id',$items->office_id)->firstOrFail();
+        $region = Region::where('id',$office->region_id)->firstOrFail();
         $history = History_ownership::where('item_id', $items->id)->get();
         if (request()->ajax()) {
             $data = History_ownership::with('employee', 'item')->select('history_ownerships.*')->where('item_id', $items->id)->latest()->get();
@@ -153,8 +153,8 @@ class ItemsController extends Controller
      */
     public function edit(Item $item,$id)
     {
-        $item = Item::findOrFail($id);
-        $office = Office::findOrFail($id);
+        $item = Item::where('id',$id)->firstOrFail();
+        $office = Office::where('id',$item->office_id);
     
         return view('pages.admin.Item.edit', [
             'item' => $item,
@@ -177,7 +177,7 @@ class ItemsController extends Controller
     {
         $data = $request->all();
 
-        $item = Item::findOrFail($id);
+        $item = Item::where('id',$id)->firstOrFail();
 
         $item->update($data);
 
@@ -192,7 +192,7 @@ class ItemsController extends Controller
      */
     public function destroy(Item $item,$id)
     {
-        $item = Item::findOrFail($id);
+        $item = Item::where('id',$id);
         $item->delete();
 
         return redirect()->route('items.list')->with('success','Delete Success');

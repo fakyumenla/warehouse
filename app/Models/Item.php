@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Haruncpi\LaravelIdGenerator\IdGenerator;
 
 class Item extends Model
 {
@@ -11,6 +12,9 @@ class Item extends Model
 
     protected $guarded = ['id'];
 
+    protected $primaryKey = ['id'];
+
+    public $incrementing = false;
 
     public function type()
     {
@@ -47,6 +51,11 @@ class Item extends Model
     public static function boot()
     {
         parent::boot(); 
+
+        self::creating(function ($model) {
+            $model->id = IdGenerator::generate(['table' => 'employees', 'length' => 12, 'prefix' => 'ITM'.date('my').'-', 'reset_on_prefix_change'=>true]);
+        });
+
         static::deleting(function ($item) {
             //continuation deleting region->item->history
             $item->history->each(function ($history) {

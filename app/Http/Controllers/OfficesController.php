@@ -90,7 +90,7 @@ class OfficesController extends Controller
      */
     public function edit(Office $office,$id)
     {
-        $office = Office::findOrFail($id);
+        $office = Office::where('id',$id)->firstOrFail();
 
         return view('pages.admin.Office.edit', [
             'office' => $office,
@@ -109,7 +109,7 @@ class OfficesController extends Controller
     {
         $data = $request->all();
 
-        $office = Office::findOrFail($id);
+        $office = Office::where('id',$id)->firstOrFail();
 
         $office->update($data);
 
@@ -124,7 +124,7 @@ class OfficesController extends Controller
      */
     public function destroy(Office $office,$id)
     {
-        $office = Office::findOrFail($id);
+        $office = Office::where('id',$id);
         $office->delete();
 
         return redirect()->route('offices.list')->with('success','Delete Success');
