@@ -18,7 +18,7 @@ class CreateEmployeesTable extends Migration
             $table->string('name');
             $table->text('address');
             $table->string('gender');
-            $table->string('nik');
+            $table->string('nik')->unique();
             $table->timestamps();
         });
     }

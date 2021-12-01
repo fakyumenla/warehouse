@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('title')
-    Transaction
+    Transaction Histories
 @endsection
 
 @section('content')
@@ -29,7 +29,7 @@
                     <div class="card shadow mb-4">
                         <div class="row py-3 px-4">
                             <div class="col-md-12">
-                                <span class="text-header">Transaction</span>
+                                <span class="text-header">Transaction Histories</span>
                                 {{-- <button type="button" class="btn btn-secondary float-right ">Select</button> --}}
                                 <a href="{{ route('histories.create') }}" class="btn btn-primary float-right mr-2">
                                     <i class="fas fa-plus mr-2"></i>

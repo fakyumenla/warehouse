@@ -46,19 +46,35 @@
                                                     id="inputName" placeholder="Name" name="name"
                                                     value="{{ old('name') }}">
                                             </div>
+                                            @error('name')
+                                                <div class="invalid-feedback">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
                                         </div>
+
+
 
                                         <div class="form-group row">
 
                                             <label for="inputGender" class="col-sm-2 col-form-label">Region</label>
                                             <div class="col-sm-3">
-                                                <select class="custom-select @error('region') is-invalid @enderror"
+                                                <select class="custom-select @error('region_id') is-invalid @enderror"
                                                     id="inputRegion" name="region_id">
+
+                                                    <option selected disabled>Select Region</option>
                                                     @foreach ($regions as $region)
                                                         <option value="{{ $region->id }}">{{ $region->name }}</option>
                                                     @endforeach
 
+
                                                 </select>
+                                                @error('region_id')
+                                                    <div class="invalid-feedback">
+                                                        {{ $message }}
+                                                    </div>
+                                                @enderror
+
                                             </div>
 
                                         </div>
