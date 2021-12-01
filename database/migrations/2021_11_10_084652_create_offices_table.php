@@ -14,7 +14,7 @@ class CreateOfficesTable extends Migration
     public function up()
     {
         Schema::create('offices', function (Blueprint $table) {
-            $table->id()->unique();
+            $table->string('id')->primary();
             $table->string('region_id');
             $table->string('name');
             $table->text('address');

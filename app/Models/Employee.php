@@ -10,23 +10,23 @@ class Employee extends Model
 {
     use HasFactory;
 
-    protected $guarded = [''];
+    protected $guarded = ['id'];
 
     protected $primaryKey = ['id'];
 
     public $incrementing = false;
 
-    public function history()
-    {
-        return $this->hasMany(History_ownership::class);
-    }
-
     public static function boot()
     {
         parent::boot();
         self::creating(function ($model) {
-            $model->id = IdGenerator::generate(['table' => 'employees', 'length' => 7, 'prefix' => 'EMP-', 'reset_on_prefix_change'=>true]);
+            $model->id = IdGenerator::generate(['table' => 'employees', 'length' => 12, 'prefix' => 'EMP'.date('my').'-', 'reset_on_prefix_change'=>true]);
         });
+    }
+
+    public function history()
+    {
+        return $this->hasMany(History_ownership::class);
     }
 
     public function delete()
