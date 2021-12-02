@@ -44,13 +44,14 @@
                                             <div class="col-sm-3">
                                                 <input type="text" class="form-control @error('name') is-invalid @enderror"
                                                     id="inputName" placeholder="Name" name="name"
-                                                    value="{{ old('name') }}">
+                                                    value="{{ old('name') }}" autocomplete="off">
+                                                @error('name')
+                                                    <div class="invalid-feedback">
+                                                        {{ $message }}
+                                                    </div>
+                                                @enderror
                                             </div>
-                                            @error('name')
-                                                <div class="invalid-feedback">
-                                                    {{ $message }}
-                                                </div>
-                                            @enderror
+
                                         </div>
 
 
@@ -84,6 +85,11 @@
                                             <div class="col-sm-3">
                                                 <textarea class="form-control @error('address') is-invalid @enderror "
                                                     id="inputAddress" name="address" rows="3"></textarea>
+                                                @error('address')
+                                                    <div class="invalid-feedback">
+                                                        {{ $message }}
+                                                    </div>
+                                                @enderror
                                             </div>
 
                                         </div>

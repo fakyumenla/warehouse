@@ -109,9 +109,16 @@ class OfficesController extends Controller
     {
         $data = $request->all();
 
+
+        $validatedData = $request->validate([
+            // 'id' => 'required',
+            'name' => 'required',
+            'region_id' => 'required',
+            'address' => 'required'
+        ]);
         $office = Office::where('id',$id)->firstOrFail();
 
-        $office->update($data);
+        $office->update($data,$validatedData);
 
         return redirect()->route('offices.list')->with('success','Edit Success');
     }

@@ -56,7 +56,7 @@
                                         <div class="col-sm-3">
                                             <select class="custom-select @error('type_id') is-invalid @enderror"
                                                 id="inputType" name="type_id">
-                                                <option selected disabled>Select Type</option>
+                                                <option selected hidden disabled>Select Type</option>
                                                 @foreach ($types as $type)
                                                     <option value="{{ $type->id }}">{{ $type->name }}</option>
                                                 @endforeach
@@ -78,7 +78,7 @@
                                             <select class="custom-select @error('region_id') is-invalid @enderror"
                                                 id="inputRegion" name="region_id">
 
-                                                <option selected disabled>Select Region</option>
+                                                <option selected hidden disabled>Select Region</option>
                                                 @foreach ($regions as $region)
                                                     <option value="{{ $region->id }}">{{ $region->name }}</option>
                                                 @endforeach
@@ -214,7 +214,8 @@
                             if (data) {
                                 $('#office').empty();
                                 $('#office').append(
-                                    '<option selected disabled>Choose office</option>');
+                                    '<option  hidden selected disabled>Choose office</option>'
+                                    );
                                 $.each(data, function(key, office) {
                                     $('select[name="office_id"]').append(
                                         '<option value="' + office.id + '">' +

@@ -44,6 +44,11 @@
                                         <div class="col-sm-3">
                                             <input type="text" class="form-control @error('name') is-invalid @enderror"
                                                 id="inputName" placeholder="Name" name="name" value="{{ $item->name }}">
+                                            @error('name')
+                                                <div class="invalid-feedback">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
                                         </div>
                                     </div>
                                     <div class="form-group row">
@@ -59,6 +64,12 @@
                                                 @endforeach
 
                                             </select>
+
+                                            @error('type_Id')
+                                                <div class="invalid-feedback">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
                                         </div>
 
                                     </div>
@@ -69,7 +80,7 @@
                                         <div class="col-sm-3">
                                             <select class="custom-select @error('region_id') is-invalid @enderror"
                                                 id="inputRegion" name="region_id">
-                                                <option hidden>Choose Category</option>
+                                                {{-- <option hidden>Choose Category</option> --}}
                                                 @foreach ($regions as $region)
                                                     <option value="{{ $region->id }}"
                                                         {{ collect($region->id)->contains($item->region_id) ? 'selected' : '' }}>
@@ -77,6 +88,11 @@
                                                 @endforeach
 
                                             </select>
+                                            @error('region_id')
+                                                <div class="invalid-feedback">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
                                         </div>
 
                                     </div>
@@ -96,15 +112,25 @@
                                                     @endforeach --}}
 
                                             </select>
+                                            @error('office_id')
+                                                <div class="invalid-feedback">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
                                         </div>
 
                                     </div>
                                     <div class="form-group row">
                                         <label for="inputAddress" class="col-sm-2">Description</label>
                                         <div class="col-sm-3">
-                                            <textarea class="form-control @error('Description') is-invalid @enderror "
+                                            <textarea class="form-control @error('description') is-invalid @enderror "
                                                 id="inputDescription" name="description"
                                                 rows="3">{!! $item->description !!}</textarea>
+                                            @error('description')
+                                                <div class="invalid-feedback">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
                                         </div>
 
                                     </div>

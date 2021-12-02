@@ -110,6 +110,14 @@ class EmployeesController extends Controller
 
         $employee = Employee::where('id', $id)->firstOrFail();
 
+        $validatedData = $request->validate([
+            // 'id' => 'required',
+            'name' => 'required',
+            'gender' => 'required',
+            'address' => 'required',
+            'nik' => 'required',
+        ]);
+
         $employee->update($data);
 
         return redirect()->route('employees.list')->with('success','Edit Success');;

@@ -37,15 +37,20 @@
                                     <span class="text-header">Edit office</span>
 
                                     <form class="mt-4" method="post" enctype="multipart/form-data"
-                                        action="{{ route('offices.update', $office->id) }}">
+                                        action="{{ route('offices.update', $office->id) }} ">
                                         @method('PUT')
                                         @csrf
                                         <div class="form-group row">
                                             <label for="inputName" class="col-sm-2 col-form-label ">Name</label>
                                             <div class="col-sm-3">
                                                 <input type="text" class="form-control @error('name') is-invalid @enderror"
-                                                    id="inputName" placeholder="Name" name="name"
+                                                    id="inputName" placeholder="Name" name="name" autocomplete="off"
                                                     value="{{ $office->name }}">
+                                                @error('name')
+                                                    <div class="invalid-feedback">
+                                                        {{ $message }}
+                                                    </div>
+                                                @enderror
                                             </div>
                                         </div>
 
@@ -53,7 +58,7 @@
 
                                             <label for="inputGender" class="col-sm-2 col-form-label ">Region</label>
                                             <div class="col-sm-3">
-                                                <select class="custom-select @error('region') is-invalid @enderror"
+                                                <select class="custom-select @error('region_id') is-invalid @enderror"
                                                     id="inputRegion" name="region_id">
                                                     {{-- <option value="{{ $office->region_id }}" selected>{{ $office->region->name }}</option> --}}
                                                     @foreach ($regions as $region)
@@ -63,6 +68,11 @@
                                                     @endforeach
 
                                                 </select>
+                                                @error('region_id')
+                                                    <div class="invalid-feedback">
+                                                        {{ $message }}
+                                                    </div>
+                                                @enderror
                                             </div>
 
                                         </div>
@@ -73,6 +83,11 @@
                                                 <textarea class="form-control @error('address') is-invalid @enderror "
                                                     id="inputAddress" name="address"
                                                     rows="3">{!! $office->address !!}</textarea>
+                                                @error('address')
+                                                    <div class="invalid-feedback">
+                                                        {{ $message }}
+                                                    </div>
+                                                @enderror
                                             </div>
 
                                         </div>

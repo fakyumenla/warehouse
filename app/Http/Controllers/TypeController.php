@@ -99,7 +99,12 @@ class TypeController extends Controller
 
         $type = Type::where('id',$id)->firstOrFail();
 
-        $type->update($data);
+        $validatedData = $request->validate([
+            // 'id' => 'required',
+            'name' => 'required',
+        ]);
+
+        $type->update($data,$validatedData);
 
         return redirect()->route('types.list')->with('success','Edit Success');
     }

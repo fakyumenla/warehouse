@@ -179,7 +179,16 @@ class ItemsController extends Controller
 
         $item = Item::where('id',$id)->firstOrFail();
 
-        $item->update($data);
+        $validatedData = $request->validate([
+            // 'id' => 'required',
+            'name' => 'required',
+            // 'office_id' => 'required',
+            'type_id' => 'required',
+            'region_id' => 'required',
+            'description' => 'required',
+        ]);
+
+        $item->update($data,$validatedData);
 
         return redirect()->route('items.list')->with('success','Edit Success');
     }

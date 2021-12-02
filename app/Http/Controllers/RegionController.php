@@ -99,10 +99,14 @@ class RegionController extends Controller
     public function update(Request $request, Region $region,$id)
     {
         $data = $request->all();
+        $validatedData = $request->validate([
+            // 'id' => 'required',
+            'name' => 'required',
+        ]);
 
         $region = Region::where('id',$id)->firstOrFail();
 
-        $region->update($data);
+        $region->update($data,$validatedData);
 
         return redirect()->route('regions.list')->with('success','Edit Success');
     }

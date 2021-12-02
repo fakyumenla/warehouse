@@ -40,26 +40,47 @@
                                         action="/admin/Transaction/posts">
                                         @csrf
                                         <div class="form-group row">
-                                            <label for="inputName" class="col-sm-2 col-form-label">
+                                            <label for="inputName" class="col-sm-2 col-form-label ">
                                                 Employee Name</label>
-                                            <div class="col-md-3 my-auto">
-                                                <select class="livesearch form-control p-3" name="employee_id"
-                                                    id="livesearch"></select>
+                                            <div class="col-md-3 my-auto ">
+                                                <select
+                                                    class="livesearch form-control p-3  @error('employee_id') is-invalid @enderror "
+                                                    name="employee_id" id="livesearch"></select>
+                                                @error('employee_id')
+                                                    <div class="invalid-feedback">
+                                                        {{ $message }}
+                                                    </div>
+                                                @enderror
+
                                             </div>
+
+
                                         </div>
 
                                         <div class="form-group row">
                                             <label for="inputName" class="col-sm-2 col-form-label">Item Name</label>
                                             <div class="col-md-3 my-auto">
-                                                <select class="  livesearch form-control " name="item_id"
-                                                    id="livesearch-item" style=" color:grey"></select>
+                                                <select
+                                                    class="  livesearch form-control   @error('item_id') is-invalid border border-danger @enderror "
+                                                    name="item_id" id="livesearch-item" style=" color:grey"></select>
+                                                @error('item_id')
+                                                    <div class="invalid-feedback">
+                                                        {{ $message }}
+                                                    </div>
+                                                @enderror
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label for="inputName" class="col-sm-2 col-form-label">Start Date</label>
                                             <div class="col-md-3 my-auto ">
-                                                <input class="border rounded" type="date" name="start_date"
+                                                <input class="border rounded @error('start_date') is-invalid @enderror"
+                                                    type="date" name="start_date"
                                                     style="border-color: grey!important; color:grey " />
+                                                @error('start_date')
+                                                    <div class="invalid-feedback">
+                                                        {{ $message }}
+                                                    </div>
+                                                @enderror
                                             </div>
                                         </div>
 
@@ -123,10 +144,10 @@
 
 @section('script')
     <script type="text/javascript">
-        $('#datepicker').datepicker({
-            uiLibrary: 'bootstrap4',
-            format: '{{ config('app.date_format_js') }}'
-        });
+        // $('#datepicker').datepicker({
+        //     uiLibrary: 'bootstrap4',
+        //     format: '{{ config('app.date_format_js') }}'
+        // });
         $('#livesearch').select2({
             placeholder: 'Select name',
             ajax: {
