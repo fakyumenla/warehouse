@@ -49,11 +49,12 @@ class Region extends Model
 
         static::deleting(function ($region) {
             //deleting region->item->history
-            $region->item->each(function ($item) {
-                $item->delete();
-            });
+            $region->item->each->delete();
+            // $region->item->each(function ($item) {
+            //     $item->delete();
+            // });
             //delete related data to region from office
-            $region->office()->delete();
+            $region->office->delete();
         });
     }
 }

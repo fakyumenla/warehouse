@@ -74,7 +74,7 @@
                                             <div class="col-sm-3">
                                                 <select class="custom-select @error('gender') is-invalid @enderror"
                                                     id="inputGender" name="gender">
-                                                    <option selected disabled>Select Gender</option>
+                                                    {{-- <option selected disabled>Select Gender</option> --}}
                                                     <option value="Laki-laki" @if ($employee->gender == 'Laki-laki') {{ 'selected' }} @endif>Laki-laki</option>
                                                     <option value="Perempuan" @if ($employee->gender == 'Perempuan') {{ 'selected' }} @endif>Perempuan</option>
 

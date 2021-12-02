@@ -199,7 +199,8 @@
 
                             $('#office').empty();
                             $('#office').append(
-                                '<option hidden>Choose Course</option>');
+                                '<option selected disabled hidden> {{ $item->office->name }} </option>'
+                            );
                             $.each(data, function(key, office) {
                                 $('select[name="office_id"]').append(
                                     '<option value="' + office.id + '">' +
@@ -215,8 +216,32 @@
             }
             $('select[name="region_id"]').on('change', function() {
                 var regionID = $(this).val();
+                if (regionID) {
+                    $.ajax({
+                        url: '/getOffice/' + regionID,
+                        type: "GET",
+                        data: {
+                            "_token": "{{ csrf_token() }}"
+                        },
+                        dataType: "json",
+                        success: function(data) {
+
+                            $('#office').empty();
+                            $('#office').append(
+                                '<option selected disabled hidden> choose </option>'
+                            );
+                            $.each(data, function(key, office) {
+                                $('select[name="office_id"]').append(
+                                    '<option value="' + office.id + '">' +
+                                    office
+                                    .name + '</option>');
+                            });
+
+                        }
+                    });
+                }
                 // alert(regionID);
-                call_ajax(regionID);
+                // call_ajax(regionID);
             });
             call_ajax("<?php echo $item->region->id; ?>");
         });

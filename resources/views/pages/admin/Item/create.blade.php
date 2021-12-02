@@ -214,7 +214,7 @@
                             if (data) {
                                 $('#office').empty();
                                 $('#office').append(
-                                    '<option hidden>Choose Course</option>');
+                                    '<option selected disabled>Choose office</option>');
                                 $.each(data, function(key, office) {
                                     $('select[name="office_id"]').append(
                                         '<option value="' + office.id + '">' +

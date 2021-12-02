@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\History_ownership;
+use App\Models\Item;
+use App\Models\Office;
 use App\Models\Region;
 use Illuminate\Http\Request;
 use DataTables;
@@ -113,6 +116,17 @@ class RegionController extends Controller
     public function destroy(Region $region,$id)
     {
         $region = Region::where('id',$id);
+        $office = Office::where('region_id',$id);
+        $item = Item::where('region_id',$id);
+        $items = Item::where('region_id', $id)->get();
+        foreach($items as $item){
+            $history = History_ownership::where('item_id',$item->id);
+            $history->delete();
+        }
+
+        
+        $item->delete();
+        $office->delete();
         $region->delete();
 
         return redirect()->route('regions.list')->with('success','Delete Success');
