@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.user')
 
 @section('title')
     {{ $item->name }}
@@ -20,7 +20,7 @@
                     <!-- Begin Page Content -->
                     <div class="container-fluid">
 
-                        <a href="{{ route('items.list') }}" class="btn btn-secondary shadow mb-4 border-0 ">
+                        {{-- <a href="{{ route('items.list') }}" class="btn btn-secondary shadow mb-4 border-0 ">
                             <div class="row px-1 d-flex justify-content-center mx-auto my-auto">
                                 <i class="fas fa-arrow-left mr-2 my-2"></i>
                                 <div class="my-1 ml-1">
@@ -29,7 +29,7 @@
 
                             </div>
 
-                        </a>
+                        </a> --}}
                         <!-- DataTales Example -->
                         <div class="card shadow mb-4">
                             <div class="row py-3 px-4 ml-4 my-4">
@@ -65,10 +65,10 @@
                                         <div class="card-body">
                                             {{-- {!! QrCode::size(150)->format('png')->generate('' . route('items.details', [$item->name, $item->id]) . '') !!} --}}
                                             <img src="data:image/png;base64, {!! base64_encode(
-    QrCode::format('png')->size(150)->generate('' . route('items.details.user', [$item->name, $item->id]) . ''),
+    QrCode::format('png')->size(150)->generate('' . route('items.details', [$item->name, $item->id]) . ''),
 ) !!}" download>
                                             <a href="data:image/png;base64, {!! base64_encode(
-    QrCode::format('png')->size(150)->generate('' . route('items.details.user', [$item->name, $item->id]) . ''),
+    QrCode::format('png')->size(150)->generate('' . route('items.details', [$item->name, $item->id]) . ''),
 ) !!}"
                                                 download="{{ $item->id }}-{{ $item->name }}.png"
                                                 class="mt-3 btn btn-primary d-flex justify-content-center">
@@ -154,11 +154,21 @@
     </div> --}}
 
     </body>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
+
+
+    {{-- {{ $item->id }}
+{{ $item->name }}
+{{ $item->description }}
+{{ $office->name }}
+{{ $region->name }} --}}
+@endsection
+
+@section('script')
+    {{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js"></script>
     <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-    <script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script> --}}
     <script type="text/javascript">
         $(function() {
             var table = $('#dataTable').DataTable({
@@ -197,10 +207,4 @@
 
         });
     </script>
-
-    {{-- {{ $item->id }}
-{{ $item->name }}
-{{ $item->description }}
-{{ $office->name }}
-{{ $region->name }} --}}
 @endsection
