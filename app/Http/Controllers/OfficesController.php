@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\History_ownership;
 use App\Models\Office;
 use App\Models\Region;
+use App\Models\Item;
 use Illuminate\Http\Request;
 use DataTables;
 
@@ -132,6 +134,14 @@ class OfficesController extends Controller
     public function destroy(Office $office,$id)
     {
         $office = Office::where('id',$id);
+        $item = Item::where('office_id',$id);
+        $items = Item::where('office_id', $id)->get();
+        foreach($items as $item){
+            $history = History_ownership::where('item_id',$item->id);
+            $history->delete();
+        }
+
+        $item->delete();
         $office->delete();
 
         return redirect()->route('offices.list')->with('success','Delete Success');

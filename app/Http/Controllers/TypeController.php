@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\History_ownership;
+use App\Models\Item;
 use App\Models\Type;
 use Illuminate\Http\Request;
 use DataTables;
@@ -118,6 +120,14 @@ class TypeController extends Controller
     public function destroy(Type $type,$id)
     {
         $type = Type::where('id',$id);
+        $item = Item::where('type_id',$id);
+        $items = Item::where('type_id', $id)->get();
+        foreach($items as $item){
+            $history = History_ownership::where('item_id',$item->id);
+            $history->delete();
+        }
+
+        $item->delete();
         $type->delete();
 
         return redirect()->route('types.list')->with('success','Delete Success');

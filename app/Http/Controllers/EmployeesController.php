@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Employee;
+use App\Models\History_ownership;
 use Illuminate\Http\Request;
 use DataTables;
 
@@ -133,6 +134,9 @@ class EmployeesController extends Controller
     {
         $employee =
         Employee::where('id', $id);
+        $history = History_ownership::where('employee_id',$id);
+
+        $history->delete();
         $employee->delete();
 
         return redirect()->route('employees.list')->with('success','Delete Success');

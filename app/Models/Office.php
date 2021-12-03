@@ -22,6 +22,15 @@ class Office extends Model
         self::creating(function ($model) {
             $model->id = IdGenerator::generate(['table' => 'offices', 'length' => 12, 'prefix' => 'OFI'.date('my').'-', 'reset_on_prefix_change'=>true]);
         });
+
+        static::deleting(function ($office) {
+            //deleting region->item->history
+            $office->item->each->delete();
+            // $region->item->each(function ($item) {
+            //     $item->delete();
+            // });
+            //delete related data to region from office
+        });
     }
 
     public function item()
@@ -34,12 +43,12 @@ class Office extends Model
         return $this->belongsTo(Region::class,'region_id','id');
     }
 
-    public function delete()
-    {
-        // delete related data simple version
-        $this->item()->delete();
+    // public function delete()
+    // {
+    //     // delete related data simple version
+    //     $this->item()->delete();
 
-        // delete the office
-        return parent::delete();
-    }
+    //     // delete the office
+    //     return parent::delete();
+    // }
 }
