@@ -66,7 +66,15 @@
                                             {{-- {!! QrCode::size(150)->format('png')->generate('' . route('items.details', [$item->name, $item->id]) . '') !!} --}}
                                             <img src="data:image/png;base64, {!! base64_encode(
     QrCode::format('png')->size(150)->generate('' . route('items.details', [$item->name, $item->id]) . ''),
-) !!}">
+) !!}" download>
+                                            <a href="data:image/png;base64, {!! base64_encode(
+    QrCode::format('png')->size(150)->generate('' . route('items.details', [$item->name, $item->id]) . ''),
+) !!}"
+                                                download="{{ $item->id }}-{{ $item->name }}.png"
+                                                class="mt-3 btn btn-primary d-flex justify-content-center">
+                                                download
+                                            </a>
+
                                         </div>
                                     </div>
                                 </div>
