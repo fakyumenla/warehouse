@@ -12,6 +12,8 @@ use App\Http\Controllers\HistoryController;
 use App\Http\Controllers\OfficesController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EmployeesController;
+// use App\Http\Controllers\Items_userController;
+use App\Http\Controllers\ItemsUserController;
 use App\Http\Controllers\TransactionsController;
 
 /*
@@ -34,6 +36,8 @@ Route::resource('/admin/items/posts', ItemsController::class);
 Route::put('admin/items/edits/posts/{id}', [ItemsController::class, 'update'])->name('items.update');
 Route::get('admin/items/edits/edit/{id}', [ItemsController::class, 'edit'])->name('items.edit');
 Route::delete('/admin/items/delete/{id}',[ItemsController::class, 'destroy'])->name('items.destroy');
+
+Route::get('item/{name}/{id}', [ItemsUserController::class, 'show'])->name('items.details.user');
 
 Route::get('/admin/employees', [EmployeesController::class, 'index'])->name('employees.list')->middleware('auth');
 Route::get('/admin/employees/create', [EmployeesController::class, 'create'])->name('employees.create')->middleware('auth');
