@@ -59,17 +59,20 @@
                                 </div>
                                 <div class="col-md-6 d-flex justify-content-center">
                                     <div class="card d-flex justify-content-betwee" style="width: 12rem;">
-                                        <div class="card-header ">
-                                            <h5>Simple QR Code</h5>
+                                        <div class="card-header text-center">
+                                            <h5>QR Code</h5>
                                         </div>
                                         <div class="card-body">
-                                            {!! QrCode::size(150)->generate('' . route('items.details', [$item->name, $item->id]) . '') !!}
+                                            {{-- {!! QrCode::size(150)->format('png')->generate('' . route('items.details', [$item->name, $item->id]) . '') !!} --}}
+                                            <img src="data:image/png;base64, {!! base64_encode(
+    QrCode::format('png')->size(150)->generate('' . route('items.details', [$item->name, $item->id]) . ''),
+) !!}">
                                         </div>
                                     </div>
                                 </div>
 
                             </div>
-                            <div class="row py-3 px-4 ml-4 my-4">
+                            <div class="      row py-3 px-4 ml-4 my-4">
 
                                 <div class="col">
                                     <div class="table-responsive">
