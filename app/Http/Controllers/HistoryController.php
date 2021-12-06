@@ -8,6 +8,10 @@ use App\Models\Item;
 use Illuminate\Http\Request;
 use DataTables;
 use Doctrine\DBAL\SQL\Parser\Visitor;
+use Illuminate\Support\Facades\Session as FacadesSession;
+// use Illuminate\Support\Facades\Session;
+use Session;
+use Redirect;
 
 class HistoryController extends Controller
 {
@@ -16,7 +20,7 @@ class HistoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         if (request()->ajax()) {
             $data = History_ownership::with('item','employee')->select('history_ownerships.*')->latest()->get();
@@ -51,6 +55,13 @@ class HistoryController extends Controller
                 ->rawColumns(['action'])
                 ->make(true);
         }
+        $fullUrl = $request->fullUrl();
+        var_dump($fullUrl);
+        // dd($fullUrl);
+        // if ($fullUrl != null) {
+        //     $request->session()->put('backUrl', $fullUrl);
+        // }
+        $request->session()->put('backUrl', $fullUrl);
         return view('pages.admin.Transaction.index');
     }
 
@@ -129,12 +140,27 @@ class HistoryController extends Controller
      * @param  \App\Models\History_ownership  $history_ownership
      * @return \Illuminate\Http\Response
      */
-    public function edit(History_ownership $history_ownership, $id)
+    public function edit(History_ownership $history_ownership, Request $request, $id)
     {
         $history =  History_ownership::where('id',$id)->firstOrFail();
         // $item = Item::where('id', $history->item_id)->get();
         $item = Item::where('id',$history->item_id)->firstOrFail(); 
-        $employee = Employee::where('id',$history->employee_id)->firstOrFail(); 
+        $employee = Employee::where('id',$history->employee_id)->firstOrFail();
+
+        // if (Session::has('backUrl')) {
+        //     Session::keep('backUrl');
+        // }
+
+        if($request->session()->has('backUrl')){
+            $request->session()->keep('backUrl');
+        }
+        var_dump($request->session()->has('backUrl'));
+        // dd($request->session()->('backUrl'));
+
+
+        // if(FacadesSession::has('backUrl')){
+        //     FacadesSession::keep('backUrl');
+        // }
         return view('pages.admin.Transaction.edit', [
             'history' => $history,
             'item' => $item,
@@ -156,7 +182,14 @@ class HistoryController extends Controller
         $data = $request->all();
         $history = History_ownership::where('id',$id)->firstOrFail();
         $history->update($data);
-        return redirect()->route('histories.list')->with('success', 'Edit Success');
+        // if ($request->session()->has('backUrl')) {
+        //     $request->session()->keep('backUrl');
+        // }
+        return ($url = $request->session()->get('backUrl'))
+        ?  Redirect::to($url)->with('success', 'Edit Success')
+        : Redirect::route('histories.list')->with('success', 'Edit Success');
+        // redirect($url);
+        // return redirect()->route('histories.list');
     }
 
     /**
@@ -165,12 +198,16 @@ class HistoryController extends Controller
      * @param  \App\Models\History_ownership  $history_ownership
      * @return \Illuminate\Http\Response
      */
-    public function destroy(History_ownership $history_ownership,$id)
+    public function destroy(History_ownership $history_ownership, Request $request,$id)
     {
         $history_ownership = History_ownership::where('id',$id);
         $history_ownership->delete();
 
-        return redirect()->route('histories.list')->with('success','Delete Success');
+        return ($url = $request->session()->get('backUrl'))
+        ?  Redirect::to($url)->with('success', 'Edit Success')
+            : Redirect::route('histories.list')->with('success', 'Delete Success');
+
+        // return redirect()->route('histories.list')->with('success','Delete Success');
     }
 
 
