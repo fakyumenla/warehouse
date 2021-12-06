@@ -92,7 +92,7 @@
                                                     <th>Owner</th>
                                                     <th>Date Taken</th>
                                                     <th>Return Date</th>
-                                                    <th>Action</th>
+
                                                 </tr>
                                             </thead>
                                             <tfoot>
@@ -102,7 +102,7 @@
                                                     <th>Owner</th>
                                                     <th>Date Taken</th>
                                                     <th>Return Date</th>
-                                                    <th>Action</th>
+
                                                 </tr>
                                             </tfoot>
                                             <tbody>
@@ -175,7 +175,7 @@
                 processing: true,
                 serverSide: true,
                 ordering: true,
-                ajax: "{{ route('items.details', [$item->name, $item->id]) }}",
+                ajax: "{{ route('items.details.user', [$item->name, $item->id]) }}",
                 columns: [{
                         data: 'id',
                         name: 'id'
@@ -196,12 +196,7 @@
                         data: 'end_date',
                         name: 'end_date'
                     },
-                    {
-                        data: 'action',
-                        name: 'action',
-                        orderable: true,
-                        searchable: true
-                    },
+
                 ]
             });
 

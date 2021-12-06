@@ -39,6 +39,7 @@ Route::delete('/admin/items/delete/{id}',[ItemsController::class, 'destroy'])->n
 
 Route::get('item/{name}/{id}', [ItemsUserController::class, 'show'])->name('items.details.user');
 
+
 Route::get('/admin/employees', [EmployeesController::class, 'index'])->name('employees.list')->middleware('auth');
 Route::get('/admin/employees/create', [EmployeesController::class, 'create'])->name('employees.create')->middleware('auth');
 Route::resource('/admin/employees/posts', EmployeesController::class);

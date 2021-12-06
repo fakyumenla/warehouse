@@ -10,6 +10,7 @@ use App\Models\Employee;
 use App\Models\History_ownership;
 use Illuminate\Http\Request;
 use DataTables;
+use Illuminate\Support\Facades\Session;
 
 class ItemsController extends Controller
 {
@@ -96,12 +97,16 @@ class ItemsController extends Controller
      * @param  \App\Models\Item $items
      * @return \Illuminate\Http\Response
      */
-    public function show(Item $item,$name,$id)
+    public function show(Item $item, Request $request, $name,$id)
     { 
+
+        
         $items = Item::where('id',$id)->firstOrFail();
         $office = Office::where('id',$items->office_id)->firstOrFail();
         $region = Region::where('id',$office->region_id)->firstOrFail();
         $history = History_ownership::where('item_id', $items->id)->get();
+
+        
         if (request()->ajax()) {
             $data = History_ownership::with('employee', 'item')->select('history_ownerships.*')->where('item_id', $items->id)->latest()->get();
             # Here 'items' is the name of table for Documents Model
@@ -134,9 +139,25 @@ class ItemsController extends Controller
                 ->rawColumns(['action'])
                 ->make(true);
         }
-        
 
+        $fullUrl = $request->fullUrl();
+        var_dump($fullUrl);
+        // dd($fullUrl);
+        if ($fullUrl != null) {
+            $request->session()->put('backUrl', $fullUrl);
+        }
+        $request->session()->put('backUrl', $fullUrl);
+
+        // Session::flash('backUrl', Request::fullUrl());    
+        // Session::flash('backUrl', request()->fullUrl());
         
+        // if($request->session()->has('backUrl')){
+        //     dd('ada');
+        // }
+        // dd( $request->session()->flash('backUrl', $fullUrl));
+        
+        
+        // $request->session()->flash('backUrl', $request->fullUrl());
         
         return view('pages.admin.Item.detail',[
             'item' => $items,
