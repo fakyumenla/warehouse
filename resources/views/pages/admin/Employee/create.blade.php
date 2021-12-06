@@ -104,8 +104,8 @@
                                             <div class="col-sm-2"></div>
                                             <div class="col-sm-3">
 
-                                                <button type="submit" class="btn btn-primary"> <i
-                                                        class="fas fa-plus mr-2"></i>Submit</button>
+                                                <input type="submit" class="btn btn-primary" name="btnADD" id="btnADD" value="Submit" onclick="this.disabled=true;this.value='Sending, please wait...';this.form.submit();" />
+
 
                                             </div>
                                         </div>
