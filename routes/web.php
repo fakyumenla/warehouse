@@ -26,6 +26,9 @@ use App\Http\Controllers\TransactionsController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/', function () {
+    return redirect('/admin');
+});
 
 Route::get('/admin', [DashboardController::class, 'index'])->name('dashboard')->middleware('auth');
 
