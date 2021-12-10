@@ -82,13 +82,20 @@ Route::put('admin/types/posts/{id}', [TypeController::class, 'update'])->name('t
 Route::get('admin/types/edit/{id}', [TypeController::class, 'edit'])->name('types.edit');
 Route::delete('/admin/types/delete/{id}',[TypeController::class, 'destroy'])->name('types.destroy');
 
-Route::get('/admin/histories', [HistoryController::class, 'index'])->name('histories.list')->middleware('auth');
-Route::get('/admin/Transaction/create', [HistoryController::class, 'create'])->name('histories.create')->middleware('auth');
-Route::resource('/admin/Transaction/posts', HistoryController::class);
-Route::get('/admin/Transaction/edit/{id}', [HistoryController::class, 'edit'])->name('histories.edit');
-Route::put('/admin/Transaction/posts/{id}', [HistoryController::class, 'update'])->name('histories.update');
-Route::delete('/admin/Transaction/delete/{id}',[HistoryController::class, 'destroy'])->name('histories.destroy');
-
+// Route::get('/admin/histories', [HistoryController::class, 'index'])->name('histories.list')->middleware('auth');
+// Route::get('/admin/Transaction/create', [HistoryController::class, 'create'])->name('histories.create')->middleware('auth');
+// Route::resource('/admin/Transaction/posts', HistoryController::class);
+// Route::get('/admin/Transaction/edit/{id}', [HistoryController::class, 'edit'])->name('histories.edit');
+// Route::put('/admin/Transaction/posts/{id}', [HistoryController::class, 'update'])->name('histories.update');
+// Route::delete('/admin/Transaction/delete/{id}',[HistoryController::class, 'destroy'])->name('histories.destroy');
+Route::resource('/admin/Transaction', HistoryController::class)->names([
+    'index' => 'histories.list',
+    'create' => 'histories.create',
+    'store' =>  'histories.store',
+    'edit' => 'histories.edit',
+    'update' => 'histories.update',
+    'destroy' => 'histories.destroy'
+])->middleware('auth');
 
 // Route::get('/admin/offices', [OfficesController::class, 'index'])->name('offices.list')->middleware('auth');
 // Route::get('/admin/offices/create', [OfficesController::class, 'create'])->name('office.create')->middleware('auth');

@@ -120,7 +120,7 @@ class HistoryController extends Controller
         ]);
 
         History_ownership::create($validatedData);
-        return redirect('/admin/histories');
+        return redirect()->route('histories.list')->with('success','Add Success');
     }
 
     /**
@@ -140,9 +140,9 @@ class HistoryController extends Controller
      * @param  \App\Models\History_ownership  $history_ownership
      * @return \Illuminate\Http\Response
      */
-    public function edit(History_ownership $history_ownership, Request $request, $id)
+    public function edit(History_ownership $history_ownership, Request $request)
     {
-        $history =  History_ownership::where('id',$id)->firstOrFail();
+        $history =  History_ownership::where('id',$history_ownership->id)->firstOrFail();
         // $item = Item::where('id', $history->item_id)->get();
         $item = Item::where('id',$history->item_id)->firstOrFail(); 
         $employee = Employee::where('id',$history->employee_id)->firstOrFail();
@@ -154,7 +154,7 @@ class HistoryController extends Controller
         if($request->session()->has('backUrl')){
             $request->session()->keep('backUrl');
         }
-        var_dump($request->session()->has('backUrl'));
+        var_dump($history_ownership->item_id);
         // dd($request->session()->('backUrl'));
 
 
