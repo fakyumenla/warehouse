@@ -75,13 +75,15 @@ Route::delete('/admin/Transaction/delete/{id}',[HistoryController::class, 'destr
 
 Route::get('/admin/offices', [OfficesController::class, 'index'])->name('offices.list')->middleware('auth');
 Route::get('/admin/offices/create', [OfficesController::class, 'create'])->name('offices.create')->middleware('auth');
-Route::resource('/admin/offices/posts', OfficesController::class);
+Route::resource('/admin/offices/posts', OfficesController::class)->names([
+    'create' =>  'offices.posts'
+]);
 Route::put('admin/offices/posts/{id}', [OfficesController::class, 'update'])->name('offices.update');
 Route::get('admin/offices/edit/{id}', [OfficesController::class, 'edit'])->name('offices.edit');
 Route::delete('/admin/offices/delete/{id}',[OfficesController::class, 'destroy'])->name('offices.destroy');
 
 Route::get('/login',[LoginController::class, 'index'])->name('login')->middleware('guest');
-Route::post('/login', [LoginController::class, 'authenticate']);
+Route::post('/login', [LoginController::class, 'authenticate'])->name('welcome.login');
 Route::post('/logout ', [LoginController::class, 'logout'])->name('logout');
 
 Route::get('getOffice/{id}', function ($id) {

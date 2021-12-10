@@ -17,7 +17,7 @@
                             </div>
                         @endif
 
-                        <form action="/login" method="POST">
+                        <form action="{{ route('welcome.login') }}" method="POST">
                             @csrf
                             <div class="form-group">
                                 <input type="text" name="username"
