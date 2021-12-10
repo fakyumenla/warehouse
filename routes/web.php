@@ -73,14 +73,20 @@ Route::put('/admin/Transaction/posts/{id}', [HistoryController::class, 'update']
 Route::delete('/admin/Transaction/delete/{id}',[HistoryController::class, 'destroy'])->name('histories.destroy');
 
 
-Route::get('/admin/offices', [OfficesController::class, 'index'])->name('offices.list')->middleware('auth');
-Route::get('/admin/offices/create', [OfficesController::class, 'create'])->name('offices.create')->middleware('auth');
+// Route::get('/admin/offices', [OfficesController::class, 'index'])->name('offices.list')->middleware('auth');
+// Route::get('/admin/offices/create', [OfficesController::class, 'create'])->name('office.create')->middleware('auth');
+// Route::put('admin/offices/posts/{id}', [OfficesController::class, 'update'])->name('offices.update');
+// Route::get('admin/offices/edit/{id}', [OfficesController::class, 'edit'])->name('offices.edit');
+// Route::delete('/admin/offices/delete/{id}',[OfficesController::class, 'destroy'])->name('offices.destroy');
 Route::resource('/admin/offices/posts', OfficesController::class)->names([
-    'create' =>  'offices.posts'
-]);
-Route::put('admin/offices/posts/{id}', [OfficesController::class, 'update'])->name('offices.update');
-Route::get('admin/offices/edit/{id}', [OfficesController::class, 'edit'])->name('offices.edit');
-Route::delete('/admin/offices/delete/{id}',[OfficesController::class, 'destroy'])->name('offices.destroy');
+    'index' => 'offices.list',
+    'create' => 'offices.create',
+    'store' =>  'offices.store',
+    'edit' => 'offices.edit',
+    'update' => 'offices.update',
+    'destroy' => 'offices.destroy'
+])->middleware('auth');
+
 
 Route::get('/login',[LoginController::class, 'index'])->name('login')->middleware('guest');
 Route::post('/login', [LoginController::class, 'authenticate'])->name('welcome.login');
