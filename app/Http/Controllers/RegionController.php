@@ -80,9 +80,9 @@ class RegionController extends Controller
      * @param  \App\Models\Region  $region
      * @return \Illuminate\Http\Response
      */
-    public function edit(Region $region,$id)
+    public function edit(Region $region)
     {
-        $region = Region::where('id',$id)->firstOrFail();
+        // $regions = Region::where('id',$region->id)->firstOrFail();
 
         return view('pages.admin.Region.edit', [
             'region' => $region,
@@ -96,7 +96,7 @@ class RegionController extends Controller
      * @param  \App\Models\Region  $region
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Region $region,$id)
+    public function update(Request $request, Region $region)
     {
         $data = $request->all();
         $validatedData = $request->validate([
@@ -104,9 +104,9 @@ class RegionController extends Controller
             'name' => 'required',
         ]);
 
-        $region = Region::where('id',$id)->firstOrFail();
+        $regions = Region::where('id', $region->id)->firstOrFail();
 
-        $region->update($data,$validatedData);
+        $regions->update($data,$validatedData);
 
         return redirect()->route('regions.list')->with('success','Edit Success');
     }
@@ -117,20 +117,20 @@ class RegionController extends Controller
      * @param  \App\Models\Region  $region
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Region $region,$id)
+    public function destroy(Region $region)
     {
-        $region = Region::where('id',$id);
-        $office = Office::where('region_id',$id);
-        $item = Item::where('region_id',$id);
-        $items = Item::where('region_id', $id)->get();
-        foreach($items as $item){
-            $history = History_ownership::where('item_id',$item->id);
-            $history->delete();
-        }
+        // $region = Region::where('id',$id);
+        // $office = Office::where('region_id',$id);
+        // $item = Item::where('region_id',$id);
+        // $items = Item::where('region_id', $id)->get();
+        // foreach($items as $item){
+        //     $history = History_ownership::where('item_id',$item->id);
+        //     $history->delete();
+        // }
 
         
-        $item->delete();
-        $office->delete();
+        // $item->delete();
+        // $office->delete();
         $region->delete();
 
         return redirect()->route('regions.list')->with('success','Delete Success');

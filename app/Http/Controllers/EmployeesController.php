@@ -88,9 +88,9 @@ class EmployeesController extends Controller
      * @param  \App\Models\Employees  $employees
      * @return \Illuminate\Http\Response
      */
-    public function edit(Employee $employee, $id)
+    public function edit(Employee $employee)
     {
-        $employee = Employee::where('id', $id)->firstOrFail();
+        $employee = Employee::where('id', $employee->id)->firstOrFail();
 
         return view('pages.admin.Employee.edit', [
             'employee' => $employee,
@@ -105,11 +105,11 @@ class EmployeesController extends Controller
      * @param  \App\Models\Employees  $employees
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Employee $employee, $id)
+    public function update(Request $request, Employee $employee)
     {
         $data = $request->all();
 
-        $employee = Employee::where('id', $id)->firstOrFail();
+        $employee = Employee::where('id', $employee->id)->firstOrFail();
 
         $validatedData = $request->validate([
             // 'id' => 'required',
@@ -130,13 +130,13 @@ class EmployeesController extends Controller
      * @param  \App\Models\Employees  $employees
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Employee $employee,$id)
+    public function destroy(Employee $employee)
     {
-        $employee =
-        Employee::where('id', $id);
-        $history = History_ownership::where('employee_id',$id);
+        // $employee =
+        // Employee::where('id', $id);
+        // $history = History_ownership::where('employee_id',$id);
 
-        $history->delete();
+        // $history->delete();
         $employee->delete();
 
         return redirect()->route('employees.list')->with('success','Delete Success');

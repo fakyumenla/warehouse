@@ -37,7 +37,7 @@
                                     <span class="text-header">Add Employee</span>
 
                                     <form class="mt-4" method="post" enctype="multipart/form-data"
-                                        action="/admin/employees/posts">
+                                        action="{{ route('employees.store') }}">
                                         @csrf
                                         <div class="form-group row">
                                             <label for="inputName" class="col-sm-2 col-form-label">Name</label>
@@ -104,7 +104,9 @@
                                             <div class="col-sm-2"></div>
                                             <div class="col-sm-3">
 
-                                                <input type="submit" class="btn btn-primary" name="btnADD" id="btnADD" value="Submit" onclick="this.disabled=true;this.value='Sending, please wait...';this.form.submit();" />
+                                                <input type="submit" class="btn btn-primary" name="btnADD" id="btnADD"
+                                                    value="Submit"
+                                                    onclick="this.disabled=true;this.value='Sending, please wait...';this.form.submit();" />
 
 
                                             </div>

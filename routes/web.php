@@ -43,28 +43,37 @@ Route::delete('/admin/items/delete/{id}',[ItemsController::class, 'destroy'])->n
 Route::get('item/{name}/{id}', [ItemsUserController::class, 'show'])->name('items.details.user');
 
 
-Route::get('/admin/employees', [EmployeesController::class, 'index'])->name('employees.list')->middleware('auth');
-Route::get('/admin/employees/create', [EmployeesController::class, 'create'])->name('employees.create')->middleware('auth');
+// Route::get('/admin/employees', [EmployeesController::class, 'index'])->name('employees.list')->middleware('auth');
+// Route::get('/admin/employees/create', [EmployeesController::class, 'create'])->name('employees.create')->middleware('auth');
 
-Route::put('admin/employees/posts/{id}', [EmployeesController::class, 'update'])->name('employees.update')->middleware('auth');
-Route::get('admin/employees/edit/{id}', [EmployeesController::class, 'edit'])->name('employees.edit')->middleware('auth');
-Route::delete('/admin/employees/delete/{id}',[EmployeesController::class, 'destroy'])->name('employees.destroy')->middleware('auth');
-Route::resource('/admin/employees/posts', EmployeesController::class)->names([
+// Route::put('admin/employees/posts/{id}', [EmployeesController::class, 'update'])->name('employees.update')->middleware('auth');
+// Route::get('admin/employees/edit/{id}', [EmployeesController::class, 'edit'])->name('employees.edit')->middleware('auth');
+// Route::delete('/admin/employees/delete/{id}',[EmployeesController::class, 'destroy'])->name('employees.destroy')->middleware('auth');
+Route::resource('/admin/employees', EmployeesController::class)->names([
     'index' => 'employees.list',
     'create' => 'employees.create',
     'store' =>  'employees.store',
     'edit' => 'employees.edit',
-    'update' => '.update',
-    'destroy' => 'offices.destroy'
+    'update' => 'employees.update',
+    'destroy' => 'employees.destroy'
 ])->middleware('auth');
 
 
-Route::get('/admin/regions', [RegionController::class, 'index'])->name('regions.list')->middleware('auth');
-Route::get('/admin/regions/create', [RegionController::class, 'create'])->name('regions.create')->middleware('auth');
-Route::resource('/admin/regions/posts', RegionController::class)->middleware('auth');
-Route::put('admin/regions/posts/{id}', [RegionController::class, 'update'])->name('regions.update');
-Route::get('admin/regions/edit/{id}', [RegionController::class, 'edit'])->name('regions.edit');
-Route::delete('/admin/regions/delete/{id}',[RegionController::class, 'destroy'])->name('regions.destroy');
+// Route::get('/admin/regions', [RegionController::class, 'index'])->name('regions.list')->middleware('auth');
+// Route::get('/admin/regions/create', [RegionController::class, 'create'])->name('regions.create')->middleware('auth');
+// Route::resource('/admin/regions/posts', RegionController::class)->middleware('auth');
+// Route::put('admin/regions/posts/{id}', [RegionController::class, 'update'])->name('regions.update');
+// Route::get('admin/regions/edit/{id}', [RegionController::class, 'edit'])->name('regions.edit');
+// Route::delete('/admin/regions/delete/{id}',[RegionController::class, 'destroy'])->name('regions.destroy');
+
+Route::resource('/admin/regions', RegionController::class)->names([
+    'index' => 'regions.list',
+    'create' => 'regions.create',
+    'store' =>  'regions.store',
+    'edit' => 'regions.edit',
+    'update' => 'regions.update',
+    'destroy' => 'regions.destroy'
+])->middleware('auth');
 
 Route::get('/admin/types', [TypeController::class, 'index'])->name('types.list')->middleware('auth');
 Route::get('/admin/types/create', [TypeController::class, 'create'])->name('types.create')->middleware('auth');

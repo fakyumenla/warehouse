@@ -54,7 +54,7 @@ class Region extends Model
             //     $item->delete();
             // });
             //delete related data to region from office
-            $region->office->delete();
+            $region->office()->delete();
         });
     }
 }
