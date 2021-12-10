@@ -104,9 +104,9 @@ class RegionController extends Controller
             'name' => 'required',
         ]);
 
-        $regions = Region::where('id', $region->id)->firstOrFail();
+        // $regions = Region::where('id', $region->id)->firstOrFail();
 
-        $regions->update($data,$validatedData);
+        $region->update($data,$validatedData);
 
         return redirect()->route('regions.list')->with('success','Edit Success');
     }
