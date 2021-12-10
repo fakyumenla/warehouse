@@ -90,7 +90,7 @@ class OfficesController extends Controller
      * @param  \App\Models\Offices  $offices
      * @return \Illuminate\Http\Response
      */
-    public function edit(Office $office,$id)
+    public function edit($id)
     {
         $office = Office::where('id',$id)->firstOrFail();
 
@@ -107,7 +107,7 @@ class OfficesController extends Controller
      * @param  \App\Models\Offices  $offices
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Office $office,$id)
+    public function update(Request $request,$id)
     {
         $data = $request->all();
 
@@ -131,7 +131,7 @@ class OfficesController extends Controller
      * @param  \App\Models\Offices  $offices
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Office $office,$id)
+    public function destroy($id)
     {
         $office = Office::where('id',$id);
         $item = Item::where('office_id',$id);

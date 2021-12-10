@@ -45,10 +45,18 @@ Route::get('item/{name}/{id}', [ItemsUserController::class, 'show'])->name('item
 
 Route::get('/admin/employees', [EmployeesController::class, 'index'])->name('employees.list')->middleware('auth');
 Route::get('/admin/employees/create', [EmployeesController::class, 'create'])->name('employees.create')->middleware('auth');
-Route::resource('/admin/employees/posts', EmployeesController::class);
+
 Route::put('admin/employees/posts/{id}', [EmployeesController::class, 'update'])->name('employees.update')->middleware('auth');
 Route::get('admin/employees/edit/{id}', [EmployeesController::class, 'edit'])->name('employees.edit')->middleware('auth');
 Route::delete('/admin/employees/delete/{id}',[EmployeesController::class, 'destroy'])->name('employees.destroy')->middleware('auth');
+Route::resource('/admin/employees/posts', EmployeesController::class)->names([
+    'index' => 'employees.list',
+    'create' => 'employees.create',
+    'store' =>  'employees.store',
+    'edit' => 'employees.edit',
+    'update' => '.update',
+    'destroy' => 'offices.destroy'
+])->middleware('auth');
 
 
 Route::get('/admin/regions', [RegionController::class, 'index'])->name('regions.list')->middleware('auth');
@@ -78,7 +86,7 @@ Route::delete('/admin/Transaction/delete/{id}',[HistoryController::class, 'destr
 // Route::put('admin/offices/posts/{id}', [OfficesController::class, 'update'])->name('offices.update');
 // Route::get('admin/offices/edit/{id}', [OfficesController::class, 'edit'])->name('offices.edit');
 // Route::delete('/admin/offices/delete/{id}',[OfficesController::class, 'destroy'])->name('offices.destroy');
-Route::resource('/admin/offices/posts', OfficesController::class)->names([
+Route::resource('/admin/offices', OfficesController::class)->names([
     'index' => 'offices.list',
     'create' => 'offices.create',
     'store' =>  'offices.store',
