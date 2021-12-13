@@ -59,7 +59,7 @@ class TypeController extends Controller
         // $validatedData[;'']
         type::create($validatedData);
 
-        return redirect('/admin/types')->with('success', 'success add new type');
+        return redirect()->route('types.list')->with('success', 'success add new type');
     }
 
     /**
@@ -79,9 +79,8 @@ class TypeController extends Controller
      * @param  \App\Models\Type  $type
      * @return \Illuminate\Http\Response
      */
-    public function edit(Type $type,$id)
+    public function edit(Type $type)
     {
-        $type = Type::where('id',$id)->firstOrFail();
 
         return view('pages.admin.Type.edit', [
             'type' => $type,
@@ -95,12 +94,9 @@ class TypeController extends Controller
      * @param  \App\Models\Type  $type
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Type $type, $id)
+    public function update(Request $request, Type $type)
     {
         $data = $request->all();
-
-        $type = Type::where('id',$id)->firstOrFail();
-
         $validatedData = $request->validate([
             // 'id' => 'required',
             'name' => 'required',
@@ -117,17 +113,17 @@ class TypeController extends Controller
      * @param  \App\Models\Type  $type
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Type $type,$id)
+    public function destroy(Type $type)
     {
-        $type = Type::where('id',$id);
-        $item = Item::where('type_id',$id);
-        $items = Item::where('type_id', $id)->get();
-        foreach($items as $item){
-            $history = History_ownership::where('item_id',$item->id);
-            $history->delete();
-        }
+        // $type = Type::where('id',$id);
+        // $item = Item::where('type_id',$id);
+        // $items = Item::where('type_id', $id)->get();
+        // foreach($items as $item){
+        //     $history = History_ownership::where('item_id',$item->id);
+        //     $history->delete();
+        // }
 
-        $item->delete();
+        // $item->delete();
         $type->delete();
 
         return redirect()->route('types.list')->with('success','Delete Success');
