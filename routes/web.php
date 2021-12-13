@@ -34,13 +34,23 @@ Route::get('/', function () {
 
 Route::get('/admin', [DashboardController::class, 'index'])->name('dashboard')->middleware('auth');
 
-Route::get('/admin/items', [ItemsController::class, 'index'])->name('items.list')->middleware('auth');
-Route::get('/admin/items/create', [ItemsController::class, 'create'])->name('items.create')->middleware('auth');
-Route::get('admin/items/{name}/{id}', [ItemsController::class, 'show'])->name('items.details')->middleware('auth');
-Route::resource('/admin/items/posts', ItemsController::class);
-Route::put('admin/items/edits/posts/{id}', [ItemsController::class, 'update'])->name('items.update');
-Route::get('admin/items/edits/edit/{id}', [ItemsController::class, 'edit'])->name('items.edit');
-Route::delete('/admin/items/delete/{id}',[ItemsController::class, 'destroy'])->name('items.destroy');
+// Route::get('/admin/items', [ItemsController::class, 'index'])->name('items.list')->middleware('auth');
+// Route::get('/admin/items/create', [ItemsController::class, 'create'])->name('items.create')->middleware('auth');
+Route::get('admin/items/{name}/{id}/details', [ItemsController::class, 'show'])->name('items.details')->middleware('auth');
+// Route::resource('/admin/items/posts', ItemsController::class);
+// Route::put('admin/items/edits/posts/{id}', [ItemsController::class, 'update'])->name('items.update');
+// Route::get('admin/items/edits/edit/{id}', [ItemsController::class, 'edit'])->name('items.edit');
+// Route::delete('/admin/items/delete/{id}',[ItemsController::class, 'destroy'])->name('items.destroy');
+
+Route::resource('/admin/items', ItemsController::class)->names([
+    'index' => 'items.list',
+    // 'show' => 'items.details',
+    'create' => 'items.create',
+    'store' =>  'items.store',
+    'edit' => 'items.edit',
+    'update' => 'items.update',
+    'destroy' => 'items.destroy'
+])->middleware('auth');
 
 Route::get('item/{name}/{id}', [ItemsUserController::class, 'show'])->name('items.details.user');
 
@@ -90,7 +100,7 @@ Route::delete('/admin/types/delete/{id}',[TypeController::class, 'destroy'])->na
 // Route::get('/admin/Transaction/edit/{id}', [HistoryController::class, 'edit'])->name('histories.edit');
 // Route::put('/admin/Transaction/posts/{id}', [HistoryController::class, 'update'])->name('histories.update');
 // Route::delete('/admin/Transaction/delete/{id}',[HistoryController::class, 'destroy'])->name('histories.destroy');
-Route::resource('/admin/history_ownership', HistoryController::class)->names([
+Route::resource('/admin/histories', HistorysController::class)->names([
     'index' => 'histories.list',
     'create' => 'histories.create',
     'store' =>  'histories.store',

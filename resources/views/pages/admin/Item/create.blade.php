@@ -36,7 +36,7 @@
                                 <span class="text-header">Add Item</span>
 
                                 <form class="mt-4" method="post" enctype="multipart/form-data"
-                                    action="/admin/items/posts">
+                                    action="{{ route('items.store') }}">
                                     @csrf
                                     <div class="form-group row">
                                         <label for="inputName" class="col-sm-2 col-form-label">Name</label>
@@ -141,7 +141,9 @@
                                         <div class="col-sm-2"></div>
                                         <div class="col-sm-3">
 
-                                            <input type="submit" class="btn btn-primary" name="btnADD" id="btnADD" value="Submit" onclick="this.disabled=true;this.value='Sending, please wait...';this.form.submit();" />
+                                            <input type="submit" class="btn btn-primary" name="btnADD" id="btnADD"
+                                                value="Submit"
+                                                onclick="this.disabled=true;this.value='Sending, please wait...';this.form.submit();" />
 
                                         </div>
                                     </div>
@@ -214,7 +216,7 @@
                                 $('#office').empty();
                                 $('#office').append(
                                     '<option  hidden selected disabled>Choose office</option>'
-                                    );
+                                );
                                 $.each(data, function(key, office) {
                                     $('select[name="office_id"]').append(
                                         '<option value="' + office.id + '">' +

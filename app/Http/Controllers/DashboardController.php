@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Employee;
+use App\Models\History;
 use App\Models\Item;
 use App\Models\History_ownership;
 use App\Models\Office;
@@ -23,7 +24,7 @@ class DashboardController extends Controller
         // $offices = $office->count(); 
 
         if (request()->ajax()) {
-            $data = History_ownership::with('item', 'employee')->select('history_ownerships.*')->latest();
+            $data = History::with('item', 'employee')->select('histories.*')->latest();
             # Here 'history_ownerships' is the name of table for Documents Model
             # And 'item' is the name of relation on Document Model.
             return Datatables::of($data)

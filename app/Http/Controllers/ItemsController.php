@@ -7,6 +7,7 @@ use App\Models\Office;
 use App\Models\Region;
 use App\Models\Type;
 use App\Models\Employee;
+use App\Models\History;
 use App\Models\History_ownership;
 use Illuminate\Http\Request;
 use DataTables;
@@ -104,11 +105,11 @@ class ItemsController extends Controller
         $items = Item::where('id',$id)->firstOrFail();
         $office = Office::where('id',$items->office_id)->firstOrFail();
         $region = Region::where('id',$office->region_id)->firstOrFail();
-        $history = History_ownership::where('item_id', $items->id)->get();
+        $history = History::where('item_id', $items->id)->get();
 
         
         if (request()->ajax()) {
-            $data = History_ownership::with('employee', 'item')->select('history_ownerships.*')->where('item_id', $items->id)->latest()->get();
+            $data = History::with('employee', 'item')->select('histories.*')->where('item_id', $items->id)->latest()->get();
             # Here 'items' is the name of table for Documents Model
             # And 'region' is the name of relation on Document Model.
             return Datatables::of($data)
@@ -175,9 +176,9 @@ class ItemsController extends Controller
      * @param  \App\Models\Item  $items
      * @return \Illuminate\Http\Response
      */
-    public function edit(Item $item,$id)
+    public function edit(Item $item)
     {
-        $item = Item::where('id',$id)->firstOrFail();
+        // $item = Item::where('id',$id)->firstOrFail();
         $office = Office::where('id',$item->office_id);
     
         return view('pages.admin.Item.edit', [
@@ -197,11 +198,11 @@ class ItemsController extends Controller
      * @param  \App\Models\Item  $items
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Item $item,$id)
+    public function update(Request $request, Item $item)
     {
         $data = $request->all();
 
-        $item = Item::where('id',$id)->firstOrFail();
+        // $item = Item::where('id',$id)->firstOrFail();
 
         $validatedData = $request->validate([
             // 'id' => 'required',
@@ -223,12 +224,12 @@ class ItemsController extends Controller
      * @param  \App\Models\Item  $items
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Item $item,$id)
+    public function destroy(Item $item)
     {
-        $item = Item::where('id',$id);
-        $history = History_ownership::where('item_id',$id);
+        // $item = Item::where('id',$id);
+        // $history = History_ownership::where('item_id',$id);
 
-        $history->delete();
+        // $history->delete();
         $item->delete();
 
         return redirect()->route('items.list')->with('success','Delete Success');
