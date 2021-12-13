@@ -139,7 +139,7 @@ Route::post('/logout ', [LoginController::class, 'logout'])->name('logout');
 Route::get('getOffice/{id}', function ($id) {
     $office = App\Models\Office::where('region_id', $id)->get();
     return response()->json($office);
-});
+})->name('getoffice');
 
-Route::get('ajax-autocomplete-search', [HistorysController::class, 'selectSearch']);
-Route::get('ajax-autocomplete-search-item', [HistorysController::class, 'selectSearch_item']);
+Route::get('ajax-autocomplete-search', [HistorysController::class, 'selectSearch'])->name('autocomplete');
+Route::get('ajax-autocomplete-search-item', [HistorysController::class, 'selectSearch_item'])->name('autocompleteitem');

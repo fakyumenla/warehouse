@@ -59,7 +59,7 @@ class HistorysController extends Controller
                 ->make(true);
         }
         $fullUrl = $request->fullUrl();
-        // var_dump($fullUrl);
+        var_dump($fullUrl);
         // dd($fullUrl);
         // if ($fullUrl != null) {
         //     $request->session()->put('backUrl', $fullUrl);
@@ -199,11 +199,14 @@ class HistorysController extends Controller
      */
     public function destroy(History $history, Request $request)
     {
+        // if ($request->session()->has('backUrl')) {
+        //     $request->session()->keep('backUrl');
+        // }
         // $history_ownership = History_ownership::where('id', $id);
         $history->delete();
 
         return ($url = $request->session()->get('backUrl'))
-            ?  Redirect::to($url)->with('success', 'Edit Success')
+            ?  Redirect::to($url)->with('success', 'Delete Success')
             : Redirect::route('histories.list')->with('success', 'Delete Success');
     }
 }
