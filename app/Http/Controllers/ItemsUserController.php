@@ -7,6 +7,7 @@ use App\Models\Office;
 use App\Models\Region;
 use App\Models\Type;
 use App\Models\Employee;
+use App\Models\History;
 use App\Models\History_ownership;
 // use Illuminate\Http\Request;
 use DataTables;
@@ -20,9 +21,9 @@ class ItemsUserController extends Controller
         $items = Item::where('id', $id)->firstOrFail();
         $office = Office::where('id', $items->office_id)->firstOrFail();
         $region = Region::where('id', $office->region_id)->firstOrFail();
-        $history = History_ownership::where('item_id', $items->id)->get();
+        $history = History::where('item_id', $items->id)->get();
         if (request()->ajax()) {
-            $data = History_ownership::with('employee', 'item')->select('history_ownerships.*')->where('item_id', $items->id)->latest()->get();
+            $data = History::with('employee', 'item')->select('histories.*')->where('item_id', $items->id)->latest()->get();
             # Here 'items' is the name of table for Documents Model
             # And 'region' is the name of relation on Document Model.
             return Datatables::of($data)

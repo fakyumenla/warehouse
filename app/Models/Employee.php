@@ -26,7 +26,7 @@ class Employee extends Model
 
     public function history()
     {
-        return $this->hasMany(History_ownership::class);
+        return $this->hasMany(History::class);
     }
 
     public function delete()

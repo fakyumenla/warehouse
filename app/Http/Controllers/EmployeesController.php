@@ -90,7 +90,7 @@ class EmployeesController extends Controller
      */
     public function edit(Employee $employee)
     {
-        dd($employee);
+        // dd($employee);
         // $employee = Employee::where('id', $employee->id)->firstOrFail();
 
         return view('pages.admin.Employee.edit', [
