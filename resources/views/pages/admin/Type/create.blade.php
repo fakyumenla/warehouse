@@ -37,7 +37,7 @@
                                     <span class="text-header">Add Type</span>
 
                                     <form class="mt-4" method="post" enctype="multipart/form-data"
-                                        action="/admin/types/posts">
+                                        action="{{ route('types.store') }}">
                                         @csrf
                                         <div class="form-group row">
                                             <label for="inputName" class="col-sm-2 col-form-label">Name</label>

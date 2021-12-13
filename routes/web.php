@@ -87,12 +87,20 @@ Route::resource('/admin/regions', RegionController::class)->names([
     'destroy' => 'regions.destroy'
 ])->middleware('auth');
 
-Route::get('/admin/types', [TypeController::class, 'index'])->name('types.list')->middleware('auth');
-Route::get('/admin/types/create', [TypeController::class, 'create'])->name('types.create')->middleware('auth');
-Route::resource('/admin/types/posts', TypeController::class);
-Route::put('admin/types/posts/{id}', [TypeController::class, 'update'])->name('types.update');
-Route::get('admin/types/edit/{id}', [TypeController::class, 'edit'])->name('types.edit');
-Route::delete('/admin/types/delete/{id}',[TypeController::class, 'destroy'])->name('types.destroy');
+// Route::get('/admin/types', [TypeController::class, 'index'])->name('types.list')->middleware('auth');
+// Route::get('/admin/types/create', [TypeController::class, 'create'])->name('types.create')->middleware('auth');
+// Route::resource('/admin/types/posts', TypeController::class);
+// Route::put('admin/types/posts/{id}', [TypeController::class, 'update'])->name('types.update');
+// Route::get('admin/types/edit/{id}', [TypeController::class, 'edit'])->name('types.edit');
+// Route::delete('/admin/types/delete/{id}',[TypeController::class, 'destroy'])->name('types.destroy');
+Route::resource('/admin/types', TypeController::class)->names([
+    'index' => 'types.list',
+    'create' => 'types.create',
+    'store' =>  'types.store',
+    'edit' => 'types.edit',
+    'update' => 'types.update',
+    'destroy' => 'types.destroy'
+])->middleware('auth');
 
 // Route::get('/admin/histories', [HistoryController::class, 'index'])->name('histories.list')->middleware('auth');
 // Route::get('/admin/Transaction/create', [HistoryController::class, 'create'])->name('histories.create')->middleware('auth');
