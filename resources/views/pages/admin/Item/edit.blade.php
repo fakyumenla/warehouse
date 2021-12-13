@@ -213,9 +213,11 @@
             function call_ajax(regionID) {
                 // alert(id);
                 // var regionID = $(this).val();
+                var url = '{{ route('getoffice', ':id') }}'
+                url = url.replace(':id', regionID);
                 if (regionID) {
                     $.ajax({
-                        url: '/getOffice/' + regionID,
+                        url: url,
                         type: "GET",
                         data: {
                             "_token": "{{ csrf_token() }}"

@@ -88,7 +88,9 @@
                                             <div class="col-sm-2"></div>
                                             <div class="col-sm-3">
 
-                                                <input type="submit" class="btn btn-primary" name="btnADD" id="btnADD" value="Submit" onclick="this.disabled=true;this.value='Sending, please wait...';this.form.submit();" />
+                                                <input type="submit" class="btn btn-primary" name="btnADD" id="btnADD"
+                                                    value="Submit"
+                                                    onclick="this.disabled=true;this.value='Sending, please wait...';this.form.submit();" />
 
 
                                             </div>
@@ -151,7 +153,7 @@
         $('#livesearch').select2({
             placeholder: 'Select name',
             ajax: {
-                url: '/ajax-autocomplete-search',
+                url: '{{ route('autocomplete') }}',
                 dataType: 'json',
                 delay: 250,
                 processResults: function(data) {
@@ -172,7 +174,7 @@
         $('#livesearch-item').select2({
             placeholder: 'Select item',
             ajax: {
-                url: '/ajax-autocomplete-search-item',
+                url: '{{ route('autocomplete2') }}',
                 dataType: 'json',
                 delay: 250,
                 processResults: function(data) {

@@ -203,13 +203,20 @@
         $(document).ready(function() {
             $('#inputRegion').on('change', function(e) {
                 var regionID = $(this).val();
+                var url = '{{ route('getoffice', ':id') }}'
+                url = url.replace(':id', regionID);
                 if (regionID) {
                     $.ajax({
-                        url: '/getOffice/' + regionID,
+                        url: url,
                         type: "GET",
+                        enctype: 'multipart/form-data',
                         data: {
                             "_token": "{{ csrf_token() }}"
                         },
+                        // headers: {
+                        //     'X-CSRF-Token': '{{ csrf_token() }}',
+                        // },
+
                         dataType: "json",
                         success: function(data) {
                             if (data) {
