@@ -16,7 +16,7 @@ class RegionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Region $region)
     {
         if (request()->ajax()) {
             $data = Region::latest()->get();
@@ -60,7 +60,7 @@ class RegionController extends Controller
         // $validatedData[;'']
         Region::create($validatedData);
 
-        return redirect('/admin/regions')->with('success', 'success add new region');
+        return redirect()->route('regions.list')->with('success', 'success add new region');
     }
 
     /**

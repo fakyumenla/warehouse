@@ -66,7 +66,7 @@ class EmployeesController extends Controller
         // $validatedData[;'']
         Employee::create($validatedData);
 
-        return redirect('/admin/employees')->with('success', 'Success Add New Employee');
+        return redirect()->route('employees.list')->with('success', 'Success Add New Employee');
         // $data = $request -> all();        
         // return $request;
     }
@@ -90,7 +90,8 @@ class EmployeesController extends Controller
      */
     public function edit(Employee $employee)
     {
-        $employee = Employee::where('id', $employee->id)->firstOrFail();
+        dd($employee);
+        // $employee = Employee::where('id', $employee->id)->firstOrFail();
 
         return view('pages.admin.Employee.edit', [
             'employee' => $employee,
@@ -109,7 +110,7 @@ class EmployeesController extends Controller
     {
         $data = $request->all();
 
-        $employee = Employee::where('id', $employee->id)->firstOrFail();
+        // $employee = Employee::where('id', $employee->id)->firstOrFail();
 
         $validatedData = $request->validate([
             // 'id' => 'required',

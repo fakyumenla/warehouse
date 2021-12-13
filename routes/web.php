@@ -12,6 +12,8 @@ use App\Http\Controllers\HistoryController;
 use App\Http\Controllers\OfficesController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EmployeesController;
+use App\Http\Controllers\HistoriesController;
+use App\Http\Controllers\HistorysController;
 // use App\Http\Controllers\Items_userController;
 use App\Http\Controllers\ItemsUserController;
 use App\Http\Controllers\TransactionsController;
@@ -88,7 +90,7 @@ Route::delete('/admin/types/delete/{id}',[TypeController::class, 'destroy'])->na
 // Route::get('/admin/Transaction/edit/{id}', [HistoryController::class, 'edit'])->name('histories.edit');
 // Route::put('/admin/Transaction/posts/{id}', [HistoryController::class, 'update'])->name('histories.update');
 // Route::delete('/admin/Transaction/delete/{id}',[HistoryController::class, 'destroy'])->name('histories.destroy');
-Route::resource('/admin/Transaction', HistoryController::class)->names([
+Route::resource('/admin/history_ownership', HistoryController::class)->names([
     'index' => 'histories.list',
     'create' => 'histories.create',
     'store' =>  'histories.store',
@@ -121,5 +123,5 @@ Route::get('getOffice/{id}', function ($id) {
     return response()->json($office);
 });
 
-Route::get('ajax-autocomplete-search', [HistoryController::class, 'selectSearch']);
-Route::get('ajax-autocomplete-search-item', [HistoryController::class, 'selectSearch_item']);
+Route::get('ajax-autocomplete-search', [HistorysController::class, 'selectSearch']);
+Route::get('ajax-autocomplete-search-item', [HistorysController::class, 'selectSearch_item']);

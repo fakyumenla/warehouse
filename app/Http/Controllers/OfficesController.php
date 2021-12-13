@@ -70,7 +70,7 @@ class OfficesController extends Controller
         // $validatedData[;'']
         Office::create($validatedData);
 
-        return redirect('/admin/offices');
+        return redirect()->route('offices.list')->with('success', 'success add new office');
     }
 
     /**
@@ -90,9 +90,9 @@ class OfficesController extends Controller
      * @param  \App\Models\Offices  $offices
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Office $office)
     {
-        $office = Office::where('id',$id)->firstOrFail();
+        // $office = Office::where('id',$id)->firstOrFail();
 
         return view('pages.admin.Office.edit', [
             'office' => $office,
@@ -107,7 +107,7 @@ class OfficesController extends Controller
      * @param  \App\Models\Offices  $offices
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request,$id)
+    public function update(Request $request, Office $office)
     {
         $data = $request->all();
 
@@ -118,7 +118,7 @@ class OfficesController extends Controller
             'region_id' => 'required',
             'address' => 'required'
         ]);
-        $office = Office::where('id',$id)->firstOrFail();
+        // $office = Office::where('id',$id)->firstOrFail();
 
         $office->update($data,$validatedData);
 
@@ -131,17 +131,17 @@ class OfficesController extends Controller
      * @param  \App\Models\Offices  $offices
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Office $office)
     {
-        $office = Office::where('id',$id);
-        $item = Item::where('office_id',$id);
-        $items = Item::where('office_id', $id)->get();
-        foreach($items as $item){
-            $history = History_ownership::where('item_id',$item->id);
-            $history->delete();
-        }
+        // $office = Office::where('id',$id);
+        // $item = Item::where('office_id',$id);
+        // $items = Item::where('office_id', $id)->get();
+        // foreach($items as $item){
+        //     $history = History_ownership::where('item_id',$item->id);
+        //     $history->delete();
+        // }
 
-        $item->delete();
+        // $item->delete();
         $office->delete();
 
         return redirect()->route('offices.list')->with('success','Delete Success');
