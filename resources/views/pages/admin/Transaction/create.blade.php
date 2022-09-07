@@ -174,7 +174,7 @@
         $('#livesearch-item').select2({
             placeholder: 'Select item',
             ajax: {
-                url: '{{ route('autocomplete2') }}',
+                url: '{{ route('autocompleteitem') }}',
                 dataType: 'json',
                 delay: 250,
                 processResults: function(data) {
